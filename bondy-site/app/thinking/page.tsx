@@ -12,7 +12,7 @@ const articles = [
     label: 'Frameworks',
     date: 'Feb 2025',
     title: 'Why most job briefs are wrong before the search starts',
-    excerpt: 'The single most common reason a search fails isn't sourcing. It's an imprecise brief. Here's how to write one that actually works.',
+    excerpt: 'The single most common reason a search fails isn\'t sourcing. It\'s an imprecise brief. Here\'s how to write one that actually works.',
     readTime: '5 min',
   },
   {
@@ -20,7 +20,7 @@ const articles = [
     label: 'Market',
     date: 'Jan 2025',
     title: 'The senior engineer market in Latin America: Q1 2025 update',
-    excerpt: 'Compensation benchmarks, demand signals, and what's changed since the 2023 tech slowdown.',
+    excerpt: 'Compensation benchmarks, demand signals, and what\'s changed since the 2023 tech slowdown.',
     readTime: '8 min',
   },
   {
@@ -36,7 +36,7 @@ const articles = [
     label: 'Clients',
     date: 'Nov 2024',
     title: 'What VPs of Engineering actually want from a recruiter',
-    excerpt: 'After 16 years of conversations, we've learned that the most important thing isn't the shortlist. It's knowing when to say no.',
+    excerpt: 'After 16 years of conversations, we\'ve learned that the most important thing isn\'t the shortlist. It\'s knowing when to say no.',
     readTime: '6 min',
   },
 ]
