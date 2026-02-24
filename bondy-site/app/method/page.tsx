@@ -115,7 +115,7 @@ export default function MethodPage() {
               className="inline-flex items-center gap-3 font-mono-bondy text-[11px] tracking-widest uppercase px-8 py-4 transition-colors"
               style={{background: '#E05C00', color: '#111111'}}
             >
-              Start a search ↗
+              Start a search ->>
             </a>
           </div>
         </div>
