@@ -2,7 +2,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'The Bondy Method™ — How we think about technical hiring',
+  title: 'The Bondy Method™  —  How we think about technical hiring',
   description: 'We run recruitment the way great engineering teams run sprints. Every search is a project with a hypothesis, a strategy, and a clear definition of done.',
 }
 
@@ -22,7 +22,7 @@ export default function MethodPage() {
             is a <em className="italic" style={{color: '#E05C00'}}>project.</em>
           </h1>
           <p className="text-[16px] leading-relaxed font-light max-w-xl" style={{color: '#888885'}}>
-            We run recruitment the way great engineering teams run sprints — with a hypothesis, a strategy,
+            We run recruitment the way great engineering teams run sprints  —  with a hypothesis, a strategy,
             measurable checkpoints, and a clear definition of done. Not "we'll keep looking". Done.
           </p>
         </div>
@@ -35,35 +35,35 @@ export default function MethodPage() {
             n: '01',
             title: 'Brief',
             subtitle: 'We don\'t start recruiting. We start thinking.',
-            body: 'Before we open any search, we sit with you and pressure-test the brief. Most hiring failures happen at the definition stage — not the sourcing stage. What level of seniority? What work modality? What skills are truly essential versus nice-to-have? What offer will be attractive to the right person? We help you answer all of this before we move.',
-            time: '1–2 days',
+            body: 'Before we open any search, we sit with you and pressure-test the brief. Most hiring failures happen at the definition stage  —  not the sourcing stage. What level of seniority? What work modality? What skills are truly essential versus nice-to-have? What offer will be attractive to the right person? We help you answer all of this before we move.',
+            time: '1-2 days',
           },
           {
             n: '02',
             title: 'Strategy',
             subtitle: 'Every profile requires a different approach.',
-            body: 'We analyze the labor market for this specific profile and design a sourcing strategy accordingly. We select the right channels, build a target list, and develop a plan to approach the highest-potential candidates. There are no templates here. A senior Rust engineer and a Head of Engineering require completely different strategies — and we know the difference.',
-            time: '1–2 days',
+            body: 'We analyze the labor market for this specific profile and design a sourcing strategy accordingly. We select the right channels, build a target list, and develop a plan to approach the highest-potential candidates. There are no templates here. A senior Rust engineer and a Head of Engineering require completely different strategies  —  and we know the difference.',
+            time: '1-2 days',
           },
           {
             n: '03',
             title: 'Search',
             subtitle: 'Active sourcing. No job posts, no passive waiting.',
-            body: 'We go find the people you need. Direct outreach, warm introductions, deep network activation. Every candidate is assessed against the brief — not just their resume, but their trajectory, their motivations, and whether this role is genuinely the right next step for them. We interview before you do.',
-            time: '3–5 days',
+            body: 'We go find the people you need. Direct outreach, warm introductions, deep network activation. Every candidate is assessed against the brief  —  not just their resume, but their trajectory, their motivations, and whether this role is genuinely the right next step for them. We interview before you do.',
+            time: '3-5 days',
           },
           {
             n: '04',
             title: 'Shortlist',
             subtitle: 'Not resumes. Candidates.',
             body: 'What you receive is a curated shortlist of pre-interviewed candidates, each with a full report that covers what the CV never shows. Their technical depth, their communication style, what they\'re optimizing for in their next role, and why we believe they\'re the right fit. You walk into every interview knowing exactly who you\'re talking to.',
-            time: '5–7 days total',
+            time: '5-7 days total',
           },
           {
             n: '05',
             title: 'Close',
             subtitle: 'We don\'t disappear after the shortlist.',
-            body: 'We stay through the offer stage. We help you calibrate the offer, anticipate counteroffers, and navigate the final decision. Every placed candidate comes with a 3-month guarantee — because we stand behind our work. And because we\'ve been wrong before, and learned exactly how to be less wrong.',
+            body: 'We stay through the offer stage. We help you calibrate the offer, anticipate counteroffers, and navigate the final decision. Every placed candidate comes with a 3-month guarantee  —  because we stand behind our work. And because we\'ve been wrong before, and learned exactly how to be less wrong.',
             time: 'Until done',
           },
         ].map((step, i) => (
