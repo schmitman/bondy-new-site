@@ -56,7 +56,7 @@ export default function ContactPage() {
       <section className="pt-[73px]">
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-73px)]">
 
-          {/* Left — context */}
+          {/* Left  —  context */}
           <div className="border-b md:border-b-0 md:border-r border-white/10 px-8 md:px-16 py-20 md:py-28 flex flex-col justify-between">
             <div>
               <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange mb-10">
@@ -103,7 +103,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right — form */}
+          {/* Right  —  form */}
           <div className="px-8 md:px-16 py-20 md:py-28">
             {status === 'success' ? (
               <div className="h-full flex flex-col justify-center">
@@ -126,9 +126,9 @@ export default function ContactPage() {
                     style={{appearance: 'none'}}
                   >
                     <option value="" disabled>What are you looking for?</option>
-                    <option value="hunting">Hunting — Fill a specific role</option>
-                    <option value="pipeline">Talent Pipeline — Improve top of funnel</option>
-                    <option value="rpo">Embedded Recruiter — Scale hiring</option>
+                    <option value="hunting">Hunting  —  Fill a specific role</option>
+                    <option value="pipeline">Talent Pipeline  —  Improve top of funnel</option>
+                    <option value="rpo">Embedded Recruiter  —  Scale hiring</option>
                     <option value="vc">VC / Portfolio partnership</option>
                     <option value="other">Not sure yet</option>
                   </select>
