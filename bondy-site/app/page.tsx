@@ -42,7 +42,7 @@ export default function Home() {
 
               <p className="text-b-mid text-[15px] leading-relaxed font-light max-w-sm">
                 Most recruiters send you candidates. We send you the right one.
-                There's a significant difference — and we've spent 16 years perfecting it.
+                There's a significant difference  —  and we've spent 16 years perfecting it.
               </p>
             </div>
 
@@ -62,7 +62,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right — stats */}
+          {/* Right  —  stats */}
           <div className="grid grid-cols-2">
             <div className="border-b border-r border-white/10 px-8 py-10 md:px-10 md:py-14 flex flex-col justify-between">
               <span className="font-mono-bondy text-[10px] tracking-widest uppercase text-white/30">Experience</span>
@@ -78,7 +78,7 @@ export default function Home() {
               <span className="font-mono-bondy text-[10px] tracking-widest uppercase text-white/30">Speed</span>
               <div>
                 <div className="font-display text-[64px] md:text-[80px] font-black leading-none text-b-off tracking-tight">
-                  5–7<span className="text-b-orange text-[28px]">d</span>
+                  5-7<span className="text-b-orange text-[28px]">d</span>
                 </div>
                 <div className="text-b-mid text-xs font-light mt-2 leading-relaxed">to your first qualified candidate</div>
               </div>
@@ -119,12 +119,12 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             <p className="text-b-mid text-[15px] leading-relaxed font-light">
-              Most companies treat recruitment as a numbers game — more resumes, more calls, more volume.
+              Most companies treat recruitment as a numbers game  —  more resumes, more calls, more volume.
               We've always believed the opposite. Every search starts with a hypothesis and ends with certainty.
             </p>
             <p className="text-b-mid text-[15px] leading-relaxed font-light">
               That's why our clients don't come back looking for another recruiter.
-              They come back because the hire worked — and they want that again.
+              They come back because the hire worked  —  and they want that again.
             </p>
           </div>
         </div>
@@ -134,7 +134,7 @@ export default function Home() {
       <section className="border-b border-white/10">
         <div className="px-8 md:px-16 py-12 border-b border-white/10">
           <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange">
-            02 — Services
+            02  —  Services
           </div>
         </div>
 
@@ -147,7 +147,7 @@ export default function Home() {
                 Hunting
               </h3>
               <p className="text-b-mid text-sm leading-relaxed font-light">
-                You need someone hired. Not eventually — this quarter. We take ownership of the entire search
+                You need someone hired. Not eventually  —  this quarter. We take ownership of the entire search
                 and deliver a shortlist of pre-interviewed candidates within 5 to 7 business days.
                 With a 3-month guarantee on every placement.
               </p>
@@ -169,7 +169,7 @@ export default function Home() {
               </h3>
               <p className="text-b-mid text-sm leading-relaxed font-light">
                 You have the process. You have the interviewers. What you need is a shortlist that doesn't
-                waste everyone's time. We build you a curated list of pre-vetted, ready-to-contact candidates —
+                waste everyone's time. We build you a curated list of pre-vetted, ready-to-contact candidates  — 
                 selected to spec, not to volume.
               </p>
             </div>
@@ -209,13 +209,13 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="px-8 md:px-16 py-20 md:py-28 border-b md:border-b-0 md:border-r border-white/10">
             <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange mb-10">
-              03 — The Bondy Method™
+              03  —  The Bondy Method™
             </div>
             <h2 className="font-display text-[clamp(36px,4vw,56px)] font-black leading-tight tracking-tight text-b-off mb-8">
               Every search<br />is a <em className="text-b-orange italic">project.</em>
             </h2>
             <p className="text-b-mid text-[15px] leading-relaxed font-light mb-6 max-w-sm">
-              We run recruitment the way great engineering teams run sprints — with a hypothesis,
+              We run recruitment the way great engineering teams run sprints  —  with a hypothesis,
               a strategy, measurable checkpoints, and a clear definition of done.
             </p>
             <p className="text-b-mid text-[15px] leading-relaxed font-light mb-12 max-w-sm">
@@ -233,7 +233,7 @@ export default function Home() {
           <div className="flex flex-col divide-y divide-white/10">
             {[
               { n: '01', title: 'Brief', desc: 'We pressure-test the role before opening the search. Most hiring failures happen here.' },
-              { n: '02', title: 'Strategy', desc: 'We design the sourcing approach for this specific profile — not a template.' },
+              { n: '02', title: 'Strategy', desc: 'We design the sourcing approach for this specific profile  —  not a template.' },
               { n: '03', title: 'Search', desc: 'Active sourcing, direct outreach, and qualification. No job posts, no passive waiting.' },
               { n: '04', title: 'Shortlist', desc: 'A curated list of pre-interviewed candidates with full reports. Not resumes.' },
             ].map((step) => (
@@ -264,7 +264,7 @@ export default function Home() {
           </div>
           <div>
             <p className="text-b-mid text-[15px] leading-relaxed font-light mb-6">
-              We work with VC-backed companies at every stage — from the first engineering hire to scaling
+              We work with VC-backed companies at every stage  —  from the first engineering hire to scaling
               a team from 5 to 50. We understand the velocity you need and the quality you can't compromise on.
             </p>
             <p className="text-b-mid text-[15px] leading-relaxed font-light mb-10">
