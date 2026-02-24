@@ -2,7 +2,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'Thinking — Bondy',
+  title: 'Thinking  —  Bondy',
   description: 'Frameworks, market insights, and ideas on technical hiring from the Bondy team.',
 }
 
@@ -27,7 +27,7 @@ const articles = [
     slug: 'six-month-retention',
     label: 'Data',
     date: 'Dec 2024',
-    title: 'Why we measure retention at 6 months — not at hire',
+    title: 'Why we measure retention at 6 months  —  not at hire',
     excerpt: 'The metric that changed how we think about quality. And why most agencies deliberately avoid measuring it.',
     readTime: '4 min',
   },
