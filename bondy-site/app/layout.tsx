@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Bondy — The standard for technical hiring',
+  title: 'Bondy  —  The standard for technical hiring',
   description: 'We don\'t send you candidates. We send you the right one. Bondy has been placing senior engineers at high-growth tech companies since 2008.',
   openGraph: {
-    title: 'Bondy — The standard for technical hiring',
+    title: 'Bondy  —  The standard for technical hiring',
     description: 'We don\'t send you candidates. We send you the right one.',
     url: 'https://newbondy.wearebondy.com',
     siteName: 'Bondy',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bondy — The standard for technical hiring',
+    title: 'Bondy  —  The standard for technical hiring',
     description: 'We don\'t send you candidates. We send you the right one.',
   },
   robots: {
