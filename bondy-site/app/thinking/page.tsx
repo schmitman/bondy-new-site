@@ -78,7 +78,7 @@ export default function ThinkingPage() {
               </p>
               <div className="flex items-center gap-4">
                 <span className="font-mono-bondy text-[10px] tracking-widest uppercase" style={{color: '#E05C00'}}>
-                  Read → 
+                  Read -> 
                 </span>
                 <span className="font-mono-bondy text-[10px]" style={{color: '#D8D6D2'}}>
                   {article.readTime} read
