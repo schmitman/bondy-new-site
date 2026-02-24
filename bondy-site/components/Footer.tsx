@@ -55,7 +55,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid hover:text-b-orange transition-colors"
           >
-            LinkedIn ↗
+            LinkedIn ->>
           </a>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10 px-8 md:px-16 py-5 flex justify-between items-center">
         <span className="font-mono-bondy text-[10px] tracking-wider text-white/20">
-          © {new Date().getFullYear()} Bondy Group. All rights reserved.
+          (c) {new Date().getFullYear()} Bondy Group. All rights reserved.
         </span>
         <span className="font-mono-bondy text-[10px] tracking-wider text-white/20">
           newbondy.wearebondy.com
