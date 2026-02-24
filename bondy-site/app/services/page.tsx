@@ -3,7 +3,7 @@ import Footer from '@/components/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Services — Bondy',
+  title: 'Services  —  Bondy',
   description: 'Three ways to work with Bondy: Hunting, Talent Pipeline, and Embedded Recruiter.',
 }
 
@@ -29,7 +29,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Service 01 — Hunting */}
+      {/* Service 01  —  Hunting */}
       <section id="hunting" className="border-b border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="border-b md:border-b-0 md:border-r border-white/10 px-8 md:px-16 py-20">
@@ -38,20 +38,20 @@ export default function ServicesPage() {
               Hunting
             </h2>
             <p className="text-b-mid text-[15px] leading-relaxed font-light mb-6">
-              You need someone hired. Not eventually — this quarter.
+              You need someone hired. Not eventually  —  this quarter.
             </p>
             <p className="text-b-mid text-[15px] leading-relaxed font-light">
               We take full ownership of the search, from brief to signed offer.
               You get a curated shortlist of pre-interviewed candidates within 5 to 7 business days,
               each with a detailed report. We stay through the close. Every placement comes with a
-              3-month guarantee — if it doesn't work out, we search again at no extra cost.
+              3-month guarantee  —  if it doesn't work out, we search again at no extra cost.
             </p>
           </div>
           <div className="px-8 md:px-16 py-20 flex flex-col justify-between">
             <div className="space-y-8">
               {[
                 ['What's included', 'Full brief, sourcing strategy, direct search, candidate interviews, detailed reports, offer support.'],
-                ['Timeline', '5–7 business days to first qualified shortlist. Offer close typically within 3–5 weeks.'],
+                ['Timeline', '5-7 business days to first qualified shortlist. Offer close typically within 3-5 weeks.'],
                 ['Guarantee', '3-month placement warranty. We search again if the hire doesn\'t work out.'],
                 ['Best for', 'Specific roles that need to be filled urgently. Senior or hard-to-find profiles.'],
               ].map(([label, text]) => (
@@ -71,7 +71,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Service 02 — Pipeline */}
+      {/* Service 02  —  Pipeline */}
       <section id="pipeline" className="border-b border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="border-b md:border-b-0 md:border-r border-white/10 px-8 md:px-16 py-20">
@@ -84,7 +84,7 @@ export default function ServicesPage() {
               What you need is a shortlist that doesn't waste everyone's time.
             </p>
             <p className="text-b-mid text-[15px] leading-relaxed font-light">
-              We build you a curated list of pre-vetted, ready-to-contact candidates —
+              We build you a curated list of pre-vetted, ready-to-contact candidates  — 
               selected to spec, not to volume. You run the interviews. We make sure
               the people in the room are worth interviewing.
             </p>
@@ -93,7 +93,7 @@ export default function ServicesPage() {
             <div className="space-y-8">
               {[
                 ['What's included', 'Candidate sourcing, profile qualification, lightweight reports, and a curated delivery.'],
-                ['Timeline', 'Typically 3–5 days to first pipeline delivery.'],
+                ['Timeline', 'Typically 3-5 days to first pipeline delivery.'],
                 ['Best for', 'Companies with strong internal interview processes that need better top-of-funnel quality.'],
                 ['Difference vs Hunting', 'We handle sourcing and qualification. You handle interviews and close.'],
               ].map(([label, text]) => (
@@ -113,7 +113,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Service 03 — Embedded */}
+      {/* Service 03  —  Embedded */}
       <section id="rpo" className="border-b border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="border-b md:border-b-0 md:border-r border-white/10 px-8 md:px-16 py-20">
@@ -162,7 +162,7 @@ export default function ServicesPage() {
           service fits? <em className="text-b-orange italic">Ask us.</em>
         </h2>
         <p className="text-b-mid text-[15px] font-light mb-10 max-w-md mx-auto leading-relaxed">
-          We'll tell you honestly. Sometimes the answer is none of them —
+          We'll tell you honestly. Sometimes the answer is none of them  — 
           and we'd rather tell you now than waste your time.
         </p>
         <Link
