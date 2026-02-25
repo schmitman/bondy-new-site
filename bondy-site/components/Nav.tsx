@@ -56,7 +56,7 @@ export default function Nav() {
               href="/contact"
               className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange border-b border-b-orange/40 hover:border-b-orange pb-0.5 transition-colors"
             >
-              Work with us &#x2192;
+              Work with us ->
             </Link>
           </li>
         </ul>
@@ -86,7 +86,7 @@ export default function Nav() {
           <Link href="/method" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Method</Link>
           <Link href="/services" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Services</Link>
           <Link href="/thinking" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Thinking</Link>
-          <Link href="/contact" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-orange" onClick={() => setMenuOpen(false)}>Work with us &#x2192;</Link>
+          <Link href="/contact" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-orange" onClick={() => setMenuOpen(false)}>Work with us -></Link>
         </div>
       )}
     </nav>
