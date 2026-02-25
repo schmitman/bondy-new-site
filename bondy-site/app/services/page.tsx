@@ -66,7 +66,7 @@ export default function ServicesPage() {
               href="/contact"
               className="mt-12 inline-flex items-center gap-3 bg-b-orange text-b-black font-mono-bondy text-[11px] tracking-widest uppercase px-7 py-4 hover:bg-b-orange/90 transition-colors self-start"
             >
-              Start a search 
+              Start a search ↗
             </Link>
           </div>
         </div>
@@ -170,7 +170,7 @@ export default function ServicesPage() {
           href="/contact"
           className="inline-flex items-center gap-3 bg-b-orange text-b-black font-mono-bondy text-[11px] tracking-widest uppercase px-10 py-5 hover:bg-b-orange/90 transition-colors"
         >
-          Start the conversation 
+          Start the conversation ↗
         </Link>
       </section>
 
