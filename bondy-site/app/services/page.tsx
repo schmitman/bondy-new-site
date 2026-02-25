@@ -108,7 +108,7 @@ export default function ServicesPage() {
               href="/contact"
               className="mt-12 inline-flex items-center gap-3 border border-white/20 text-b-mid font-mono-bondy text-[11px] tracking-widest uppercase px-7 py-4 hover:border-white/40 hover:text-b-off transition-colors self-start"
             >
-              Learn more ->
+              Learn more →
             </Link>
           </div>
         </div>
@@ -150,7 +150,7 @@ export default function ServicesPage() {
               href="/contact"
               className="mt-12 inline-flex items-center gap-3 border border-white/20 text-b-mid font-mono-bondy text-[11px] tracking-widest uppercase px-7 py-4 hover:border-white/40 hover:text-b-off transition-colors self-start"
             >
-              Learn more ->
+              Learn more →
             </Link>
           </div>
         </div>
