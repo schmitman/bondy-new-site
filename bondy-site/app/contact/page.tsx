@@ -86,7 +86,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="text-b-mid text-[15px] font-light hover:text-b-off transition-colors"
                   >
-                    /company/bondygroup
+                    /company/bondygroup ↗
                   </a>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function ContactPage() {
                     disabled={status === 'loading'}
                     className="inline-flex items-center gap-3 bg-b-orange text-b-black font-mono-bondy text-[11px] tracking-widest uppercase px-8 py-4 hover:bg-b-orange/90 transition-colors disabled:opacity-50"
                   >
-                    {status === 'loading' ? 'Sending...' : 'Send'}
+                    {status === 'loading' ? 'Sending...' : 'Send ↗'}
                   </button>
                   {status === 'error' && (
                     <span className="font-mono-bondy text-[10px] text-red-400 tracking-wide">
