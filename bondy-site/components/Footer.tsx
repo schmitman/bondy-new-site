@@ -55,7 +55,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid hover:text-b-orange transition-colors"
           >
-            LinkedIn &#x2197;
+            LinkedIn 
           </a>
         </div>
       </div>
