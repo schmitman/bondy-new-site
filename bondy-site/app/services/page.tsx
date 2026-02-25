@@ -82,7 +82,7 @@ export default function ServicesPage() {
             </h2>
             <p className="text-b-mid text-[15px] leading-relaxed font-light mb-6">
               You have the process. You have the interviewers.
-              What you need is a shortlist that does not waste everyone&#39;s time.
+              What you need is a shortlist that does not waste everyone's time.
             </p>
             <p className="text-b-mid text-[15px] leading-relaxed font-light">
               We build you a curated list of pre-vetted, ready-to-contact candidates --
