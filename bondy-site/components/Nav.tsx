@@ -18,9 +18,7 @@ export default function Nav() {
             <rect x="7" y="14" width="17" height="11" rx="5.5" fill="#F9F8F6"/>
             <circle cx="27" cy="29" r="3" fill="#E05C00"/>
           </svg>
-          <span
-            className="text-b-off font-display text-xl font-bold tracking-tight"
-          >
+          <span className="text-b-off font-display text-xl font-bold tracking-tight">
             Bondy<span className="text-b-orange">.</span>
           </span>
         </Link>
@@ -30,7 +28,7 @@ export default function Nav() {
           <li>
             <Link
               href="/method"
-              className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid hover:text-b-off transition-colors"
+              className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid hover:text-b-off transition-colors"
             >
               Method
             </Link>
@@ -38,7 +36,7 @@ export default function Nav() {
           <li>
             <Link
               href="/services"
-              className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid hover:text-b-off transition-colors"
+              className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid hover:text-b-off transition-colors"
             >
               Services
             </Link>
@@ -46,7 +44,7 @@ export default function Nav() {
           <li>
             <Link
               href="/thinking"
-              className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid hover:text-b-off transition-colors"
+              className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid hover:text-b-off transition-colors"
             >
               Thinking
             </Link>
@@ -54,7 +52,7 @@ export default function Nav() {
           <li>
             <Link
               href="/contact"
-              className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange border-b border-b-orange/40 hover:border-b-orange pb-0.5 transition-colors"
+              className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-orange border-b border-b-orange/40 hover:border-b-orange pb-0.5 transition-colors"
             >
               Work with us →
             </Link>
@@ -83,10 +81,10 @@ export default function Nav() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden border-t border-white/10 bg-b-black px-8 py-6 flex flex-col gap-6">
-          <Link href="/method" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Method</Link>
-          <Link href="/services" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Services</Link>
-          <Link href="/thinking" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Thinking</Link>
-          <Link href="/contact" className="font-mono-bondy text-[11px] tracking-widest uppercase text-b-orange" onClick={() => setMenuOpen(false)}>Work with us →</Link>
+          <Link href="/method" className="font-mono-bondy text-[12px] tracking-wider uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Method</Link>
+          <Link href="/services" className="font-mono-bondy text-[12px] tracking-wider uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Services</Link>
+          <Link href="/thinking" className="font-mono-bondy text-[12px] tracking-wider uppercase text-b-mid" onClick={() => setMenuOpen(false)}>Thinking</Link>
+          <Link href="/contact" className="font-mono-bondy text-[12px] tracking-wider uppercase text-b-orange" onClick={() => setMenuOpen(false)}>Work with us →</Link>
         </div>
       )}
     </nav>
