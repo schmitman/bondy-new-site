@@ -15,7 +15,7 @@ export default function Footer() {
               <circle cx="27" cy="29" r="3" fill="#E05C00"/>
             </svg>
             <span className="text-b-off font-display text-lg font-bold tracking-tight">
-              Bondy<span className="text-b-orange">.</span>
+              Bond<em>y</em><span className="text-b-orange">.</span>
             </span>
           </div>
           <p className="text-b-mid text-[14px] leading-relaxed font-light max-w-xs">
