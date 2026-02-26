@@ -18,20 +18,20 @@ export default function Footer() {
               Bondy<span className="text-b-orange">.</span>
             </span>
           </div>
-          <p className="text-b-mid text-sm leading-relaxed font-light max-w-xs">
+          <p className="text-b-mid text-[14px] leading-relaxed font-light max-w-xs">
             The standard for technical hiring. Since 2008.
           </p>
         </div>
 
         {/* Links */}
         <div>
-          <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid mb-6">Navigation</div>
+          <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid mb-6">Navigation</div>
           <ul className="flex flex-col gap-3">
             {['Method', 'Services', 'Thinking', 'Contact'].map((item) => (
               <li key={item}>
                 <Link
                   href={`/${item.toLowerCase()}`}
-                  className="text-sm text-b-mid hover:text-b-off transition-colors font-light"
+                  className="text-[14px] text-b-mid hover:text-b-off transition-colors font-light"
                 >
                   {item}
                 </Link>
@@ -42,10 +42,10 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid mb-6">Get in touch</div>
+          <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid mb-6">Get in touch</div>
           <a
             href="mailto:hola@wearebondy.com"
-            className="text-sm text-b-off hover:text-b-orange transition-colors font-light block mb-3"
+            className="text-[14px] text-b-off hover:text-b-orange transition-colors font-light block mb-3"
           >
             hola@wearebondy.com
           </a>
@@ -53,19 +53,19 @@ export default function Footer() {
             href="https://www.linkedin.com/company/bondygroup"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-mid hover:text-b-orange transition-colors"
+            className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid hover:text-b-orange transition-colors"
           >
-            LinkedIn 
+            LinkedIn ↗
           </a>
         </div>
       </div>
 
       {/* Bottom bar */}
       <div className="border-t border-white/10 px-8 md:px-16 py-5 flex justify-between items-center">
-        <span className="font-mono-bondy text-[10px] tracking-wider text-white/20">
-          (c) {new Date().getFullYear()} Bondy Group. All rights reserved.
+        <span className="font-mono-bondy text-[11px] tracking-wider text-white/30">
+          © {new Date().getFullYear()} Bondy Group. All rights reserved.
         </span>
-        <span className="font-mono-bondy text-[10px] tracking-wider text-white/20">
+        <span className="font-mono-bondy text-[11px] tracking-wider text-white/30">
           newbondy.wearebondy.com
         </span>
       </div>
