@@ -19,7 +19,7 @@ export default function Nav() {
             <circle cx="27" cy="29" r="3" fill="#E05C00"/>
           </svg>
           <span className="text-b-off font-display text-xl font-bold tracking-tight">
-            Bondy<span className="text-b-orange">.</span>
+            Bond<em>y</em><span className="text-b-orange">.</span>
           </span>
         </Link>
 
