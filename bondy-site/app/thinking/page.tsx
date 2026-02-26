@@ -2,7 +2,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'Thinking   -   Bondy',
+  title: 'Thinking — Bondy',
   description: 'Frameworks, market insights, and ideas on technical hiring from the Bondy team.',
 }
 
@@ -27,7 +27,7 @@ const articles = [
     slug: 'six-month-retention',
     label: 'Data',
     date: 'Dec 2024',
-    title: 'Why we measure retention at 6 months   -   not at hire',
+    title: 'Why we measure retention at 6 months — not at hire',
     excerpt: 'The metric that changed how we think about quality. And why most agencies deliberately avoid measuring it.',
     readTime: '4 min',
   },
@@ -48,14 +48,14 @@ export default function ThinkingPage() {
 
       <section className="pt-[73px] border-b" style={{borderColor: '#EBEBEB'}}>
         <div className="px-8 md:px-16 py-20 md:py-28">
-          <div className="font-mono-bondy text-[10px] tracking-widest uppercase mb-8" style={{color: '#E05C00'}}>
+          <div className="font-mono-bondy text-[11px] tracking-wider uppercase mb-8" style={{color: '#E05C00'}}>
             Thinking
           </div>
           <h1 className="font-display text-[clamp(48px,6vw,72px)] font-black leading-tight tracking-tight mb-6" style={{color: '#111111'}}>
             Ideas, frameworks,<br />
             and <em className="italic" style={{color: '#E05C00'}}>market intelligence.</em>
           </h1>
-          <p className="text-[16px] leading-relaxed font-light max-w-xl" style={{color: '#888885'}}>
+          <p className="text-[17px] leading-relaxed font-light max-w-xl" style={{color: '#666663'}}>
             We write about what we see in the market, how we think about hiring, and what works.
             No content marketing. Just things we've found worth writing down.
           </p>
@@ -66,21 +66,21 @@ export default function ThinkingPage() {
         {articles.map((article) => (
           <article key={article.slug} className="px-8 md:px-16 py-12 grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 hover:bg-white/50 transition-colors cursor-pointer border-b" style={{borderColor: '#EBEBEB'}}>
             <div className="flex flex-row md:flex-col justify-between md:justify-start gap-4 md:gap-3">
-              <div className="font-mono-bondy text-[10px] tracking-widest uppercase" style={{color: '#E05C00'}}>{article.label}</div>
-              <div className="font-mono-bondy text-[10px] tracking-widest" style={{color: '#D8D6D2'}}>{article.date}</div>
+              <div className="font-mono-bondy text-[11px] tracking-wider uppercase" style={{color: '#E05C00'}}>{article.label}</div>
+              <div className="font-mono-bondy text-[11px] tracking-wider" style={{color: '#D8D6D2'}}>{article.date}</div>
             </div>
             <div>
               <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-4" style={{color: '#111111'}}>
                 {article.title}
               </h2>
-              <p className="text-[14px] leading-relaxed font-light mb-6" style={{color: '#888885'}}>
+              <p className="text-[15px] leading-relaxed font-light mb-6" style={{color: '#666663'}}>
                 {article.excerpt}
               </p>
               <div className="flex items-center gap-4">
-                <span className="font-mono-bondy text-[10px] tracking-widest uppercase" style={{color: '#E05C00'}}>
-                  Read → 
+                <span className="font-mono-bondy text-[11px] tracking-wider uppercase" style={{color: '#E05C00'}}>
+                  Read →
                 </span>
-                <span className="font-mono-bondy text-[10px]" style={{color: '#D8D6D2'}}>
+                <span className="font-mono-bondy text-[11px]" style={{color: '#D8D6D2'}}>
                   {article.readTime} read
                 </span>
               </div>
