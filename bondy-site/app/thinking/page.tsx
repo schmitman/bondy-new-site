@@ -43,44 +43,44 @@ const articles = [
 
 export default function ThinkingPage() {
   return (
-    <main style={{background: '#F9F8F6'}} className="min-h-screen">
+    <main className="bg-b-stone min-h-screen">
       <Nav />
 
-      <section className="pt-[73px] border-b" style={{borderColor: '#EBEBEB'}}>
+      <section className="pt-[73px] border-b border-b-stone-rule">
         <div className="px-8 md:px-16 py-20 md:py-28">
-          <div className="font-mono-bondy text-[11px] tracking-wider uppercase mb-8" style={{color: '#E05C00'}}>
+          <div className="font-mono-bondy text-[10px] tracking-widest uppercase mb-8 text-b-orange">
             Thinking
           </div>
-          <h1 className="font-display text-[clamp(48px,6vw,72px)] font-black leading-tight tracking-tight mb-6" style={{color: '#111111'}}>
+          <h1 className="font-display text-[clamp(48px,6vw,72px)] font-black leading-tight tracking-tight mb-6 text-b-stone-text">
             Ideas, frameworks,<br />
-            and <em className="italic" style={{color: '#E05C00'}}>market intelligence.</em>
+            and <em className="italic text-b-orange">market intelligence.</em>
           </h1>
-          <p className="text-[17px] leading-relaxed font-light max-w-xl" style={{color: '#666663'}}>
+          <p className="text-[16px] leading-relaxed font-light max-w-xl text-b-stone-mid">
             We write about what we see in the market, how we think about hiring, and what works.
             No content marketing. Just things we've found worth writing down.
           </p>
         </div>
       </section>
 
-      <section className="divide-y" style={{borderColor: '#EBEBEB'}}>
+      <section>
         {articles.map((article) => (
-          <article key={article.slug} className="px-8 md:px-16 py-12 grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 hover:bg-white/50 transition-colors cursor-pointer border-b" style={{borderColor: '#EBEBEB'}}>
+          <article key={article.slug} className="px-8 md:px-16 py-12 grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 hover:bg-b-stone-alt transition-colors cursor-pointer border-b border-b-stone-rule">
             <div className="flex flex-row md:flex-col justify-between md:justify-start gap-4 md:gap-3">
-              <div className="font-mono-bondy text-[11px] tracking-wider uppercase" style={{color: '#E05C00'}}>{article.label}</div>
-              <div className="font-mono-bondy text-[11px] tracking-wider" style={{color: '#D8D6D2'}}>{article.date}</div>
+              <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange">{article.label}</div>
+              <div className="font-mono-bondy text-[10px] tracking-widest text-b-stone-light">{article.date}</div>
             </div>
             <div>
-              <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-4" style={{color: '#111111'}}>
+              <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-4 text-b-stone-text">
                 {article.title}
               </h2>
-              <p className="text-[15px] leading-relaxed font-light mb-6" style={{color: '#666663'}}>
+              <p className="text-[14px] leading-relaxed font-light mb-6 text-b-stone-mid">
                 {article.excerpt}
               </p>
               <div className="flex items-center gap-4">
-                <span className="font-mono-bondy text-[11px] tracking-wider uppercase" style={{color: '#E05C00'}}>
+                <span className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange">
                   Read →
                 </span>
-                <span className="font-mono-bondy text-[11px]" style={{color: '#D8D6D2'}}>
+                <span className="font-mono-bondy text-[10px] text-b-stone-light">
                   {article.readTime} read
                 </span>
               </div>
