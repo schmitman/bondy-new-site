@@ -8,20 +8,20 @@ export const metadata = {
 
 export default function MethodPage() {
   return (
-    <main className="bg-b-white min-h-screen" style={{background: '#F9F8F6'}}>
+    <main className="min-h-screen bg-b-stone">
       <Nav />
 
       {/* Header */}
-      <section className="pt-[73px] border-b" style={{borderColor: '#EBEBEB'}}>
+      <section className="pt-[73px] border-b border-b-stone-rule">
         <div className="px-8 md:px-16 py-20 md:py-28 max-w-5xl">
-          <div className="font-mono-bondy text-[11px] tracking-wider uppercase mb-8" style={{color: '#E05C00'}}>
+          <div className="font-mono-bondy text-[10px] tracking-widest uppercase mb-8 text-b-orange">
             The Bondy Method™
           </div>
-          <h1 className="font-display text-[clamp(48px,6vw,80px)] font-black leading-tight tracking-tight mb-8" style={{color: '#111111'}}>
+          <h1 className="font-display text-[clamp(48px,6vw,80px)] font-black leading-tight tracking-tight mb-8 text-b-stone-text">
             Every search<br />
-            is a <em className="italic" style={{color: '#E05C00'}}>project.</em>
+            is a <em className="italic text-b-orange">project.</em>
           </h1>
-          <p className="text-[17px] leading-relaxed font-light max-w-xl" style={{color: '#666663'}}>
+          <p className="text-[16px] leading-relaxed font-light max-w-xl text-b-stone-mid">
             We run recruitment the way great engineering teams run sprints — with a hypothesis, a strategy,
             measurable checkpoints, and a clear definition of done. Not "we'll keep looking". Done.
           </p>
@@ -69,27 +69,26 @@ export default function MethodPage() {
         ].map((step) => (
           <div
             key={step.n}
-            className="grid grid-cols-1 md:grid-cols-[120px_1fr_200px] gap-8 md:gap-16 py-14 border-t"
-            style={{borderColor: '#EBEBEB'}}
+            className="grid grid-cols-1 md:grid-cols-[120px_1fr_200px] gap-8 md:gap-16 py-14 border-t border-b-stone-rule"
           >
-            <div className="font-mono-bondy text-[11px] tracking-wider" style={{color: '#E05C00'}}>
+            <div className="font-mono-bondy text-[11px] tracking-widest text-b-orange">
               {step.n}
             </div>
             <div>
-              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{color: '#111111'}}>
+              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3 text-b-stone-text">
                 {step.title}
               </h2>
-              <div className="text-[16px] font-medium mb-5" style={{color: '#111111'}}>
+              <div className="text-base font-medium mb-5 text-b-stone-text">
                 {step.subtitle}
               </div>
-              <p className="text-[15px] leading-relaxed font-light max-w-xl" style={{color: '#666663'}}>
+              <p className="text-[14px] leading-relaxed font-light max-w-xl text-b-stone-mid">
                 {step.body}
               </p>
             </div>
             <div className="flex md:justify-end md:items-start">
-              <div className="border px-4 py-2 inline-block" style={{borderColor: '#EBEBEB'}}>
-                <div className="font-mono-bondy text-[10px] tracking-wider uppercase mb-1" style={{color: '#D8D6D2'}}>Timeline</div>
-                <div className="font-mono-bondy text-[12px]" style={{color: '#666663'}}>{step.time}</div>
+              <div className="border border-b-stone-rule px-4 py-2 inline-block">
+                <div className="font-mono-bondy text-[9px] tracking-widest uppercase mb-1 text-b-stone-light">Timeline</div>
+                <div className="font-mono-bondy text-[11px] text-b-stone-mid">{step.time}</div>
               </div>
             </div>
           </div>
@@ -97,23 +96,22 @@ export default function MethodPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="px-8 md:px-16 py-20 md:py-28 border-t" style={{borderColor: '#EBEBEB', background: '#FFFFFF'}}>
+      <section className="px-8 md:px-16 py-20 md:py-28 border-t border-b-stone-rule bg-b-stone-alt">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="font-display text-[clamp(32px,4vw,52px)] font-black leading-tight tracking-tight" style={{color: '#111111'}}>
+            <h2 className="font-display text-[clamp(32px,4vw,52px)] font-black leading-tight tracking-tight text-b-stone-text">
               Ready to run your<br />
-              first <em className="italic" style={{color: '#E05C00'}}>Bondy search?</em>
+              first <em className="italic text-b-orange">Bondy search?</em>
             </h2>
           </div>
           <div>
-            <p className="text-[16px] leading-relaxed font-light mb-8" style={{color: '#666663'}}>
+            <p className="text-[15px] leading-relaxed font-light mb-8 text-b-stone-mid">
               Tell us about the role, the team, and what you've tried before.
               We'll tell you honestly whether we can help and how long it'll take.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-3 font-mono-bondy text-[11px] tracking-wider uppercase px-8 py-4 transition-colors"
-              style={{background: '#E05C00', color: '#111111'}}
+              className="inline-flex items-center gap-3 font-mono-bondy text-[11px] tracking-widest uppercase px-8 py-4 transition-colors bg-b-orange text-b-black hover:opacity-90"
             >
               Start a search ↗
             </a>
