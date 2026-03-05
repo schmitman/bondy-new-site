@@ -13,32 +13,32 @@ type FormData = {
   service: string
 }
 
+const services = [
+  { value: 'hunting',  label: 'Hunting', sub: 'Fill a specific role, end-to-end' },
+  { value: 'pipeline', label: 'Talent Pipeline', sub: 'Better top-of-funnel' },
+  { value: 'rpo',      label: 'Embedded Recruiter', sub: 'Scale hiring' },
+  { value: 'other',    label: 'Not sure yet', sub: 'Let\'s figure it out together' },
+]
+
 export default function ContactPage() {
   const [form, setForm] = useState<FormData>({
-    name: '',
-    email: '',
-    company: '',
-    role: '',
-    message: '',
-    service: '',
+    name: '', email: '', company: '', role: '', message: '', service: '',
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
-
       if (!res.ok) throw new Error('Failed')
       setStatus('success')
     } catch {
@@ -46,178 +46,188 @@ export default function ContactPage() {
     }
   }
 
-  const inputClass = "w-full bg-transparent border-b border-white/20 py-4 text-b-off text-[15px] font-light placeholder-b-mid/50 focus:outline-none focus:border-b-orange transition-colors"
-  const labelClass = "font-mono-bondy text-[11px] tracking-wider uppercase text-b-orange block mb-3"
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    background: 'transparent',
+    border: 'none',
+    borderBottom: '1px solid #E8E4DE',
+    padding: '12px 0',
+    fontSize: '15px',
+    fontWeight: 300,
+    color: '#1A1A1A',
+    outline: 'none',
+    fontFamily: 'DM Sans, system-ui, sans-serif',
+  }
+
+  const labelStyle: React.CSSProperties = {
+    fontFamily: 'DM Mono, monospace',
+    fontSize: '9px',
+    letterSpacing: '0.16em',
+    textTransform: 'uppercase' as const,
+    color: '#C06A2D',
+    display: 'block',
+    marginBottom: '6px',
+  }
 
   return (
-    <main className="bg-b-black min-h-screen">
+    <main style={{ background: '#F0EBE3', minHeight: '100vh' }}>
       <Nav />
 
-      <section className="pt-[73px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-73px)]">
+      <div style={{ paddingTop: '60px', display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 'calc(100vh - 60px)' }} className="contact-grid">
 
-          {/* Left — context */}
-          <div className="border-b md:border-b-0 md:border-r border-white/10 px-8 md:px-16 py-20 md:py-28 flex flex-col justify-between">
-            <div>
-              <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-orange mb-10">
+        {/* Left — info */}
+        <div style={{ background: '#FFFFFF', borderRight: '1px solid #E8E4DE', padding: '4.5rem clamp(1.25rem,5vw,4rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
+              <div style={{ width: '22px', height: '1px', background: '#C06A2D' }} />
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
                 Get in touch
-              </div>
-              <h1 className="font-display text-[clamp(40px,5vw,68px)] font-black leading-tight tracking-tight text-b-off mb-8">
-                Tell us what<br />
-                you're <em className="text-b-orange italic">building.</em>
-              </h1>
-              <p className="text-b-mid text-[16px] leading-relaxed font-light max-w-sm mb-12">
-                No forms that go nowhere. No automated responses. Someone from the Bondy team
-                will read this and reply within one business day.
-              </p>
-
-              <div className="space-y-6">
-                <div>
-                  <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-white/30 mb-2">Email</div>
-                  <a href="mailto:hola@wearebondy.com" className="text-b-off text-[15px] font-light hover:text-b-orange transition-colors">
-                    hola@wearebondy.com
-                  </a>
-                </div>
-                <div>
-                  <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-white/30 mb-2">LinkedIn</div>
-                  <a
-                    href="https://www.linkedin.com/company/bondygroup"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-b-mid text-[15px] font-light hover:text-b-off transition-colors"
-                  >
-                    /company/bondygroup ↗
-                  </a>
-                </div>
-              </div>
+              </span>
             </div>
 
-            <div className="mt-16 border-t border-white/10 pt-10">
-              <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-white/20 mb-6">
-                Also hiring?
-              </div>
-              <p className="text-b-mid text-[15px] font-light leading-relaxed">
-                If you're a recruiter interested in joining the Bondy team,
-                drop us a note at the same address with "join" in the subject.
-              </p>
+            <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(36px,4.5vw,62px)', fontWeight: 900, lineHeight: .96, letterSpacing: '-.02em', color: '#1A1A1A', marginBottom: '1.75rem' }}>
+              Tell us what<br />you&apos;re <em style={{ color: '#C06A2D', fontStyle: 'italic' }}>building.</em>
+            </h1>
+
+            <p style={{ fontSize: '15px', lineHeight: 1.72, fontWeight: 300, color: '#7A7874', maxWidth: '340px', marginBottom: '3rem' }}>
+              Someone from the Bondy team will read this and reply within one business day. No automated responses.
+            </p>
+
+            {/* Promise cards */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
+              {[
+                ['Reply within 24h', 'A real person reads every submission.'],
+                ['Honest assessment', 'We\'ll tell you if we\'re not the right fit.'],
+                ['No hard sell', 'One conversation, no follow-up pressure.'],
+              ].map(([title, desc]) => (
+                <div key={title} style={{ padding: '1.1rem 1.5rem', background: '#F0EBE3', borderLeft: '2px solid rgba(192,106,45,0.2)' }}>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '.3rem' }}>
+                    {title}
+                  </div>
+                  <div style={{ fontSize: '13px', color: '#7A7874', fontWeight: 300 }}>{desc}</div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right — form */}
-          <div className="px-8 md:px-16 py-20 md:py-28">
-            {status === 'success' ? (
-              <div className="h-full flex flex-col justify-center">
-                <div className="font-display text-4xl font-black text-b-off mb-4">Got it.</div>
-                <p className="text-b-mid text-[16px] font-light leading-relaxed max-w-sm">
-                  We'll get back to you within one business day.
-                  In the meantime, feel free to read about our method or browse our thinking.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-                <div>
-                  <label className={labelClass}>Service</label>
-                  <select
-                    name="service"
-                    value={form.service}
-                    onChange={handleChange}
-                    required
-                    className={`${inputClass} bg-transparent`}
-                    style={{appearance: 'none'}}
-                  >
-                    <option value="" disabled>What are you looking for?</option>
-                    <option value="hunting">Hunting — Fill a specific role</option>
-                    <option value="pipeline">Talent Pipeline — Improve top of funnel</option>
-                    <option value="rpo">Embedded Recruiter — Scale hiring</option>
-                    <option value="vc">VC / Portfolio partnership</option>
-                    <option value="other">Not sure yet</option>
-                  </select>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div>
-                    <label className={labelClass}>Your name</label>
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Name"
-                      className={inputClass}
-                    />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Work email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="you@company.com"
-                      className={inputClass}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div>
-                    <label className={labelClass}>Company</label>
-                    <input
-                      name="company"
-                      value={form.company}
-                      onChange={handleChange}
-                      required
-                      placeholder="Company name"
-                      className={inputClass}
-                    />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Your role</label>
-                    <input
-                      name="role"
-                      value={form.role}
-                      onChange={handleChange}
-                      placeholder="VP of Eng, CTO..."
-                      className={inputClass}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className={labelClass}>Tell us about the hire</label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    placeholder="What role? What's the context? What have you tried?"
-                    className={`${inputClass} resize-none`}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="inline-flex items-center gap-3 bg-b-orange text-b-black font-mono-bondy text-[11px] tracking-wider uppercase px-8 py-4 hover:bg-b-orange/90 transition-colors disabled:opacity-50"
-                  >
-                    {status === 'loading' ? 'Sending...' : 'Send ↗'}
-                  </button>
-                  {status === 'error' && (
-                    <span className="font-mono-bondy text-[11px] text-red-400 tracking-wide">
-                      Something went wrong. Try emailing us directly.
-                    </span>
-                  )}
-                </div>
-              </form>
-            )}
+          <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid #E8E4DE' }}>
+            <a href="mailto:hello@wearebondy.com" style={{ display: 'block', fontSize: '15px', color: '#1A1A1A', fontWeight: 300, textDecoration: 'none', marginBottom: '.5rem' }}>
+              hello@wearebondy.com
+            </a>
+            <a href="https://linkedin.com/company/bondygroup" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.13em', textTransform: 'uppercase', color: '#7A7874', textDecoration: 'none' }}>
+              LinkedIn ↗
+            </a>
           </div>
         </div>
-      </section>
+
+        {/* Right — form */}
+        <div style={{ padding: '4.5rem clamp(1.25rem,5vw,4rem)' }}>
+          {status === 'success' ? (
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
+              <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '2.75rem', fontWeight: 900, color: '#1A1A1A', marginBottom: '1rem', letterSpacing: '-.02em' }}>
+                Got it.
+              </div>
+              <p style={{ fontSize: '15px', color: '#7A7874', fontWeight: 300, lineHeight: 1.72, maxWidth: '360px' }}>
+                We&apos;ll get back to you within one business day. In the meantime, feel free to read about our method or browse our thinking.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+
+              {/* Service selector */}
+              <div>
+                <span style={labelStyle}>What are you looking for?</span>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '8px' }}>
+                  {services.map(({ value, label, sub }) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => setForm({ ...form, service: value })}
+                      style={{
+                        padding: '1rem',
+                        border: `1px solid ${form.service === value ? '#C06A2D' : '#E8E4DE'}`,
+                        background: form.service === value ? 'rgba(192,106,45,0.06)' : '#FFFFFF',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                        transition: 'all .15s',
+                      }}
+                    >
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.13em', textTransform: 'uppercase', color: form.service === value ? '#C06A2D' : '#1A1A1A', marginBottom: '.3rem' }}>
+                        {label}
+                      </div>
+                      <div style={{ fontSize: '11.5px', color: '#7A7874', fontWeight: 300, lineHeight: 1.4 }}>
+                        {sub}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Name + Email */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div>
+                  <label style={labelStyle}>Your name</label>
+                  <input name="name" value={form.name} onChange={handleChange} required placeholder="Name" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Work email</label>
+                  <input type="email" name="email" value={form.email} onChange={handleChange} required placeholder="you@company.com" style={inputStyle} />
+                </div>
+              </div>
+
+              {/* Company + Role */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div>
+                  <label style={labelStyle}>Company</label>
+                  <input name="company" value={form.company} onChange={handleChange} required placeholder="Company name" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Your role</label>
+                  <input name="role" value={form.role} onChange={handleChange} placeholder="VP Eng, CTO..." style={inputStyle} />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <label style={labelStyle}>Tell us about the hire</label>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  placeholder="What role? What's the context? What have you tried?"
+                  style={{ ...inputStyle, resize: 'none' }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.13em', textTransform: 'uppercase', background: '#C06A2D', color: '#fff', padding: '13px 26px', border: 'none', cursor: 'pointer', opacity: status === 'loading' ? .6 : 1 }}
+                >
+                  {status === 'loading' ? 'Sending...' : 'Send ↗'}
+                </button>
+                {status === 'error' && (
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#C06A2D', letterSpacing: '.1em' }}>
+                    Something went wrong. Email us directly.
+                  </span>
+                )}
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
 
       <Footer />
+
+      <style>{`
+        .contact-grid { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 860px) {
+          .contact-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </main>
   )
 }
