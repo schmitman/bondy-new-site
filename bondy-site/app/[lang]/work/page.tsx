@@ -51,10 +51,10 @@ const copy = {
 // ── STATS ─────────────────────────────────────────────────────────────
 const stats = {
   en: [
-    { value: '450+', label: 'Hirings completed',    sub: 'since 2008' },
-    { value: '70+',  label: 'Client companies',     sub: 'across 3 continents' },
-    { value: '94%',  label: 'Retention at 6 months', sub: 'industry avg: ~60%' },
-    { value: '16',   label: 'Years in market',       sub: 'founded Buenos Aires, 2008' },
+    { value: '450+', label: 'Hirings completed',      sub: 'since 2008' },
+    { value: '70+',  label: 'Client companies',       sub: 'across 3 continents' },
+    { value: '94%',  label: 'Retention at 6 months',  sub: 'industry avg: ~60%' },
+    { value: '16',   label: 'Years in market',         sub: 'founded Buenos Aires, 2008' },
   ],
   es: [
     { value: '450+', label: 'Contrataciones realizadas', sub: 'desde 2008' },
@@ -87,81 +87,81 @@ const cases = [
       es: 'Mapeo de talento técnico senior en toda América Latina para una empresa global',
     },
     challenge: {
-      en: "Red Hat needed to understand the availability and compensation landscape for senior technical profiles — Java Engineers, Software Architects, Cloud Infrastructure specialists — across four countries simultaneously. A traditional search alone wouldn't answer the question.",
-      es: 'Red Hat necesitaba entender la disponibilidad y el contexto salarial de perfiles técnicos senior — Programadores Java, Arquitectos de Software, especialistas en Cloud — en cuatro países al mismo tiempo. Una búsqueda tradicional sola no respondía la pregunta.',
+      en: "Red Hat needed to understand the availability and compensation landscape for senior technical profiles — Java Engineers, Software Architects, Cloud Infrastructure specialists — across four countries simultaneously. A traditional search alone wouldn't answer the question: they needed market intelligence, not just a shortlist.",
+      es: 'Red Hat necesitaba entender la disponibilidad y el contexto salarial de perfiles técnicos senior — Programadores Java, Arquitectos de Software, especialistas en Cloud — en cuatro países simultáneamente. Una búsqueda tradicional sola no respondía la pregunta: necesitaban inteligencia de mercado, no solo un shortlist.',
     },
     approach: {
-      en: "Bondy ran a regional talent mapping exercise across Argentina, Perú, Chile and Brazil. We analyzed 156 profiles in total, conducting structured evaluations on technical depth, compensation expectations, and market availability. The engagement combined direct sourcing with strategic consulting to deliver a complete picture of the market — not just a shortlist.",
-      es: 'Bondy realizó un mapeo regional de talento en Argentina, Perú, Chile y Brasil. Analizamos 156 perfiles en total, realizando evaluaciones estructuradas sobre profundidad técnica, expectativas salariales y disponibilidad de mercado. El proyecto combinó sourcing directo con consultoría estratégica para entregar una visión completa del mercado — no solo un shortlist.',
+      en: "Bondy ran a regional talent mapping exercise across Argentina, Perú, Chile and Brazil. We analyzed 156 profiles in total — conducting structured evaluations on technical depth, compensation expectations, and market availability. The engagement combined direct sourcing with strategic consulting to deliver a complete picture of the market, not just candidates.",
+      es: 'Bondy realizó un mapeo regional de talento en Argentina, Perú, Chile y Brasil. Analizamos 156 perfiles en total, realizando evaluaciones estructuradas sobre profundidad técnica, expectativas salariales y disponibilidad de mercado. El proyecto combinó sourcing directo con consultoría estratégica para entregar una visión completa del mercado, no solo candidatos.',
     },
     result: {
-      en: "One hire placed (Programador Java, Perú), alongside a comprehensive market map covering 4 countries and 156 profiles. Red Hat gained clarity on realistic compensation ranges, candidate availability by country, and the architectural talent density in the region — input that informed their hiring strategy beyond the immediate openings.",
-      es: 'Una contratación realizada (Programador Java, Perú), junto con un mapa de mercado completo que cubre 4 países y 156 perfiles. Red Hat obtuvo claridad sobre rangos salariales realistas, disponibilidad de candidatos por país y la densidad de talento arquitectónico en la región — insumo que informó su estrategia de contratación más allá de las posiciones abiertas inmediatas.',
+      en: "One hire placed (Programador Java, Perú). More importantly: Red Hat received a comprehensive market map covering 4 countries and 156 profiles, with clarity on realistic compensation ranges, candidate availability by country, and architectural talent density in the region — intelligence that informed their hiring strategy well beyond the immediate openings.",
+      es: 'Una contratación realizada (Programador Java, Perú). Más importante: Red Hat recibió un mapa de mercado completo que cubre 4 países y 156 perfiles, con claridad sobre rangos salariales realistas, disponibilidad de candidatos por país y densidad de talento arquitectónico en la región — inteligencia que informó su estrategia de contratación mucho más allá de las posiciones abiertas inmediatas.',
     },
     metrics: [
-      { n: '156', label: { en: 'profiles analyzed', es: 'perfiles analizados' } },
-      { n: '4',   label: { en: 'countries covered', es: 'países cubiertos' } },
-      { n: '11',  label: { en: 'roles mapped',       es: 'roles mapeados' } },
+      { n: '156', label: { en: 'profiles analyzed',  es: 'perfiles analizados' } },
+      { n: '4',   label: { en: 'countries covered',  es: 'países cubiertos' } },
+      { n: '11',  label: { en: 'roles mapped',        es: 'roles mapeados' } },
     ],
-    tags: ['Market Study', 'Senior Technical', 'LATAM', 'Java / AWS'],
+    tags: ['Market Intelligence', 'Senior Technical', 'LATAM', 'Java / AWS / Cloud'],
   },
   {
     slug: 'arcor',
     client: 'Arcor',
     type: { en: 'Embedded Recruiter / RPO', es: 'Recruiter Embebido / RPO' },
-    region: 'Bolivia',
+    region: 'Argentina + Bolivia',
     year: '2022–2023',
     headline: {
-      en: 'Building a local tech team from scratch in a thin talent market',
-      es: 'Construir un equipo tech local desde cero en un mercado con poco talento disponible',
+      en: 'Building technical teams from scratch in markets with no existing playbook',
+      es: 'Construir equipos técnicos desde cero en mercados sin playbook previo',
     },
     challenge: {
-      en: "Arcor was expanding operations into Bolivia and needed to hire technical roles in a market with very limited visibility — no established salary benchmarks, few active candidates, and no local recruiter with relevant expertise.",
-      es: 'Arcor estaba expandiendo operaciones a Bolivia y necesitaba contratar perfiles técnicos en un mercado con visibilidad muy limitada — sin benchmarks salariales establecidos, pocos candidatos activos y sin recruiters locales con experiencia relevante.',
+      en: "Arcor needed to hire technical profiles in two markets with very different constraints — Argentina and Bolivia. In Bolivia especially, there were no established salary benchmarks for tech roles, few active candidates in the relevant profiles, and no recruiter with reliable expertise in the local market.",
+      es: 'Arcor necesitaba contratar perfiles técnicos en dos mercados con restricciones muy distintas — Argentina y Bolivia. En Bolivia especialmente, no había benchmarks salariales establecidos para roles tech, pocos candidatos activos en los perfiles relevantes, y ningún recruiter con expertise confiable en el mercado local.',
     },
     approach: {
-      en: "Bondy deployed an embedded recruiting model: we operated as an extension of their HR team, running end-to-end sourcing and selection. This meant building sourcing channels from scratch, establishing compensation references for the local market, and adapting screening criteria to realistic local availability.",
-      es: 'Bondy desplegó un modelo de recruiting embebido: operamos como extensión de su equipo de RRHH, gestionando el sourcing y la selección de punta a punta. Esto implicó construir canales de sourcing desde cero, establecer referencias salariales para el mercado local y adaptar los criterios de screening a la disponibilidad real.',
+      en: "Bondy deployed an embedded recruiting model in both markets: we operated as an extension of their HR team, running end-to-end sourcing and selection. In Bolivia, this meant building sourcing channels from scratch, establishing compensation references for a market with no precedent, and adapting screening criteria to local availability. In Argentina, we activated our existing network with the specific constraints of a large enterprise client.",
+      es: 'Bondy desplegó un modelo de recruiting embebido en ambos mercados: operamos como extensión de su equipo de RRHH, gestionando el sourcing y la selección de punta a punta. En Bolivia, esto implicó construir canales de sourcing desde cero, establecer referencias salariales para un mercado sin precedentes, y adaptar los criterios de screening a la disponibilidad real. En Argentina, activamos nuestra red existente con las restricciones específicas de un cliente corporativo grande.',
     },
     result: {
-      en: "Multiple technical hires completed across the engagement. Arcor gained not just candidates, but a repeatable process and market intelligence they could continue to use internally.",
-      es: 'Múltiples contrataciones técnicas completadas durante el proyecto. Arcor obtuvo no solo candidatos, sino un proceso replicable e inteligencia de mercado que pudieron seguir usando internamente.',
+      en: "Technical hires completed in both countries. Arcor gained not just candidates, but a repeatable process and market intelligence — particularly for Bolivia — that they could continue to leverage internally.",
+      es: 'Contrataciones técnicas completadas en ambos países. Arcor obtuvo no solo candidatos, sino un proceso replicable e inteligencia de mercado — especialmente para Bolivia — que pudieron seguir aprovechando internamente.',
     },
     metrics: [
-      { n: 'RPO',  label: { en: 'engagement model',           es: 'modelo de trabajo' } },
-      { n: '1',    label: { en: 'new market entered',          es: 'nuevo mercado abordado' } },
-      { n: '0→✓', label: { en: 'benchmarks built from scratch', es: 'benchmarks construidos desde cero' } },
+      { n: 'RPO',  label: { en: 'engagement model',        es: 'modelo de trabajo' } },
+      { n: '2',    label: { en: 'markets operated in',     es: 'mercados abordados' } },
+      { n: '0→✓', label: { en: 'Bolivia benchmarks built', es: 'benchmarks Bolivia construidos' } },
     ],
-    tags: ['RPO', 'Embedded', 'Bolivia', 'Market Entry'],
+    tags: ['RPO', 'Embedded', 'Argentina', 'Bolivia', 'Market Entry'],
   },
   {
     slug: 'disbyte',
     client: 'Disbyte',
-    type: { en: 'TA Consulting + Execution', es: 'Consultoría TA + Ejecución' },
+    type: { en: 'TA Consulting + Capability Building', es: 'Consultoría TA + Capacitación' },
     region: 'Argentina',
     year: '2024',
     headline: {
-      en: 'Rebuilding a hiring process that had stopped producing results',
-      es: 'Reconstruir un proceso de contratación que había dejado de dar resultados',
+      en: 'Training a team to hire well — not just filling their open roles',
+      es: 'Capacitar a un equipo para contratar bien — no solo cubrir sus posiciones abiertas',
     },
     challenge: {
-      en: "Disbyte had an internal TA function that was generating volume — but not quality. Processes were long, rejection rates were high, and the team was spending weeks on candidates who shouldn't have reached the interview stage.",
-      es: 'Disbyte tenía una función de TA interna que generaba volumen, pero no calidad. Los procesos eran largos, las tasas de rechazo eran altas, y el equipo pasaba semanas con candidatos que no debían haber llegado a la etapa de entrevista.',
+      en: "Disbyte had hiring managers involved in selection who weren't equipped to run structured interviews. The process was inconsistent: subjective feedback, no shared evaluation criteria, and decisions based on gut feel rather than observable evidence. The ask wasn't just 'help us hire' — it was 'help us build a hiring capability we can run ourselves.'",
+      es: 'Disbyte tenía hiring managers involucrados en la selección que no estaban equipados para conducir entrevistas estructuradas. El proceso era inconsistente: feedback subjetivo, sin criterios de evaluación compartidos, y decisiones basadas en intuición en lugar de evidencia observable. El pedido no era solo "ayúdanos a contratar" — era "ayúdanos a construir una capacidad de contratación que podamos operar solos."',
     },
     approach: {
-      en: "Bondy ran a TA consulting engagement: we audited the existing funnel, identified where the process was breaking down, and redesigned the brief-to-shortlist workflow. We then ran the first two searches under the new model to validate the approach with the internal team.",
-      es: 'Bondy realizó un proyecto de consultoría TA: auditamos el funnel existente, identificamos dónde se rompía el proceso y rediseñamos el flujo de brief a shortlist. Luego ejecutamos las primeras dos búsquedas bajo el nuevo modelo para validar el enfoque con el equipo interno.',
+      en: "Bondy designed and delivered a full interview training workshop for Disbyte's leaders — covering structured interviewing techniques, STAR methodology, scorecard design, and cognitive bias recognition. Alongside the training, we built a candidate database architecture for their ongoing searches and designed a complete hiring blueprint: from kick-off template to feedback protocol. All materials were delivered as a shared Notion workspace the team could keep using independently.",
+      es: 'Bondy diseñó y ejecutó un taller completo de capacitación en entrevistas para los líderes de Disbyte — cubriendo técnicas de entrevista estructurada, metodología STAR, diseño de scorecards y reconocimiento de sesgos cognitivos. Junto al taller, armamos la arquitectura de una base de datos de candidatos para sus búsquedas continuas y diseñamos un blueprint completo de contratación: desde el template de kickoff hasta el protocolo de feedback. Todos los materiales fueron entregados como un workspace de Notion compartido que el equipo puede seguir usando de forma independiente.',
     },
     result: {
-      en: "Three positions filled. More importantly, the internal team now had a diagnostic framework they could apply to future searches — reducing time-to-shortlist and increasing the quality of candidates reaching final interviews.",
-      es: 'Tres posiciones cubiertas. Más importante: el equipo interno ahora tiene un framework de diagnóstico que pueden aplicar a futuras búsquedas — reduciendo el tiempo hasta el shortlist y aumentando la calidad de los candidatos en entrevistas finales.',
+      en: "Disbyte's hiring managers now run structured interviews with shared scorecards and a common feedback language. They have a candidate database, a repeatable hiring process, and a resource library they own. The engagement ended with the team being more self-sufficient — which was the whole point.",
+      es: 'Los hiring managers de Disbyte ahora conducen entrevistas estructuradas con scorecards compartidos y un lenguaje de feedback común. Tienen una base de datos de candidatos, un proceso de contratación replicable y una biblioteca de recursos propia. El proyecto terminó con el equipo siendo más autosuficiente — que era exactamente el objetivo.',
     },
     metrics: [
-      { n: '3',  label: { en: 'positions filled',         es: 'posiciones cubiertas' } },
-      { n: 'TA', label: { en: 'consulting + execution',   es: 'consultoría + ejecución' } },
-      { n: '↓',  label: { en: 'time-to-shortlist reduced', es: 'tiempo a shortlist reducido' } },
+      { n: '1',     label: { en: 'full training workshop delivered', es: 'taller de capacitación completo' } },
+      { n: 'DB',    label: { en: 'candidate database architected',   es: 'base de candidatos diseñada' } },
+      { n: 'Notion',label: { en: 'resource library, owned by client', es: 'biblioteca de recursos, del cliente' } },
     ],
-    tags: ['TA Consulting', 'Process Design', 'Argentina'],
+    tags: ['TA Consulting', 'Hiring Capability', 'Scorecards', 'Interview Training', 'Argentina'],
   },
 ]
 
@@ -174,28 +174,19 @@ const industries = [
 // ── MAP ───────────────────────────────────────────────────────────────
 function WorldMap({ lang }: { lang: Lang }) {
   const [hovered, setHovered] = useState<string | null>(null)
-  const totalProjects = regions.reduce((a, r) => a + r.projects, 0)
 
   return (
     <div>
       <div className="relative w-full" style={{ paddingBottom: '48%' }}>
-        {/* Simplified world map SVG */}
         <svg viewBox="0 0 100 48" className="absolute inset-0 w-full h-full" fill="none">
-          {/* North America */}
           <path d="M5,8 L22,7 L24,12 L22,20 L20,26 L22,33 L19,38 L15,40 L12,36 L10,28 L7,20 L5,14 Z" fill="#F9F8F6" opacity="0.08" stroke="#F9F8F6" strokeWidth="0.15"/>
-          {/* South America */}
           <path d="M22,38 L32,37 L34,42 L32,46 L28,47 L24,44 L22,40 Z" fill="#F9F8F6" opacity="0.08" stroke="#F9F8F6" strokeWidth="0.15"/>
-          {/* Europe */}
           <path d="M44,7 L56,7 L57,13 L54,17 L50,15 L46,17 L43,14 Z" fill="#F9F8F6" opacity="0.08" stroke="#F9F8F6" strokeWidth="0.15"/>
-          {/* Africa */}
           <path d="M44,19 L54,19 L56,27 L54,36 L50,40 L46,36 L43,27 Z" fill="#F9F8F6" opacity="0.08" stroke="#F9F8F6" strokeWidth="0.15"/>
-          {/* Asia */}
           <path d="M57,7 L82,7 L84,15 L80,21 L72,23 L63,21 L59,16 Z" fill="#F9F8F6" opacity="0.08" stroke="#F9F8F6" strokeWidth="0.15"/>
-          {/* Australia */}
           <path d="M74,30 L84,29 L85,37 L77,38 L73,34 Z" fill="#F9F8F6" opacity="0.08" stroke="#F9F8F6" strokeWidth="0.15"/>
         </svg>
 
-        {/* Region dots */}
         {regions.map((r) => {
           const isHovered = hovered === r.label
           const size = Math.max(6, Math.min(16, r.projects / 3.5))
@@ -203,52 +194,37 @@ function WorldMap({ lang }: { lang: Lang }) {
             <div
               key={r.label}
               className="absolute cursor-pointer"
-              style={{
-                left: `${r.x}%`,
-                top: `${r.y}%`,
-                transform: 'translate(-50%, -50%)',
-              }}
+              style={{ left: `${r.x}%`, top: `${r.y}%`, transform: 'translate(-50%, -50%)' }}
               onMouseEnter={() => setHovered(r.label)}
               onMouseLeave={() => setHovered(null)}
             >
-              {/* Pulse */}
               <div
                 className="absolute rounded-full animate-ping"
                 style={{
-                  width: size * 2,
-                  height: size * 2,
-                  top: -size / 2,
-                  left: -size / 2,
+                  width: size * 2, height: size * 2,
+                  top: -size / 2, left: -size / 2,
                   background: '#C06A2D',
                   opacity: isHovered ? 0.3 : 0.1,
                 }}
               />
-              {/* Dot */}
               <div
                 className="relative rounded-full transition-all duration-200"
                 style={{
-                  width: size,
-                  height: size,
+                  width: size, height: size,
                   background: isHovered ? '#C06A2D' : '#E05C00',
                   boxShadow: isHovered ? '0 0 14px #C06A2D60' : 'none',
                 }}
               />
-              {/* Tooltip */}
               {isHovered && (
                 <div
                   className="absolute z-20 whitespace-nowrap pointer-events-none"
                   style={{
-                    bottom: '140%',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: '#1A1A1A',
-                    border: '1px solid rgba(255,255,255,0.12)',
+                    bottom: '140%', left: '50%', transform: 'translateX(-50%)',
+                    background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.12)',
                     padding: '8px 12px',
                   }}
                 >
-                  <div className="font-mono-bondy text-[9px] tracking-widest uppercase text-b-orange mb-1">
-                    {r.label}
-                  </div>
+                  <div className="font-mono-bondy text-[9px] tracking-widest uppercase text-b-orange mb-1">{r.label}</div>
                   <div className="font-display text-sm font-bold text-b-off">
                     {r.projects} {lang === 'es' ? 'proyectos' : 'projects'}
                   </div>
@@ -259,7 +235,6 @@ function WorldMap({ lang }: { lang: Lang }) {
         })}
       </div>
 
-      {/* Legend */}
       <div className="mt-6 flex flex-wrap gap-5">
         {regions.map((r) => (
           <div key={r.label} className="flex items-center gap-2">
@@ -276,9 +251,6 @@ function WorldMap({ lang }: { lang: Lang }) {
             </span>
           </div>
         ))}
-        <div className="ml-auto font-mono-bondy text-[10px] tracking-widest text-white/25">
-          {totalProjects} {copy[lang].mapSub}
-        </div>
       </div>
     </div>
   )
@@ -297,8 +269,6 @@ export default function WorkPage({ params }: { params: { lang: Lang } }) {
       {/* ── HEADER + STATS ── */}
       <section className="pt-[73px] border-b border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2">
-
-          {/* Left — headline */}
           <div className="px-8 md:px-16 py-20 md:py-28 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-between">
             <div>
               <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange mb-8">
@@ -314,7 +284,6 @@ export default function WorkPage({ params }: { params: { lang: Lang } }) {
             </div>
           </div>
 
-          {/* Right — stats grid */}
           <div className="grid grid-cols-2">
             {stats[lang].map((s, i) => (
               <div
@@ -365,7 +334,6 @@ export default function WorkPage({ params }: { params: { lang: Lang } }) {
         <div className="divide-y divide-white/10">
           {cases.map((cs, idx) => (
             <div key={cs.slug}>
-              {/* Row — always visible */}
               <div
                 className="px-8 md:px-16 py-10 md:py-12 grid grid-cols-1 md:grid-cols-[56px_1fr_auto] gap-6 md:gap-10 items-start cursor-pointer group hover:bg-white/[0.02] transition-colors"
                 onClick={() => setOpenCase(openCase === cs.slug ? null : cs.slug)}
@@ -398,10 +366,8 @@ export default function WorkPage({ params }: { params: { lang: Lang } }) {
                 </div>
               </div>
 
-              {/* Expanded */}
               {openCase === cs.slug && (
                 <div className="border-t border-white/10 bg-white/[0.015] px-8 md:px-16 py-12 md:py-16">
-                  {/* Metrics */}
                   <div className="grid grid-cols-3 gap-8 mb-14 pb-14 border-b border-white/10">
                     {cs.metrics.map((m) => (
                       <div key={m.label[lang]} className="border-l-2 border-b-orange/20 pl-6">
@@ -415,7 +381,6 @@ export default function WorkPage({ params }: { params: { lang: Lang } }) {
                     ))}
                   </div>
 
-                  {/* Three columns */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div>
                       <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange mb-5">
@@ -437,7 +402,6 @@ export default function WorkPage({ params }: { params: { lang: Lang } }) {
                     </div>
                   </div>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2 mt-10">
                     {cs.tags.map((tag) => (
                       <span
