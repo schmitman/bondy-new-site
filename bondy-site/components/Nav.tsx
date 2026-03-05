@@ -2,77 +2,153 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import type { Lang, Translations } from '@/lib/i18n/translations'
 
-// Pages that use dark background
-const DARK_PAGES = ['/', '/services', '/contact', '/jobs', '/referrals']
+type NavProps = {
+  lang: Lang
+  tr: Translations['nav']
+}
 
-export default function Nav() {
+export default function Nav({ lang, tr }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
 
-  const isDark = DARK_PAGES.includes(pathname)
+  const otherLang: Lang = lang === 'en' ? 'es' : 'en'
 
-  const navBg    = isDark ? 'bg-[#111111]/90 border-white/10'  : 'bg-[#F0EBE3]/90 border-[#E8E2DA]'
-  const textMid  = isDark ? 'text-[#888885]'                   : 'text-[#888885]'
-  const textOff  = isDark ? 'text-[#F9F8F6]'                   : 'text-[#1A1A1A]'
-  const hoverOff = isDark ? 'hover:text-[#F9F8F6]'             : 'hover:text-[#1A1A1A]'
-  const ctaColor = 'text-[#C06A2D] border-[#C06A2D]/40 hover:border-[#C06A2D]'
-  const logoFill = isDark ? '#F9F8F6' : '#1A1A1A'
-  const mobileBg = isDark ? 'bg-[#111111]' : 'bg-[#F0EBE3]'
-  const mobileBorder = isDark ? 'border-white/10' : 'border-[#E8E2DA]'
+  // Switch language: replace /en/ with /es/ or vice versa
+  const switchLang = () => {
+    // Set cookie so middleware remembers preference
+    document.cookie = `lang=${otherLang};path=/;max-age=31536000`
+    const newPath = pathname.replace(`/${lang}`, `/${otherLang}`)
+    router.push(newPath)
+  }
+
+  // Path helper — strips lang prefix for comparison
+  const isActive = (href: string) => {
+    const cleanPath = pathname.replace(`/${lang}`, '') || '/'
+    return cleanPath === href || cleanPath.startsWith(href + '/')
+  }
+
+  // Link helper — adds lang prefix
+  const lk = (href: string) => `/${lang}${href}`
+
+  const navLinks = [
+    { href: '/method',    label: tr.method },
+    { href: '/services',  label: tr.services },
+    { href: '/work',      label: tr.work },
+    { href: '/about',     label: tr.about },
+    { href: '/thinking',  label: tr.thinking },
+    { href: '/jobs',      label: tr.jobs },
+  ]
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-sm ${navBg}`}>
-      <div className="flex items-center justify-between px-8 md:px-16 py-5">
-
-        {/* Logo — wordmark only, italic Y */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <span className={`font-display text-xl font-bold tracking-tight ${textOff}`}>
-            Bond<em className="italic text-[#C06A2D]">y</em><span className="text-[#C06A2D]">.</span>
+    <nav
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        background: 'rgba(14,14,14,0.97)',
+        backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255,255,255,0.07)',
+      }}
+    >
+      <div
+        className="flex items-center justify-between"
+        style={{ padding: '0 clamp(1.25rem,5vw,4rem)', height: '60px' }}
+      >
+        {/* Logo */}
+        <Link href={lk('/')} className="flex items-center shrink-0" style={{ textDecoration: 'none' }}>
+          <span style={{
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontSize: '20px',
+            fontWeight: 900,
+            color: '#F4F2EE',
+            letterSpacing: '-0.02em',
+          }}>
+            Bond<em style={{ fontStyle: 'italic', color: '#C06A2D' }}>y</em><span style={{ color: '#C06A2D' }}>.</span>
           </span>
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-10">
-          {[
-            { href: '/method',    label: 'Method'    },
-            { href: '/services',  label: 'Services'  },
-            { href: '/work',      label: 'Work'      },
-            { href: '/thinking',  label: 'Thinking'  },
-          ].map(({ href, label }) => (
+        <ul className="hidden md:flex items-center" style={{ gap: '2.5rem', listStyle: 'none', margin: 0, padding: 0 }}>
+          {navLinks.map(({ href, label }) => (
             <li key={href}>
               <Link
-                href={href}
-                className={`font-mono-bondy text-[10px] tracking-widest uppercase transition-colors ${textMid} ${hoverOff}`}
+                href={lk(href)}
+                style={{
+                  fontFamily: 'DM Mono, monospace',
+                  fontSize: '10px',
+                  letterSpacing: '0.13em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  color: isActive(href) ? '#F4F2EE' : 'rgba(255,255,255,0.4)',
+                  transition: 'color 0.18s',
+                }}
               >
                 {label}
               </Link>
             </li>
           ))}
+
+          {/* Lang toggle */}
+          <li style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.13em', textTransform: 'uppercase', color: '#F4F2EE' }}>
+              {lang.toUpperCase()}
+            </span>
+            <span style={{ color: 'rgba(255,255,255,0.18)', fontSize: '9px', margin: '0 2px' }}>/</span>
+            <button
+              onClick={switchLang}
+              style={{
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '10px',
+                letterSpacing: '0.13em',
+                textTransform: 'uppercase',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: 'rgba(255,255,255,0.35)',
+                padding: 0,
+                transition: 'color 0.18s',
+              }}
+            >
+              {otherLang.toUpperCase()}
+            </button>
+          </li>
+
           <li>
             <Link
-              href="/contact"
-              className={`font-mono-bondy text-[10px] tracking-widest uppercase border-b pb-0.5 transition-colors ${ctaColor}`}
+              href={lk('/contact')}
+              style={{
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '10px',
+                letterSpacing: '0.13em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                color: '#C06A2D',
+                borderBottom: '1px solid rgba(192,106,45,0.35)',
+                paddingBottom: '2px',
+              }}
             >
-              Work with us →
+              {tr.cta}
             </Link>
           </li>
         </ul>
 
-        {/* Mobile menu button */}
+        {/* Mobile burger */}
         <button
-          className={`md:hidden ${textMid}`}
+          className="md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.5)', padding: 0 }}
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
             {menuOpen ? (
-              <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="M1 1L19 13M19 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             ) : (
               <>
-                <line x1="2" y1="6" x2="18" y2="6" stroke="currentColor" strokeWidth="1.5"/>
-                <line x1="2" y1="14" x2="18" y2="14" stroke="currentColor" strokeWidth="1.5"/>
+                <rect width="20" height="1.5" rx=".75" fill="currentColor"/>
+                <rect y="6.25" width="20" height="1.5" rx=".75" fill="currentColor"/>
+                <rect y="12.5" width="20" height="1.5" rx=".75" fill="currentColor"/>
               </>
             )}
           </svg>
@@ -81,28 +157,62 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className={`md:hidden border-t px-8 py-6 flex flex-col gap-6 ${mobileBg} ${mobileBorder}`}>
-          {[
-            { href: '/method',   label: 'Method'   },
-            { href: '/services', label: 'Services' },
-            { href: '/work',     label: 'Work'     },
-            { href: '/thinking', label: 'Thinking' },
-          ].map(({ href, label }) => (
+        <div
+          className="md:hidden flex flex-col"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.07)', background: '#0E0E0E' }}
+        >
+          {navLinks.map(({ href, label }) => (
             <Link
               key={href}
-              href={href}
-              className={`font-mono-bondy text-[11px] tracking-widest uppercase ${textMid}`}
+              href={lk(href)}
               onClick={() => setMenuOpen(false)}
+              style={{
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '11px',
+                letterSpacing: '0.13em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                color: isActive(href) ? '#F4F2EE' : 'rgba(255,255,255,0.45)',
+                padding: '1rem clamp(1.25rem,5vw,4rem)',
+                borderBottom: '1px solid rgba(255,255,255,0.06)',
+              }}
             >
               {label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="font-mono-bondy text-[11px] tracking-widest uppercase text-[#C06A2D]"
-            onClick={() => setMenuOpen(false)}
+          {/* Mobile lang switch */}
+          <button
+            onClick={() => { switchLang(); setMenuOpen(false) }}
+            style={{
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '11px',
+              letterSpacing: '0.13em',
+              textTransform: 'uppercase',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: 'rgba(255,255,255,0.35)',
+              padding: '1rem clamp(1.25rem,5vw,4rem)',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              textAlign: 'left',
+            }}
           >
-            Work with us →
+            → {otherLang.toUpperCase()}
+          </button>
+          <Link
+            href={lk('/contact')}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '11px',
+              letterSpacing: '0.13em',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              color: '#C06A2D',
+              padding: '1rem clamp(1.25rem,5vw,4rem)',
+            }}
+          >
+            {tr.cta}
           </Link>
         </div>
       )}
