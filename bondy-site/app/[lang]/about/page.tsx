@@ -215,7 +215,7 @@ export default function AboutPage({ params }: { params: { lang: Lang } }) {
 
       <Footer lang={lang} tr={tr.footer} />
 
-      <style>{\`
+      <style>{`
         .split-grid { grid-template-columns: 1fr 1fr; }
         .team-cards-grid { grid-template-columns: 1fr 1fr; }
         .cta-grid { grid-template-columns: 1fr 1fr; }
@@ -225,7 +225,7 @@ export default function AboutPage({ params }: { params: { lang: Lang } }) {
           .join-grid { grid-template-columns: 1fr !important; }
           .team-cards-grid > div { border-right: none !important; border-bottom: 1px solid #E0DBD3; }
         }
-      \`}</style>
+      `}</style>
     </main>
   )
 }
