@@ -1,59 +1,78 @@
 import Link from 'next/link'
 
+const navLinks = [
+  { href: '/method',   label: 'Method' },
+  { href: '/services', label: 'Services' },
+  { href: '/work',     label: 'Work' },
+  { href: '/about',    label: 'About' },
+  { href: '/roles',    label: 'Open Roles' },
+  { href: '/referrals',label: 'Referrals' },
+  { href: '/thinking', label: 'Thinking' },
+  { href: '/contact',  label: 'Contact' },
+]
+
 export default function Footer() {
   return (
-    <footer className="bg-b-black border-t border-white/10">
-      <div className="px-8 md:px-16 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
-
+    <footer style={{ background: '#0E0E0E', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '3rem',
+          padding: '3.5rem clamp(1.25rem,5vw,4rem) 0',
+        }}
+        className="footer-grid"
+      >
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-2.5 mb-6">
-            <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-              <rect width="7" height="26" rx="1" fill="#F9F8F6"/>
-              <rect x="7" y="1" width="16" height="11" rx="5.5" fill="#F9F8F6"/>
-              <rect x="7" y="14" width="17" height="11" rx="5.5" fill="#F9F8F6"/>
-              <circle cx="27" cy="29" r="3" fill="#E05C00"/>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '9px', textDecoration: 'none', marginBottom: '1.1rem' }}>
+            <svg width="22" height="22" viewBox="0 0 512 512" fill="none">
+              <path d="M98 108 L265 108 Q366 108 366 209 Q366 310 265 310 L98 310 Z" fill="#FAAF40"/>
+              <path d="M175 210 L341 210 Q440 210 440 309 Q440 408 341 408 L241 408 Q175 408 175 342 Z" fill="#FAAF40"/>
+              <clipPath id="footer-clip">
+                <path d="M98 108 L265 108 Q366 108 366 209 Q366 310 265 310 L98 310 Z"/>
+              </clipPath>
+              <g clipPath="url(#footer-clip)">
+                <path d="M175 210 L341 210 Q440 210 440 309 Q440 408 341 408 L241 408 Q175 408 175 342 Z" fill="#F27122"/>
+              </g>
+              <circle cx="130" cy="370" r="28" fill="#404041"/>
             </svg>
-            <span className="text-b-off font-display text-lg font-bold tracking-tight">
-              Bond<em>y</em><span className="text-b-orange">.</span>
+            <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '17px', fontWeight: 900, color: '#F4F2EE', letterSpacing: '-0.02em' }}>
+              Bond<em style={{ fontStyle: 'italic', color: '#C06A2D' }}>y</em>.
             </span>
-          </div>
-          <p className="text-b-mid text-[14px] leading-relaxed font-light max-w-xs">
+          </Link>
+          <p style={{ fontSize: '12.5px', color: 'rgba(255,255,255,0.35)', fontWeight: 300, lineHeight: 1.65, maxWidth: '195px' }}>
             The standard for technical hiring. Since 2008.
           </p>
         </div>
 
-        {/* Links */}
+        {/* Nav */}
         <div>
-          <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid mb-6">Navigation</div>
-          <ul className="flex flex-col gap-3">
-            {['Method', 'Services', 'Thinking', 'Contact'].map((item) => (
-              <li key={item}>
-                <Link
-                  href={`/${item.toLowerCase()}`}
-                  className="text-[14px] text-b-mid hover:text-b-off transition-colors font-light"
-                >
-                  {item}
-                </Link>
-              </li>
+          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.18)', display: 'block', marginBottom: '1.25rem' }}>
+            Navigate
+          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {navLinks.map(({ href, label }) => (
+              <Link key={href} href={href} style={{ fontSize: '13.5px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', fontWeight: 300 }}>
+                {label}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
 
         {/* Contact */}
         <div>
-          <div className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid mb-6">Get in touch</div>
-          <a
-            href="mailto:hola@wearebondy.com"
-            className="text-[14px] text-b-off hover:text-b-orange transition-colors font-light block mb-3"
-          >
-            hola@wearebondy.com
+          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.18)', display: 'block', marginBottom: '1.25rem' }}>
+            Get in touch
+          </span>
+          <a href="mailto:hello@wearebondy.com" style={{ display: 'block', fontSize: '13.5px', color: '#F4F2EE', textDecoration: 'none', fontWeight: 300, marginBottom: '0.6rem' }}>
+            hello@wearebondy.com
           </a>
           <a
-            href="https://www.linkedin.com/company/bondygroup"
+            href="https://linkedin.com/company/bondygroup"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono-bondy text-[11px] tracking-wider uppercase text-b-mid hover:text-b-orange transition-colors"
+            style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '0.13em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
           >
             LinkedIn ↗
           </a>
@@ -61,14 +80,38 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10 px-8 md:px-16 py-5 flex justify-between items-center">
-        <span className="font-mono-bondy text-[11px] tracking-wider text-white/30">
+      <div
+        style={{
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          margin: '3rem 0 0',
+          padding: '1.25rem clamp(1.25rem,5vw,4rem)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '0.5rem',
+        }}
+      >
+        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '0.13em', color: 'rgba(255,255,255,0.14)' }}>
           © {new Date().getFullYear()} Bondy Group. All rights reserved.
         </span>
-        <span className="font-mono-bondy text-[11px] tracking-wider text-white/30">
-          newbondy.wearebondy.com
+        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '0.13em', color: 'rgba(255,255,255,0.14)' }}>
+          wearebondy.com
         </span>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+        }
+        @media (max-width: 860px) and (min-width: 641px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+      `}</style>
     </footer>
   )
 }
