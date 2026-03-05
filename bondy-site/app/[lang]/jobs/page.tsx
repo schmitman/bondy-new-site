@@ -4,6 +4,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { useState } from 'react'
 import type { Lang } from '@/lib/i18n/translations'
+import { t } from '@/lib/i18n/translations'
 
 const copy = {
   en: {
@@ -49,7 +50,7 @@ const copy = {
     sending: 'Sending...',
     successTitle: 'Got it.',
     successBody: "We read every application personally. If there's a fit — now or in the future — we'll be in touch.",
-    errorMsg: 'Something went wrong. Email us at hola@wearebondy.com',
+    errorMsg: 'Something went wrong. Email us at hello@wearebondy.com',
     roleOptions: [
       { value: '', label: 'Select one...' },
       { value: 'recruiter', label: 'Technical Recruiter' },
@@ -109,7 +110,7 @@ const copy = {
     sending: 'Enviando...',
     successTitle: 'Listo.',
     successBody: 'Leemos cada aplicación personalmente. Si hay fit — ahora o en el futuro — te contactamos.',
-    errorMsg: 'Algo salió mal. Escribinos a hola@wearebondy.com',
+    errorMsg: 'Algo salió mal. Escribinos a hello@wearebondy.com',
     roleOptions: [
       { value: '', label: 'Seleccioná...' },
       { value: 'recruiter', label: 'Recruiter Técnico' },
@@ -139,6 +140,8 @@ type FormState = {
 
 export default function JobsPage({ params }: { params: { lang: Lang } }) {
   const lang = params.lang
+  const tr = t(lang)
+  const lk = (href: string) => `/${lang}${href}`
   const c = copy[lang]
 
   const [form, setForm] = useState<FormState>({
@@ -177,7 +180,7 @@ export default function JobsPage({ params }: { params: { lang: Lang } }) {
 
   return (
     <main className="bg-b-black min-h-screen">
-      <Nav />
+      <Nav lang={lang} tr={tr.nav} />
 
       {/* ── HERO ── */}
       <section className="pt-[73px] border-b border-white/10">
@@ -261,7 +264,7 @@ export default function JobsPage({ params }: { params: { lang: Lang } }) {
 
             <div className="mt-16 border-t border-white/10 pt-8">
               <div className="font-mono-bondy text-[9px] tracking-widest text-white/20">
-                hola@wearebondy.com
+                hello@wearebondy.com
               </div>
             </div>
           </div>
@@ -398,7 +401,7 @@ export default function JobsPage({ params }: { params: { lang: Lang } }) {
         </div>
       </section>
 
-      <Footer />
+      <Footer lang={lang} tr={tr.footer} />
     </main>
   )
 }
