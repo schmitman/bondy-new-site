@@ -118,214 +118,186 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
   const inputFocusStyle = { borderColor: '#E05C00' }
   const labelClass = "font-mono-bondy text-[10px] tracking-widest uppercase block mb-3"
 
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    background: 'transparent',
+    borderBottom: '1px solid #DDD8D0',
+    padding: '14px 0',
+    color: '#1A1A1A',
+    fontSize: '16px',
+    fontWeight: 300,
+    outline: 'none',
+    transition: 'border-color 0.2s',
+  }
+
+  const lbl: React.CSSProperties = {
+    fontFamily: 'DM Mono, monospace',
+    fontSize: '10px',
+    letterSpacing: '0.18em',
+    textTransform: 'uppercase',
+    color: '#C06A2D',
+    display: 'block',
+    marginBottom: '10px',
+  }
+
   return (
-    <main className="bg-b-black min-h-screen">
+    <main style={{ background: '#F0EBE3', minHeight: '100vh' }}>
       <Nav lang={lang} tr={tr.nav} />
 
-      {/* ── HERO ── */}
-      <section className="pt-[73px] border-b border-white/10">
-        <div className="grid grid-cols-1 md:grid-cols-2 min-h-[50vh]">
-
-          {/* Left — headline */}
-          <div className="px-8 md:px-16 py-20 md:py-28 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-between">
+      {/* ── HERO — split blanco / sienna */}
+      <header style={{ paddingTop: '60px', borderBottom: '1px solid #E0DBD3' }}>
+        <div className="ref-hero-grid">
+          {/* Left — headline (blanco) */}
+          <div style={{ background: '#FFFFFF', borderRight: '1px solid #E0DBD3', padding: '4rem clamp(1.25rem,4vw,3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
-              <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange mb-8">
-                {c.label}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
+                <div style={{ width: '22px', height: '1px', background: '#C06A2D' }} />
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
+                  {c.label}
+                </span>
+                <div style={{ width: '22px', height: '1px', background: 'rgba(192,106,45,0.4)' }} />
               </div>
-              <h1 className="font-display text-[clamp(48px,6vw,80px)] font-black leading-tight tracking-tight text-b-off mb-6">
+              <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(44px,5.5vw,76px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: '#1A1A1A', marginBottom: '1.75rem' }}>
                 {c.h1a}<br />
-                <em className="text-b-orange italic">{c.h1b}</em>
+                <em style={{ color: '#C06A2D', fontStyle: 'italic' }}>{c.h1b}</em>
               </h1>
-              <p className="text-b-mid text-[16px] leading-relaxed font-light max-w-md">
+              <p style={{ fontSize: '16px', lineHeight: 1.78, fontWeight: 300, maxWidth: '400px', color: '#6B6966' }}>
                 {c.intro}
               </p>
             </div>
           </div>
 
-          {/* Right — bonus callout */}
-          <div className="px-8 md:px-16 py-20 md:py-28 flex flex-col justify-center" style={{ background: '#141414' }}>
-            <div className="font-mono-bondy text-[10px] tracking-widest uppercase mb-6" style={{ color: 'rgba(255,255,255,0.25)' }}>
+          {/* Right — bonus callout (sienna) */}
+          <div style={{ background: '#C06A2D', padding: '4rem clamp(1.25rem,4vw,3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '1.5rem' }}>
               {c.bonusLabel}
             </div>
-            <div className="font-display text-[clamp(64px,10vw,120px)] font-black leading-none tracking-tight text-b-orange mb-4">
+            <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(64px,10vw,120px)', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em', color: '#FFFFFF', marginBottom: '1rem' }}>
               {c.bonusAmount}
             </div>
-            <p className="font-mono-bondy text-[11px] tracking-widest text-b-mid leading-relaxed max-w-xs">
+            <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.12em', lineHeight: 1.75, color: 'rgba(255,255,255,0.75)', maxWidth: '280px' }}>
               {c.bonusSub}
             </p>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* ── HOW IT WORKS ── */}
-      <section className="border-b border-white/10">
-        <div className="px-8 md:px-16 py-8 border-b border-white/10">
-          <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange">
+      {/* ── HOW IT WORKS — stone */}
+      <section style={{ background: '#F0EBE3', borderBottom: '1px solid #E0DBD3' }}>
+        <div style={{ padding: '1.5rem clamp(1.25rem,5vw,4rem)', borderBottom: '1px solid #E0DBD3' }}>
+          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
             {c.howLabel}
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
-          {c.steps.map((step) => (
-            <div key={step.n} className="px-8 md:px-10 py-12 flex flex-col justify-between group hover:bg-white/[0.02] transition-colors">
-              <div>
-                <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange mb-8">
-                  {step.n}
-                </div>
-                <h3 className="font-display text-xl font-bold text-b-off mb-4 tracking-tight leading-tight">
-                  {step.title}
-                </h3>
-                <p className="text-b-mid text-sm font-light leading-relaxed">
-                  {step.body}
-                </p>
+        <div className="ref-steps-grid">
+          {c.steps.map((step, i) => (
+            <div key={step.n} style={{ padding: '3rem clamp(1rem,3vw,2.5rem)', borderRight: i < c.steps.length - 1 ? '1px solid #E0DBD3' : 'none' }}>
+              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '1.75rem' }}>
+                {step.n}
               </div>
+              <h3 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '20px', fontWeight: 900, color: '#1A1A1A', marginBottom: '1rem', lineHeight: 1.2, letterSpacing: '-0.01em' }}>
+                {step.title}
+              </h3>
+              <p style={{ fontSize: '14px', lineHeight: 1.82, fontWeight: 300, color: '#6B6966' }}>
+                {step.body}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── FORM ── */}
-      <section className="border-b border-white/10">
-        <div className="px-8 md:px-16 py-8 border-b border-white/10">
-          <div className="font-mono-bondy text-[10px] tracking-widest uppercase text-b-orange">
+      {/* ── FORM — stone / blanco */}
+      <section style={{ borderBottom: '1px solid #E0DBD3' }}>
+        <div style={{ padding: '1.5rem clamp(1.25rem,5vw,4rem)', borderBottom: '1px solid #E0DBD3', background: '#FFFFFF' }}>
+          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
             {c.formLabel}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          {/* Left — fine print and context */}
-          <div className="border-b md:border-b-0 md:border-r border-white/10 px-8 md:px-16 py-16 flex flex-col justify-between">
-            <div>
-              <p className="text-b-mid text-[15px] leading-relaxed font-light mb-8 max-w-sm">
+        <div className="ref-form-grid">
+          {/* Left — stone */}
+          <div style={{ background: '#F0EBE3', borderRight: '1px solid #E0DBD3', padding: '4rem clamp(1.25rem,4vw,3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <p style={{ fontSize: '16px', lineHeight: 1.8, fontWeight: 300, color: '#5A5754' }}>
                 {lang === 'en'
                   ? "You don't need to ask the person's permission first — we'll reach out respectfully and mention your name. If they're not interested, that's fine too."
                   : "No es necesario que le pidas permiso primero — los contactamos con respeto y mencionamos tu nombre. Si no están interesados, no hay problema."}
               </p>
-              <p className="text-b-mid text-[15px] leading-relaxed font-light max-w-sm">
+              <p style={{ fontSize: '16px', lineHeight: 1.8, fontWeight: 300, color: '#6B6966' }}>
                 {lang === 'en'
                   ? "We only pursue referrals that are a genuine fit for our active searches. We won't chase someone who doesn't make sense."
                   : "Sólo avanzamos con referidos que son un fit real para nuestras búsquedas activas. No vamos a perseguir a alguien que no tiene sentido."}
               </p>
             </div>
-
-            <div className="mt-16 border-t border-white/10 pt-8">
-              <p className="font-mono-bondy text-[9px] tracking-widest leading-relaxed" style={{ color: 'rgba(255,255,255,0.2)' }}>
+            <div style={{ marginTop: '3rem', borderTop: '1px solid #DDD8D0', paddingTop: '1.5rem' }}>
+              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', lineHeight: 1.75, color: '#A09D99' }}>
                 {c.finePrint}
               </p>
             </div>
           </div>
 
-          {/* Right — form */}
-          <div className="px-8 md:px-16 py-16">
+          {/* Right — form (blanco) */}
+          <div style={{ background: '#FFFFFF', padding: '4rem clamp(1.25rem,4vw,3.5rem)' }}>
             {status === 'success' ? (
-              <div className="h-full flex flex-col justify-center py-10">
-                <div className="font-display text-4xl font-black text-b-off mb-4">{c.successTitle}</div>
-                <p className="text-b-mid text-[15px] font-light leading-relaxed max-w-sm">
-                  {c.successBody}
-                </p>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 0' }}>
+                <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '42px', fontWeight: 900, color: '#1A1A1A', marginBottom: '1rem' }}>{c.successTitle}</div>
+                <p style={{ fontSize: '16px', fontWeight: 300, lineHeight: 1.75, maxWidth: '360px', color: '#6B6966' }}>{c.successBody}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-
-                {/* Referrer info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+                <div className="form-two-col">
                   <div>
-                    <label className={labelClass} style={{ color: '#E05C00' }}>{c.yourName}</label>
-                    <input
-                      name="referrerName"
-                      value={form.referrerName}
-                      onChange={handleChange}
-                      required
-                      placeholder={lang === 'en' ? 'Your name' : 'Tu nombre'}
-                      className={inputClass}
-                      style={inputStyle}
-                      onFocus={e => Object.assign(e.target.style, inputFocusStyle)}
-                      onBlur={e => Object.assign(e.target.style, inputStyle)}
-                    />
+                    <label style={lbl}>{c.yourName}</label>
+                    <input name="referrerName" value={form.referrerName} onChange={handleChange} required
+                      placeholder={lang === 'en' ? 'Your name' : 'Tu nombre'} style={inputStyle}
+                      onFocus={e => (e.target.style.borderColor = '#C06A2D')}
+                      onBlur={e => (e.target.style.borderColor = '#DDD8D0')} />
                   </div>
                   <div>
-                    <label className={labelClass} style={{ color: '#E05C00' }}>{c.yourEmail}</label>
-                    <input
-                      type="email"
-                      name="referrerEmail"
-                      value={form.referrerEmail}
-                      onChange={handleChange}
-                      required
-                      placeholder="you@email.com"
-                      className={inputClass}
-                      style={inputStyle}
-                      onFocus={e => Object.assign(e.target.style, inputFocusStyle)}
-                      onBlur={e => Object.assign(e.target.style, inputStyle)}
-                    />
+                    <label style={lbl}>{c.yourEmail}</label>
+                    <input type="email" name="referrerEmail" value={form.referrerEmail} onChange={handleChange} required
+                      placeholder="you@email.com" style={inputStyle}
+                      onFocus={e => (e.target.style.borderColor = '#C06A2D')}
+                      onBlur={e => (e.target.style.borderColor = '#DDD8D0')} />
                   </div>
                 </div>
 
-                {/* Divider */}
-                <div className="border-t border-white/10 pt-2">
-                  <div className="font-mono-bondy text-[9px] tracking-widest uppercase mb-6" style={{ color: 'rgba(255,255,255,0.2)' }}>
+                <div style={{ borderTop: '1px solid #E8E4DE', paddingTop: '2rem' }}>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#A09D99', marginBottom: '2rem' }}>
                     {lang === 'en' ? 'About the person you\'re referring' : 'Sobre el referido'}
                   </div>
-
-                  <div className="flex flex-col gap-10">
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
                     <div>
-                      <label className={labelClass} style={{ color: '#E05C00' }}>{c.refName}</label>
-                      <input
-                        name="refereeName"
-                        value={form.refereeName}
-                        onChange={handleChange}
-                        required
-                        placeholder={lang === 'en' ? 'Their full name' : 'Nombre completo'}
-                        className={inputClass}
-                        style={inputStyle}
-                        onFocus={e => Object.assign(e.target.style, inputFocusStyle)}
-                        onBlur={e => Object.assign(e.target.style, inputStyle)}
-                      />
+                      <label style={lbl}>{c.refName}</label>
+                      <input name="refereeName" value={form.refereeName} onChange={handleChange} required
+                        placeholder={lang === 'en' ? 'Their full name' : 'Nombre completo'} style={inputStyle}
+                        onFocus={e => (e.target.style.borderColor = '#C06A2D')}
+                        onBlur={e => (e.target.style.borderColor = '#DDD8D0')} />
                     </div>
-
                     <div>
-                      <label className={labelClass} style={{ color: '#E05C00' }}>{c.refLinkedIn}</label>
-                      <input
-                        name="refereeLinkedIn"
-                        value={form.refereeLinkedIn}
-                        onChange={handleChange}
-                        placeholder={c.refLinkedInPlaceholder}
-                        className={inputClass}
-                        style={inputStyle}
-                        onFocus={e => Object.assign(e.target.style, inputFocusStyle)}
-                        onBlur={e => Object.assign(e.target.style, inputStyle)}
-                      />
+                      <label style={lbl}>{c.refLinkedIn}</label>
+                      <input name="refereeLinkedIn" value={form.refereeLinkedIn} onChange={handleChange}
+                        placeholder={c.refLinkedInPlaceholder} style={inputStyle}
+                        onFocus={e => (e.target.style.borderColor = '#C06A2D')}
+                        onBlur={e => (e.target.style.borderColor = '#DDD8D0')} />
                     </div>
-
                     <div>
-                      <label className={labelClass} style={{ color: '#E05C00' }}>{c.message}</label>
-                      <textarea
-                        name="message"
-                        value={form.message}
-                        onChange={handleChange}
-                        rows={4}
-                        placeholder={c.messagePlaceholder}
-                        className={`${inputClass} resize-none`}
-                        style={inputStyle}
-                        onFocus={e => Object.assign(e.target.style, inputFocusStyle)}
-                        onBlur={e => Object.assign(e.target.style, inputStyle)}
-                      />
+                      <label style={lbl}>{c.message}</label>
+                      <textarea name="message" value={form.message} onChange={handleChange} rows={4}
+                        placeholder={c.messagePlaceholder} style={{ ...inputStyle, resize: 'none' }}
+                        onFocus={e => (e.target.style.borderColor = '#C06A2D')}
+                        onBlur={e => (e.target.style.borderColor = '#DDD8D0')} />
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2">
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="inline-flex items-center gap-3 font-mono-bondy text-[11px] tracking-widest uppercase px-8 py-4 hover:opacity-90 transition-opacity disabled:opacity-40"
-                    style={{ background: '#E05C00', color: '#111111' }}
-                  >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <button type="submit" disabled={status === 'loading'}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: '#C06A2D', color: '#0E0E0E', fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', padding: '14px 32px', border: 'none', cursor: 'pointer', fontWeight: 500, opacity: status === 'loading' ? 0.5 : 1 }}>
                     {status === 'loading' ? c.sending : c.submit}
                   </button>
                   {status === 'error' && (
-                    <span className="font-mono-bondy text-[10px] text-red-400 tracking-wide">
-                      {c.errorMsg}
-                    </span>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#C0392B', letterSpacing: '0.1em' }}>{c.errorMsg}</span>
                   )}
                 </div>
               </form>
@@ -335,6 +307,19 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
       </section>
 
       <Footer lang={lang} tr={tr.footer} />
+
+      <style>{`
+        .ref-hero-grid, .ref-form-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        .ref-steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+        .form-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        @media (max-width: 768px) {
+          .ref-hero-grid, .ref-form-grid { grid-template-columns: 1fr !important; }
+          .ref-hero-grid > div:first-child, .ref-form-grid > div:first-child { border-right: none !important; border-bottom: 1px solid #E0DBD3; }
+          .ref-steps-grid { grid-template-columns: 1fr 1fr !important; }
+          .ref-steps-grid > div { border-right: none !important; border-bottom: 1px solid #E0DBD3; }
+          .form-two-col { grid-template-columns: 1fr !important; gap: 2rem; }
+        }
+      `}</style>
     </main>
   )
 }
