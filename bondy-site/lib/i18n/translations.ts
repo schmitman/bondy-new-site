@@ -12,6 +12,7 @@ export const translations = {
       work: 'Work',
       about: 'About',
       thinking: 'Thinking',
+      jobs: 'Join us',
       cta: 'Work with us →',
     },
 
@@ -340,6 +341,7 @@ export const translations = {
       work: 'Casos',
       about: 'Nosotros',
       thinking: 'Ideas',
+      jobs: 'Sumate',
       cta: 'Trabajá con nosotros →',
     },
 
