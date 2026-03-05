@@ -42,9 +42,9 @@ export default function ContactPage({ params }: { params: { lang: Lang } }) {
   const inputStyle: React.CSSProperties = {
     width: '100%',
     background: 'transparent',
-    borderBottom: '1px solid rgba(255,255,255,0.15)',
+    borderBottom: '1px solid #DDD8D0',
     padding: '14px 0',
-    color: '#F4F2EE',
+    color: '#1A1A1A',
     fontSize: '16px',
     fontWeight: 300,
     outline: 'none',
@@ -62,45 +62,76 @@ export default function ContactPage({ params }: { params: { lang: Lang } }) {
   }
 
   return (
-    <main className="bg-b-black min-h-screen">
+    <main style={{ background: '#F0EBE3', minHeight: '100vh' }}>
       <Nav lang={lang} tr={tr.nav} />
 
-      <section className="pt-[60px]">
-        <div className="grid grid-cols-1 md:grid-cols-2" style={{ minHeight: 'calc(100vh - 60px)' }}>
+      {/* Header — blanco puro */}
+      <header style={{ paddingTop: '60px', background: '#FFFFFF', borderBottom: '1px solid #E8E4DE' }}>
+        <div style={{ padding: '4.5rem clamp(1.25rem,5vw,4rem) 4rem', maxWidth: '760px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
+            <div style={{ width: '22px', height: '1px', background: '#C06A2D', flexShrink: 0 }} />
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
+              {c.label}
+            </span>
+            <div style={{ width: '22px', height: '1px', background: 'rgba(192,106,45,0.4)', flexShrink: 0 }} />
+          </div>
+          <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(40px,5vw,68px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: '#1A1A1A', marginBottom: '1.5rem' }}>
+            {c.h1_1}<br />{c.h1_2} <em style={{ color: '#C06A2D', fontStyle: 'italic' }}>{c.h1_em}</em>
+          </h1>
+          <p style={{ fontSize: '17px', lineHeight: 1.78, fontWeight: 300, maxWidth: '520px', color: '#6B6966' }}>
+            {c.intro}
+          </p>
+        </div>
+      </header>
 
-          {/* Left */}
-          <div className="border-b md:border-b-0 md:border-r border-white/10 px-8 md:px-16 py-20 md:py-28 flex flex-col justify-between">
+      {/* Main — split: datos de contacto (stone) / form (blanco) */}
+      <section>
+        <div className="contact-split-grid" style={{ borderBottom: '1px solid #E0DBD3' }}>
+
+          {/* Left — info (stone) */}
+          <div style={{ background: '#F0EBE3', borderRight: '1px solid #E0DBD3', padding: '4rem clamp(1.25rem,4vw,3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
-              <div style={labelStyle}>{c.label}</div>
-              <h1 className="font-display font-black leading-tight tracking-tight text-b-off mb-8" style={{ fontSize: 'clamp(40px,5vw,68px)' }}>
-                {c.h1_1}<br />{c.h1_2} <em style={{ color: '#C06A2D', fontStyle: 'italic' }}>{c.h1_em}</em>
-              </h1>
-              <p style={{ color: '#AEADA9', fontSize: '16px', lineHeight: 1.75, fontWeight: 300, maxWidth: '360px', marginBottom: '3rem' }}>
-                {c.intro}
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
                 <div>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '8px' }}>{c.emailLabel}</div>
-                  <a href="mailto:hello@wearebondy.com" style={{ color: '#F4F2EE', fontSize: '16px', fontWeight: 300, textDecoration: 'none' }}>hello@wearebondy.com</a>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#A09D99', marginBottom: '8px' }}>
+                    {c.emailLabel}
+                  </div>
+                  <a href="mailto:hello@wearebondy.com" style={{ fontSize: '16px', fontWeight: 300, color: '#1A1A1A', textDecoration: 'none' }}>
+                    hello@wearebondy.com
+                  </a>
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '8px' }}>{c.linkedinLabel}</div>
-                  <a href="https://linkedin.com/company/bondygroup" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '16px', fontWeight: 300, textDecoration: 'none' }}>/company/bondygroup ↗</a>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#A09D99', marginBottom: '8px' }}>
+                    {c.linkedinLabel}
+                  </div>
+                  <a href="https://linkedin.com/company/bondygroup" target="_blank" rel="noopener noreferrer" style={{ fontSize: '16px', fontWeight: 300, color: '#6B6966', textDecoration: 'none' }}>
+                    /company/bondygroup ↗
+                  </a>
                 </div>
               </div>
             </div>
-            <div style={{ marginTop: '4rem', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2.5rem' }}>
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: '1rem' }}>{c.joiningLabel}</div>
-              <p style={{ color: '#AEADA9', fontSize: '16px', fontWeight: 300, lineHeight: 1.72 }}>{c.joiningBody}</p>
+
+            {/* Join strip */}
+            <div style={{ marginTop: '4rem', borderTop: '1px solid #DDD8D0', paddingTop: '2.5rem' }}>
+              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '0.75rem' }}>
+                {c.joiningLabel}
+              </div>
+              <p style={{ fontSize: '15px', fontWeight: 300, lineHeight: 1.75, color: '#6B6966' }}>
+                {c.joiningBody}
+              </p>
             </div>
           </div>
 
-          {/* Right — form */}
-          <div className="px-8 md:px-16 py-20 md:py-28">
+          {/* Right — form (blanco) */}
+          <div style={{ background: '#FFFFFF', padding: '4rem clamp(1.25rem,4vw,3.5rem)' }}>
             {status === 'success' ? (
-              <div className="h-full flex flex-col justify-center">
-                <div className="font-display font-black text-b-off mb-4" style={{ fontSize: '36px' }}>{c.success.title}</div>
-                <p style={{ color: '#AEADA9', fontSize: '16px', fontWeight: 300, lineHeight: 1.75, maxWidth: '360px' }}>{c.success.body}</p>
+              <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '42px', fontWeight: 900, color: '#1A1A1A', marginBottom: '1rem' }}>
+                  {c.success.title}
+                </div>
+                <p style={{ fontSize: '16px', fontWeight: 300, lineHeight: 1.75, maxWidth: '360px', color: '#6B6966' }}>
+                  {c.success.body}
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
@@ -114,7 +145,7 @@ export default function ContactPage({ params }: { params: { lang: Lang } }) {
                   </select>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="form-two-col">
                   <div>
                     <label style={labelStyle}>{c.form.nameLabel}</label>
                     <input name="name" value={form.name} onChange={handleChange} required placeholder={c.form.namePlaceholder} style={inputStyle} />
@@ -125,7 +156,7 @@ export default function ContactPage({ params }: { params: { lang: Lang } }) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="form-two-col">
                   <div>
                     <label style={labelStyle}>{c.form.companyLabel}</label>
                     <input name="company" value={form.company} onChange={handleChange} required placeholder={c.form.companyPlaceholder} style={inputStyle} />
@@ -150,7 +181,7 @@ export default function ContactPage({ params }: { params: { lang: Lang } }) {
                     {status === 'loading' ? c.form.sending : c.form.submit}
                   </button>
                   {status === 'error' && (
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#F87171', letterSpacing: '0.1em' }}>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#C0392B', letterSpacing: '0.1em' }}>
                       {c.form.errorMsg}
                     </span>
                   )}
@@ -162,6 +193,24 @@ export default function ContactPage({ params }: { params: { lang: Lang } }) {
       </section>
 
       <Footer lang={lang} tr={tr.footer} />
+
+      <style>{`
+        .contact-split-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.5fr;
+          min-height: calc(100vh - 200px);
+        }
+        .form-two-col {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+        }
+        @media (max-width: 768px) {
+          .contact-split-grid { grid-template-columns: 1fr !important; }
+          .contact-split-grid > div:first-child { border-right: none !important; border-bottom: 1px solid #E0DBD3; }
+          .form-two-col { grid-template-columns: 1fr !important; gap: 2rem; }
+        }
+      `}</style>
     </main>
   )
 }
