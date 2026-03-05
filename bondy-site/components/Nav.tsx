@@ -2,21 +2,45 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import type { Lang, Translations } from '@/lib/i18n/translations'
 
-const navLinks = [
-  { href: '/method',   label: 'Method' },
-  { href: '/services', label: 'Services' },
-  { href: '/work',     label: 'Work' },
-  { href: '/about',    label: 'About' },
-  { href: '/thinking', label: 'Thinking' },
-]
+type NavProps = {
+  lang: Lang
+  tr: Translations['nav']
+}
 
-export default function Nav() {
+export default function Nav({ lang, tr }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
 
-  const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/')
+  const otherLang: Lang = lang === 'en' ? 'es' : 'en'
+
+  // Switch language: replace /en/ with /es/ or vice versa
+  const switchLang = () => {
+    // Set cookie so middleware remembers preference
+    document.cookie = `lang=${otherLang};path=/;max-age=31536000`
+    const newPath = pathname.replace(`/${lang}`, `/${otherLang}`)
+    router.push(newPath)
+  }
+
+  // Path helper — strips lang prefix for comparison
+  const isActive = (href: string) => {
+    const cleanPath = pathname.replace(`/${lang}`, '') || '/'
+    return cleanPath === href || cleanPath.startsWith(href + '/')
+  }
+
+  // Link helper — adds lang prefix
+  const lk = (href: string) => `/${lang}${href}`
+
+  const navLinks = [
+    { href: '/method',    label: tr.method },
+    { href: '/services',  label: tr.services },
+    { href: '/work',      label: tr.work },
+    { href: '/about',     label: tr.about },
+    { href: '/thinking',  label: tr.thinking },
+  ]
 
   return (
     <nav
@@ -31,17 +55,15 @@ export default function Nav() {
         className="flex items-center justify-between"
         style={{ padding: '0 clamp(1.25rem,5vw,4rem)', height: '60px' }}
       >
-        {/* Logo — wordmark only, no isotipo */}
-        <Link href="/" className="flex items-center shrink-0" style={{ textDecoration: 'none' }}>
-          <span
-            style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: '20px',
-              fontWeight: 900,
-              color: '#F4F2EE',
-              letterSpacing: '-0.02em',
-            }}
-          >
+        {/* Logo */}
+        <Link href={lk('/')} className="flex items-center shrink-0" style={{ textDecoration: 'none' }}>
+          <span style={{
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontSize: '20px',
+            fontWeight: 900,
+            color: '#F4F2EE',
+            letterSpacing: '-0.02em',
+          }}>
             Bond<em style={{ fontStyle: 'italic', color: '#C06A2D' }}>y</em><span style={{ color: '#C06A2D' }}>.</span>
           </span>
         </Link>
@@ -51,7 +73,7 @@ export default function Nav() {
           {navLinks.map(({ href, label }) => (
             <li key={href}>
               <Link
-                href={href}
+                href={lk(href)}
                 style={{
                   fontFamily: 'DM Mono, monospace',
                   fontSize: '10px',
@@ -66,23 +88,15 @@ export default function Nav() {
               </Link>
             </li>
           ))}
-          {/* ES/EN toggle */}
+
+          {/* Lang toggle */}
           <li style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.13em', textTransform: 'uppercase', color: '#F4F2EE' }}>
+              {lang.toUpperCase()}
+            </span>
+            <span style={{ color: 'rgba(255,255,255,0.18)', fontSize: '9px', margin: '0 2px' }}>/</span>
             <button
-              style={{
-                fontFamily: 'DM Mono, monospace',
-                fontSize: '10px',
-                letterSpacing: '0.13em',
-                textTransform: 'uppercase',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#F4F2EE',
-                padding: 0,
-              }}
-            >EN</button>
-            <span style={{ color: 'rgba(255,255,255,0.18)', fontSize: '9px' }}>/</span>
-            <button
+              onClick={switchLang}
               style={{
                 fontFamily: 'DM Mono, monospace',
                 fontSize: '10px',
@@ -93,12 +107,16 @@ export default function Nav() {
                 cursor: 'pointer',
                 color: 'rgba(255,255,255,0.35)',
                 padding: 0,
+                transition: 'color 0.18s',
               }}
-            >ES</button>
+            >
+              {otherLang.toUpperCase()}
+            </button>
           </li>
+
           <li>
             <Link
-              href="/contact"
+              href={lk('/contact')}
               style={{
                 fontFamily: 'DM Mono, monospace',
                 fontSize: '10px',
@@ -108,10 +126,9 @@ export default function Nav() {
                 color: '#C06A2D',
                 borderBottom: '1px solid rgba(192,106,45,0.35)',
                 paddingBottom: '2px',
-                transition: 'border-color 0.18s',
               }}
             >
-              Work with us →
+              {tr.cta}
             </Link>
           </li>
         </ul>
@@ -146,7 +163,7 @@ export default function Nav() {
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
-              href={href}
+              href={lk(href)}
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily: 'DM Mono, monospace',
@@ -162,14 +179,27 @@ export default function Nav() {
               {label}
             </Link>
           ))}
-          {/* Mobile ES/EN */}
-          <div style={{ display: 'flex', gap: '0.75rem', padding: '1rem clamp(1.25rem,5vw,4rem)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-            <button style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.13em', textTransform: 'uppercase', background: 'none', border: 'none', cursor: 'pointer', color: '#F4F2EE', padding: 0 }}>EN</button>
-            <span style={{ color: 'rgba(255,255,255,0.18)' }}>/</span>
-            <button style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.13em', textTransform: 'uppercase', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.35)', padding: 0 }}>ES</button>
-          </div>
+          {/* Mobile lang switch */}
+          <button
+            onClick={() => { switchLang(); setMenuOpen(false) }}
+            style={{
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '11px',
+              letterSpacing: '0.13em',
+              textTransform: 'uppercase',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: 'rgba(255,255,255,0.35)',
+              padding: '1rem clamp(1.25rem,5vw,4rem)',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              textAlign: 'left',
+            }}
+          >
+            → {otherLang.toUpperCase()}
+          </button>
           <Link
-            href="/contact"
+            href={lk('/contact')}
             onClick={() => setMenuOpen(false)}
             style={{
               fontFamily: 'DM Mono, monospace',
@@ -181,7 +211,7 @@ export default function Nav() {
               padding: '1rem clamp(1.25rem,5vw,4rem)',
             }}
           >
-            Work with us →
+            {tr.cta}
           </Link>
         </div>
       )}
