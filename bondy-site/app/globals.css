@@ -5,48 +5,41 @@
 @tailwind utilities;
 
 :root {
-  /* Fonts */
   --font-playfair: 'Playfair Display', Georgia, serif;
   --font-dm-sans:  'DM Sans', system-ui, sans-serif;
   --font-dm-mono:  'DM Mono', monospace;
 
-  /* Color tokens */
-  --blk:  #0E0E0E;
-  --ink:  #1A1A1A;
-  --off:  #F4F2EE;
-  --stn:  #F0EBE3;
-  --wht:  #FFFFFF;
-  --sie:  #C06A2D;
-  --mid:  #7A7874;
-  --lgt:  #C8C5C0;
-  --rul:  #E8E4DE;
+  /* Sienna accent system */
+  --sie:       #C06A2D;
+  --sie-lt:    #D86830;
+  --sie-xl:    #F09060;
+  --sie-faint: #FBF0EB;
+  --sie-dk:    #8C3C14;
 
-  /* Spacing */
-  --pad: clamp(1.25rem, 5vw, 4rem);
+  /* Neutral palette */
+  --ink:       #1A1A1A;
+  --mid:       #888885;
+  --stone:     #F0EBE3;
+  --off:       #F9F8F6;
+  --rule:      #E8E2DA;
 }
 
 @layer base {
   html {
     font-family: var(--font-dm-sans);
     font-weight: 300;
-    color: var(--ink);
-    background: var(--blk);
+    color: #1A1A1A;
+    background: #111111;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background: var(--blk);
+    background: #111111;
   }
 
   * {
     box-sizing: border-box;
-  }
-
-  /* Light page override — apply to <main> on light pages */
-  .page-light {
-    background: var(--stn);
-    color: var(--ink);
   }
 }
 
@@ -59,20 +52,18 @@
     font-family: var(--font-dm-mono);
   }
 
-  /* Label pattern */
-  .label {
-    font-family: var(--font-dm-mono);
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Light page utility — use on <main> for interior pages */
+  .page-light {
+    background: var(--stone);
+    color: var(--ink);
   }
 
   /* Sienna accent text */
   .text-sie {
     color: var(--sie);
-  }
-
-  .text-balance {
-    text-wrap: balance;
   }
 }
