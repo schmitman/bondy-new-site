@@ -5,27 +5,48 @@
 @tailwind utilities;
 
 :root {
+  /* Fonts */
   --font-playfair: 'Playfair Display', Georgia, serif;
-  --font-dm-sans: 'DM Sans', system-ui, sans-serif;
-  --font-dm-mono: 'DM Mono', monospace;
+  --font-dm-sans:  'DM Sans', system-ui, sans-serif;
+  --font-dm-mono:  'DM Mono', monospace;
+
+  /* Color tokens */
+  --blk:  #0E0E0E;
+  --ink:  #1A1A1A;
+  --off:  #F4F2EE;
+  --stn:  #F0EBE3;
+  --wht:  #FFFFFF;
+  --sie:  #C06A2D;
+  --mid:  #7A7874;
+  --lgt:  #C8C5C0;
+  --rul:  #E8E4DE;
+
+  /* Spacing */
+  --pad: clamp(1.25rem, 5vw, 4rem);
 }
 
 @layer base {
   html {
     font-family: var(--font-dm-sans);
     font-weight: 300;
-    color: #111111;
-    background: #111111;
+    color: var(--ink);
+    background: var(--blk);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background: #111111;
+    background: var(--blk);
   }
 
   * {
     box-sizing: border-box;
+  }
+
+  /* Light page override — apply to <main> on light pages */
+  .page-light {
+    background: var(--stn);
+    color: var(--ink);
   }
 }
 
@@ -36,6 +57,19 @@
 
   .font-mono-bondy {
     font-family: var(--font-dm-mono);
+  }
+
+  /* Label pattern */
+  .label {
+    font-family: var(--font-dm-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Sienna accent text */
+  .text-sie {
+    color: var(--sie);
   }
 
   .text-balance {
