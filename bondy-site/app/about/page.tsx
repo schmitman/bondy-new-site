@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata = {
   title: 'About — Bondy',
@@ -39,6 +40,7 @@ const team = [
   {
     name: 'Mara Schmitman',
     role: 'Founder & Managing Director',
+    photo: '/team/mara.jpg',
     bio: 'Mara founded Bondy in Buenos Aires in 2008 after a clear observation: technical recruiting was being done by people who didn\'t understand engineers. A licensed psychologist with a specialization in strategic HR management and a Master\'s in Technology Management, she brought a different approach — apply organizational psychology rigor to the search process. Define fit before looking for it. Interview deeply. Send fewer candidates, and better ones. After 16 years, that\'s still exactly what she does. She leads every strategic client relationship personally.',
     credentials: [
       'BA in Psychology, Universidad de la Cuenca del Plata',
@@ -53,6 +55,7 @@ const team = [
   {
     name: 'Lucía Palomeque',
     role: 'Head of Delivery',
+    photo: '/team/lucia.jpg',
     bio: 'Lucía joined Bondy as a technical recruiter and became the operational core of the team. A psychologist by training with a specialization in IT selection, she brings a rare combination: deep understanding of candidate motivation and the process discipline to run parallel searches at scale without losing quality. She owns delivery — which at Bondy means owning the standard. If a shortlist leaves the building, Lucía has reviewed it.',
     credentials: [
       'BA in Psychology, Universidad de Buenos Aires (UBA)',
@@ -111,7 +114,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div style={{ padding: '4.5rem clamp(1.25rem,5vw,4rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '3rem' }} className="split-right">
+          <div style={{ padding: '4.5rem clamp(1.25rem,5vw,4rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '3rem' }}>
             {[
               { n: '16', sup: '+', label: 'Years in technical recruitment' },
               { n: '94', sup: '%', label: 'Retention at 6 months' },
@@ -185,76 +188,36 @@ export default function AboutPage() {
           <div key={person.name} style={{ borderBottom: '1px solid #E8E4DE' }}>
             <div style={{ display: 'grid' }} className="team-grid">
 
-              {/* Editorial name panel — left for even, right for odd */}
+              {/* Photo — left for even, right for odd */}
               <div
                 style={{
-                  background: idx % 2 === 0 ? '#1A1A1A' : '#F0EBE3',
-                  minHeight: '480px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  padding: '3.5rem clamp(1.25rem,4vw,3.5rem)',
-                  order: idx % 2 === 0 ? 0 : 1,
                   position: 'relative',
+                  minHeight: '520px',
                   overflow: 'hidden',
+                  order: idx % 2 === 0 ? 0 : 1,
                 }}
-                className={idx % 2 !== 0 ? 'team-panel-right' : ''}
+                className={idx % 2 !== 0 ? 'team-photo-right' : ''}
               >
-                {/* Large watermark initial */}
+                <Image
+                  src={person.photo}
+                  alt={person.name}
+                  fill
+                  style={{ objectFit: 'cover', objectPosition: idx === 0 ? 'center 20%' : 'center top' }}
+                  sizes="(max-width: 860px) 100vw, 50vw"
+                />
+                {/* Subtle gradient overlay at bottom for name */}
                 <div style={{
-                  position: 'absolute',
-                  bottom: '-0.15em',
-                  right: '-0.05em',
-                  fontFamily: 'Playfair Display, Georgia, serif',
-                  fontSize: 'clamp(160px,22vw,260px)',
-                  fontWeight: 900,
-                  lineHeight: 1,
-                  color: idx % 2 === 0 ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)',
-                  letterSpacing: '-.04em',
-                  pointerEvents: 'none',
-                  userSelect: 'none',
-                }}>
-                  {person.name.split(' ').map(w => w[0]).join('')}
-                </div>
-
-                {/* Top: role label */}
-                <span style={{
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '9px',
-                  letterSpacing: '.2em',
-                  textTransform: 'uppercase',
-                  color: idx % 2 === 0 ? 'rgba(255,255,255,0.3)' : '#C8C5C0',
-                }}>
-                  {person.role}
-                </span>
-
-                {/* Bottom: name + meta */}
-                <div>
-                  <div style={{
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    fontSize: 'clamp(28px,3.5vw,46px)',
-                    fontWeight: 900,
-                    letterSpacing: '-.02em',
-                    lineHeight: 1,
-                    color: idx % 2 === 0 ? '#F4F2EE' : '#1A1A1A',
-                    marginBottom: '1.5rem',
-                  }}>
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 40%, transparent 70%)',
+                }} />
+                {/* Role + name overlay on photo */}
+                <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', display: 'block', marginBottom: '.5rem' }}>
+                    {person.role}
+                  </span>
+                  <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(22px,2.5vw,32px)', fontWeight: 900, color: '#FFFFFF', letterSpacing: '-.02em', lineHeight: 1 }}>
                     {person.name}
-                  </div>
-                  <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C06A2D' }} />
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.12em', textTransform: 'uppercase', color: idx % 2 === 0 ? 'rgba(255,255,255,0.25)' : '#C8C5C0' }}>
-                        {person.location}
-                      </span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C06A2D' }} />
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.12em', textTransform: 'uppercase', color: idx % 2 === 0 ? 'rgba(255,255,255,0.25)' : '#C8C5C0' }}>
-                        Bondy since {person.since}
-                      </span>
-                    </div>
-                  </div>
+                  </span>
                 </div>
               </div>
 
@@ -269,9 +232,26 @@ export default function AboutPage() {
                   order: idx % 2 === 0 ? 1 : 0,
                 }}
               >
+                {/* Meta */}
+                <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C06A2D' }} />
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C8C5C0' }}>
+                      {person.location}
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C06A2D' }} />
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C8C5C0' }}>
+                      Bondy since {person.since}
+                    </span>
+                  </div>
+                </div>
+
                 <p style={{ fontSize: '15px', lineHeight: 1.82, color: '#7A7874', fontWeight: 300, marginBottom: '2.5rem', maxWidth: '440px' }}>
                   {person.bio}
                 </p>
+
                 {/* Credentials */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid #F0EBE3', paddingTop: '1.75rem' }}>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '4px' }}>
@@ -333,7 +313,7 @@ export default function AboutPage() {
         @media (max-width: 860px) {
           .split-grid, .team-grid, .cta-grid { grid-template-columns: 1fr !important; }
           .split-left { border-right: none !important; border-bottom: 1px solid #E8E4DE; }
-          .team-panel-right { order: 0 !important; }
+          .team-photo-right { order: 0 !important; }
         }
       `}</style>
     </main>
