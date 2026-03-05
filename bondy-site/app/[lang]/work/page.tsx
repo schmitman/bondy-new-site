@@ -89,11 +89,11 @@ const cases = [
     },
     challenge: {
       en: "Red Hat needed to understand the availability and compensation landscape for senior technical profiles — Java Engineers, Software Architects, Cloud Infrastructure specialists — across four countries simultaneously. A traditional search alone wouldn't answer the question: they needed market intelligence, not just a shortlist.",
-      es: 'Red Hat necesitaba entender la disponibilidad y el contexto salarial de perfiles técnicos senior — Programadores Java, Arquitectos de Software, especialistas en Cloud — en cuatro países simultáneamente. Una búsqueda tradicional sola no respondía la pregunta: necesitaban inteligencia de mercado, no solo un shortlist.',
+      es: 'Red Hat necesitaba entender la disponibilidad y el contexto salarial de perfiles técnicos senior — Programadores Java, Arquitectos de Software, especialistas en Cloud — en cuatro países simultáneamente. Una búsqueda tradicional sola no respondía la pregunta: necesitaban inteligencia de mercado, no sólo un shortlist.',
     },
     approach: {
       en: "Bondy ran a regional talent mapping exercise across Argentina, Perú, Chile and Brazil. We analyzed 156 profiles in total — conducting structured evaluations on technical depth, compensation expectations, and market availability. The engagement combined direct sourcing with strategic consulting to deliver a complete picture of the market, not just candidates.",
-      es: 'Bondy realizó un mapeo regional de talento en Argentina, Perú, Chile y Brasil. Analizamos 156 perfiles en total, realizando evaluaciones estructuradas sobre profundidad técnica, expectativas salariales y disponibilidad de mercado. El proyecto combinó sourcing directo con consultoría estratégica para entregar una visión completa del mercado, no solo candidatos.',
+      es: 'Bondy realizó un mapeo regional de talento en Argentina, Perú, Chile y Brasil. Analizamos 156 perfiles en total, realizando evaluaciones estructuradas sobre profundidad técnica, expectativas salariales y disponibilidad de mercado. El proyecto combinó sourcing directo con consultoría estratégica para entregar una visión completa del mercado, no sólo candidatos.',
     },
     result: {
       en: "One hire placed (Programador Java, Perú). More importantly: Red Hat received a comprehensive market map covering 4 countries and 156 profiles, with clarity on realistic compensation ranges, candidate availability by country, and architectural talent density in the region — intelligence that informed their hiring strategy well beyond the immediate openings.",
@@ -126,7 +126,7 @@ const cases = [
     },
     result: {
       en: "Technical hires completed in both countries. Arcor gained not just candidates, but a repeatable process and market intelligence — particularly for Bolivia — that they could continue to leverage internally.",
-      es: 'Contrataciones técnicas completadas en ambos países. Arcor obtuvo no solo candidatos, sino un proceso replicable e inteligencia de mercado — especialmente para Bolivia — que pudieron seguir aprovechando internamente.',
+      es: 'Contrataciones técnicas completadas en ambos países. Arcor obtuvo no sólo candidatos, sino un proceso replicable e inteligencia de mercado — especialmente para Bolivia — que pudieron seguir aprovechando internamente.',
     },
     metrics: [
       { n: 'RPO',  label: { en: 'engagement model',        es: 'modelo de trabajo' } },
@@ -143,11 +143,11 @@ const cases = [
     year: '2024',
     headline: {
       en: 'Training a team to hire well — not just filling their open roles',
-      es: 'Capacitar a un equipo para contratar bien — no solo cubrir sus posiciones abiertas',
+      es: 'Capacitar a un equipo para contratar bien — no sólo cubrir sus posiciones abiertas',
     },
     challenge: {
       en: "Disbyte had hiring managers involved in selection who weren't equipped to run structured interviews. The process was inconsistent: subjective feedback, no shared evaluation criteria, and decisions based on gut feel rather than observable evidence. The ask wasn't just 'help us hire' — it was 'help us build a hiring capability we can run ourselves.'",
-      es: 'Disbyte tenía hiring managers involucrados en la selección que no estaban equipados para conducir entrevistas estructuradas. El proceso era inconsistente: feedback subjetivo, sin criterios de evaluación compartidos, y decisiones basadas en intuición en lugar de evidencia observable. El pedido no era solo "ayúdanos a contratar" — era "ayúdanos a construir una capacidad de contratación que podamos operar solos."',
+      es: 'Disbyte tenía hiring managers involucrados en la selección que no estaban equipados para conducir entrevistas estructuradas. El proceso era inconsistente: feedback subjetivo, sin criterios de evaluación compartidos, y decisiones basadas en intuición en lugar de evidencia observable. El pedido no era sólo "ayúdanos a contratar" — era "ayúdanos a construir una capacidad de contratación que podamos operar solos."',
     },
     approach: {
       en: "Bondy designed and delivered a full interview training workshop for Disbyte's leaders — covering structured interviewing techniques, STAR methodology, scorecard design, and cognitive bias recognition. Alongside the training, we built a candidate database architecture for their ongoing searches and designed a complete hiring blueprint: from kick-off template to feedback protocol. All materials were delivered as a shared Notion workspace the team could keep using independently.",
@@ -515,7 +515,7 @@ export default function WorkPage({ params }: { params: { lang: Lang } }) {
                     {cs.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono-bondy text-[9px] tracking-widest uppercase text-white/25 border border-white/10 px-3 py-1.5"
+                        className="font-mono-bondy text-[9px] tracking-widest uppercase text-white/50 border border-white/20 px-3 py-1.5"
                       >
                         {tag}
                       </span>
