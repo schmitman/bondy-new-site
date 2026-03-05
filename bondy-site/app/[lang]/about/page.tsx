@@ -1,7 +1,6 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 
@@ -9,7 +8,7 @@ const team = [
   {
     name: 'Mara Schmitman',
     role: { en: 'Founder & Managing Director', es: 'Fundadora & Directora' },
-    photo: '/team/mara.jpg',
+    linkedin: 'https://www.linkedin.com/in/mara-schmitman2/',
     bio: {
       en: 'Mara founded Bondy in Buenos Aires in 2008 after a clear observation: technical recruiting was being done by people who didn\'t understand engineers. A licensed psychologist with a specialization in strategic HR management and a Master\'s in Technology Management, she brought a different approach — apply organizational psychology rigor to the search process. Define fit before looking for it. Interview deeply. Send fewer candidates, and better ones. After 16 years, that\'s still exactly what she does. She leads every strategic client relationship personally.',
       es: 'Mara fundó Bondy en Buenos Aires en 2008 a partir de una observación concreta: el reclutamiento técnico lo hacían personas que no entendían a los ingenieros. Psicóloga matriculada con especialización en gestión estratégica de RRHH y un Máster en Gestión Tecnológica, trajo un enfoque diferente: aplicar el rigor de la psicología organizacional al proceso de búsqueda. Definir el fit antes de ir a buscarlo. Entrevistar en profundidad. Mandar menos candidatos, y mejores. Dieciséis años después, sigue siendo exactamente eso lo que hace. Lidera personalmente cada relación estratégica con clientes.',
@@ -21,13 +20,12 @@ const team = [
       'Diploma en Cultural Awareness, MIT',
       'Top 95 HR Influencers en Latinoamérica · Go Integro (3 años consecutivos)',
     ],
-    location: 'Buenos Aires, AR',
     since: '2008',
   },
   {
     name: 'Lucía Palomeque',
     role: { en: 'Head of Delivery', es: 'Head of Delivery' },
-    photo: '/team/lucia.jpg',
+    linkedin: 'https://www.linkedin.com/in/luciapalomeque/',
     bio: {
       en: 'Lucía joined Bondy as a technical recruiter and became the operational core of the team. A psychologist by training with a specialization in IT selection, she brings a rare combination: deep understanding of candidate motivation and the process discipline to run parallel searches at scale without losing quality. She owns delivery — which at Bondy means owning the standard. If a shortlist leaves the building, Lucía has reviewed it.',
       es: 'Lucía se unió a Bondy como recruitera técnica y se convirtió en el núcleo operativo del equipo. Psicóloga de formación con especialización en selección IT, aporta una combinación poco frecuente: comprensión profunda de la motivación de los candidatos y la disciplina de proceso para manejar búsquedas paralelas a escala sin perder calidad. Es dueña del delivery — que en Bondy significa ser dueña del estándar. Si una terna sale del equipo, Lucía la revisó.',
@@ -36,7 +34,6 @@ const team = [
       'Lic. en Psicología, Universidad de Buenos Aires (UBA)',
       'Especialista en Selección de Talento IT',
     ],
-    location: 'Buenos Aires, AR',
     since: '2019',
   },
 ]
@@ -72,7 +69,7 @@ export default function AboutPage({ params }: { params: { lang: Lang } }) {
 
       {/* Origin */}
       <section style={{ borderBottom: '1px solid #E0DBD3' }}>
-        <div style={{ display: 'grid', padding: '0' }} className="split-grid">
+        <div style={{ display: 'grid' }} className="split-grid">
           <div style={{ padding: '4rem clamp(1.25rem,5vw,4rem)', borderRight: '1px solid #E0DBD3' }}>
             <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '1.5rem' }}>
               {a.origin.label}
@@ -123,50 +120,65 @@ export default function AboutPage({ params }: { params: { lang: Lang } }) {
           </h2>
         </div>
 
-        {team.map((person, idx) => (
-          <div key={person.name} style={{ borderTop: '1px solid #E0DBD3' }}>
-            <div style={{ display: 'grid' }} className="team-grid">
-              {/* Photo — alternates side on desktop */}
-              <div style={{ position: 'relative', minHeight: '520px', background: '#E8E2DA', overflow: 'hidden' }} className={idx % 2 !== 0 ? 'team-photo-right' : ''}>
-                <Image src={person.photo} alt={person.name} fill style={{ objectFit: 'cover', objectPosition: 'top center' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,12,10,0.55) 0%, transparent 55%)' }} />
-                <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
-                  <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '22px', fontWeight: 700, color: '#F4F2EE', lineHeight: 1.2 }}>{person.name}</div>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(244,242,238,0.6)', marginTop: '6px' }}>
-                    {person.role[lang]}
-                  </div>
+        <div style={{ borderTop: '1px solid #E0DBD3', display: 'grid' }} className="team-cards-grid">
+          {team.map((person) => (
+            <div key={person.name} style={{ background: '#FFFFFF', borderRight: '1px solid #E0DBD3', padding: '3rem clamp(1.25rem,4vw,3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '2.5rem' }}>
+
+              {/* Name + role */}
+              <div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '0.75rem' }}>
+                  {lang === 'es' ? 'Desde ' : 'Since '}{person.since}
+                </div>
+                <h3 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(26px,2.5vw,36px)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.01em', color: '#1A1A1A', marginBottom: '0.5rem' }}>
+                  {person.name}
+                </h3>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#A09D99', marginBottom: '2rem' }}>
+                  {person.role[lang]}
+                </div>
+
+                {/* Bio */}
+                <p style={{ fontSize: '14px', lineHeight: 1.85, fontWeight: 300, color: '#5A5754', marginBottom: '2rem' }}>
+                  {person.bio[lang]}
+                </p>
+
+                {/* Credentials */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {person.credentials.map((cred, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                      <span style={{ color: '#C06A2D', fontSize: '12px', marginTop: '3px', flexShrink: 0 }}>—</span>
+                      <span style={{ fontSize: '12px', fontWeight: 300, color: '#8A8785', lineHeight: 1.5 }}>{cred}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Bio */}
-              <div style={{ padding: '3rem clamp(1.25rem,4vw,3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#FFFFFF' }}>
-                <div>
-                  <p style={{ fontSize: '15px', lineHeight: 1.85, fontWeight: 300, color: '#5A5754', marginBottom: '2.5rem' }}>
-                    {person.bio[lang]}
-                  </p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '2rem' }}>
-                    {person.credentials.map((cred, i) => (
-                      <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                        <span style={{ color: '#C06A2D', fontSize: '12px', marginTop: '3px', flexShrink: 0 }}>—</span>
-                        <span style={{ fontSize: '13px', fontWeight: 300, color: '#7A7775', lineHeight: 1.5 }}>{cred}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div style={{ display: 'flex', gap: '2rem', paddingTop: '1.5rem', borderTop: '1px solid #EBE7E1' }}>
-                  <div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8C4BE', marginBottom: '4px' }}>{a.team.since}</div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#8A8785' }}>{person.since}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8C4BE', marginBottom: '4px' }}>Location</div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#8A8785' }}>{person.location}</div>
-                  </div>
-                </div>
+              {/* LinkedIn link */}
+              <div style={{ paddingTop: '1.5rem', borderTop: '1px solid #EBE7E1' }}>
+                <a
+                  href={person.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '10px',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: '#C06A2D',
+                    textDecoration: 'none',
+                    borderBottom: '1px solid rgba(192,106,45,0.35)',
+                    paddingBottom: '2px',
+                  }}
+                >
+                  LinkedIn ↗
+                </a>
               </div>
+
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         {/* Join the team */}
         <div style={{ borderTop: '1px solid #E0DBD3', background: '#F8F4EF', padding: '3rem clamp(1.25rem,5vw,4rem)' }}>
@@ -203,18 +215,17 @@ export default function AboutPage({ params }: { params: { lang: Lang } }) {
 
       <Footer lang={lang} tr={tr.footer} />
 
-      <style>{`
+      <style>{\`
         .split-grid { grid-template-columns: 1fr 1fr; }
-        .team-grid { grid-template-columns: 1fr 1fr; }
+        .team-cards-grid { grid-template-columns: 1fr 1fr; }
         .cta-grid { grid-template-columns: 1fr 1fr; }
         .join-grid { grid-template-columns: 1fr auto; align-items: center; }
-        .team-photo-right { order: 2; }
         @media (max-width: 768px) {
-          .split-grid, .team-grid, .cta-grid { grid-template-columns: 1fr !important; }
+          .split-grid, .team-cards-grid, .cta-grid { grid-template-columns: 1fr !important; }
           .join-grid { grid-template-columns: 1fr !important; }
-          .team-photo-right { order: 0 !important; }
+          .team-cards-grid > div { border-right: none !important; border-bottom: 1px solid #E0DBD3; }
         }
-      `}</style>
+      \`}</style>
     </main>
   )
 }
