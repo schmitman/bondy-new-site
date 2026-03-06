@@ -71,7 +71,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
 
       {/* ── PRODUCT INDEX ── */}
       <section style={{ background: '#F0EBE3', padding: '0', borderBottom: '1px solid #E8E4DE' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', background: '#E8E4DE', gap: '1px', border: '1px solid #E8E4DE' }}>
+        <div className="practice-index" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', background: '#E8E4DE', gap: '1px', border: '1px solid #E8E4DE' }}>
           {[
             { n: '01 —', name: 'Talent', em: 'OS', anchor: 'talent-os', status: '● Available', statusColor: 'rgba(80,160,100,.7)' },
             { n: '02 —', name: 'Work', em: 'shops', anchor: 'workshops', status: '● Available', statusColor: 'rgba(80,160,100,.7)' },
@@ -394,7 +394,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
       </section>
 
       {/* ── GLOBAL CTA ── */}
-      <section style={{ background: '#0E0E0E', padding: '7rem clamp(1.5rem,5vw,3rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section className="global-cta" style={{ background: '#0E0E0E', padding: '7rem clamp(1.5rem,5vw,3rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(192,106,45,.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '640px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '2rem' }}>
@@ -434,27 +434,134 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
 
       <style>{`
         @media (max-width: 768px) {
-          #talent-os > div > div:first-child,
-          #workshops > div > div:first-child,
-          #market-intelligence > div > div:first-child,
-          #tablero > div > div:first-child {
+          /* Force all grid layouts to single column */
+          [style*="gridTemplateColumns"] {
             grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+            gap: 1.5rem !important;
           }
-          #talent-os > div > div:nth-child(2) {
+
+          /* Hero content stacking */
+          header > div:last-child {
+            grid-template-columns: 1fr !important;
+            padding: 0 1.5rem 3rem !important;
+          }
+
+          /* Hero product pills - hide on mobile */
+          header > div:first-child {
+            display: none !important;
+          }
+
+          /* Hero title size */
+          header h1 {
+            font-size: clamp(2.8rem, 12vw, 4rem) !important;
+          }
+
+          /* Hero watermark - hide on mobile */
+          header > div[style*="pointer-events: none"] {
+            display: none !important;
+          }
+
+          /* Section product index - 2 col on mobile */
+          section:nth-of-type(1) > div {
+            grid-template-columns: 1fr 1fr !important;
+          }
+
+          /* All product sections padding */
+          #talent-os, #workshops, #market-intelligence, #tablero {
+            padding: 4rem 1.5rem !important;
+          }
+
+          /* Big watermark numbers - hide */
+          #talent-os > div > div[style*="pointer-events"],
+          #workshops > div > div[style*="pointer-events"],
+          #market-intelligence > div > div[style*="pointer-events"],
+          #tablero > div > div[style*="pointer-events"] {
+            display: none !important;
+          }
+
+          /* Phases strip - single column */
+          #talent-os [style*="repeat(3,1fr)"] {
             grid-template-columns: 1fr !important;
           }
-          #workshops > div > div:nth-child(2) {
+
+          /* Workshop cards - single column */
+          #workshops [style*="repeat(3,1fr)"] {
             grid-template-columns: 1fr !important;
           }
-          #market-intelligence > div > div:nth-child(2) {
+
+          /* Data cards - single column */
+          #market-intelligence [style*="repeat(2,1fr)"] {
             grid-template-columns: 1fr !important;
           }
-          #tablero > div > div:nth-child(2) {
+
+          /* Credibility bar - single column */
+          #market-intelligence [style*="repeat(3,1fr)"] {
+            grid-template-columns: 1fr !important;
+            padding: 1.5rem !important;
+          }
+          #market-intelligence [style*="repeat(3,1fr)"] > div {
+            padding: 1rem 0 !important;
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            text-align: left !important;
+          }
+
+          /* Dashboard mockup - dashboard kpis 2 col */
+          #tablero [style*="repeat(4,1fr)"] {
+            grid-template-columns: 1fr 1fr !important;
+          }
+
+          /* Tablero includes */
+          #tablero [style*="repeat(2,1fr)"] {
+            grid-template-columns: 1fr !important;
+          }
+
+          /* CTA options - single column */
+          [style*="grid-template-columns: 1fr 1fr"][style*="marginBottom: '2.5rem'"] {
+            grid-template-columns: 1fr !important;
+          }
+
+          /* Disbyte callout - stack */
+          [style*="gridTemplateColumns: 'auto 1fr'"] {
+            grid-template-columns: 1fr !important;
+            gap: 0.75rem !important;
+          }
+
+          /* Talent OS footer row - stack */
+          #talent-os [style*="justifyContent: 'space-between'"] {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 1.5rem !important;
+          }
+
+          /* Section headings size */
+          #talent-os h2, #workshops h2, #market-intelligence h2, #tablero h2 {
+            font-size: clamp(2rem, 8vw, 3rem) !important;
+          }
+
+          /* CTA section */
+          .global-cta h2 {
+            font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+          }
+
+          /* Product index cards - 2 cols */
+          .practice-index {
+            grid-template-columns: 1fr 1fr !important;
+          }
+
+          /* Padding adjustments */
+          header, #talent-os, #workshops, #market-intelligence, #tablero {
+            overflow-x: hidden;
+          }
+        }
+
+        @media (max-width: 480px) {
+          /* Product index - single col on very small screens */
+          section:nth-of-type(1) > div {
             grid-template-columns: 1fr !important;
           }
         }
-      `}</style>
+      \`}</style>
     </main>
   )
 }
