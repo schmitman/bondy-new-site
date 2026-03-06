@@ -41,6 +41,7 @@ export default function Nav({ lang, tr }: NavProps) {
     { href: '/about',     label: tr.about },
     { href: '/thinking',  label: tr.thinking },
     { href: '/jobs',      label: tr.jobs },
+    { href: '/practice',  label: tr.practice },
   ]
 
   return (
