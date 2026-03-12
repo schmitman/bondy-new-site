@@ -1,0 +1,393 @@
+'use client'
+
+import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
+import Link from 'next/link'
+import { useState } from 'react'
+import type { Lang } from '@/lib/i18n/translations'
+import { t } from '@/lib/i18n/translations'
+import WorldMap from '@/components/WorldMap'
+
+// ── COPY ─────────────────────────────────────────────────────────────
+const copy = {
+  en: {
+    label: 'Work',
+    h1a: "What we've",
+    h1b: 'actually built.',
+    intro: "Not case studies written for marketing. Real engagements — what the challenge was, what we did, and what happened.",
+    mapLabel: 'Geographic reach',
+    mapSub: 'projects mapped',
+    casesLabel: 'Selected engagements',
+    industriesLabel: 'Industries we\'ve hired for',
+    ctaLabel: 'Ready to be next?',
+    ctaH2a: 'Tell us what you',
+    ctaH2b: 'need to build.',
+    ctaBtn: 'Start a search ↗',
+    readMore: 'Read →',
+    close: 'Close ↑',
+    challenge: 'The challenge',
+    approach: 'Our approach',
+    result: 'The result',
+  },
+  es: {
+    label: 'Trabajo',
+    h1a: 'Lo que',
+    h1b: 'realmente construimos.',
+    intro: 'No son casos de éxito escritos para marketing. Son proyectos reales — cuál fue el desafío, qué hicimos y qué pasó.',
+    mapLabel: 'Alcance geográfico',
+    mapSub: 'proyectos mapeados',
+    casesLabel: 'Proyectos seleccionados',
+    industriesLabel: 'Industrias en las que contratamos',
+    ctaLabel: '¿Listo para ser el siguiente?',
+    ctaH2a: 'Contanos qué',
+    ctaH2b: 'necesitás construir.',
+    ctaBtn: 'Iniciar una búsqueda ↗',
+    readMore: 'Leer →',
+    close: 'Cerrar ↑',
+    challenge: 'El desafío',
+    approach: 'Nuestro enfoque',
+    result: 'El resultado',
+  },
+}
+
+// ── STATS ─────────────────────────────────────────────────────────────
+const stats = {
+  en: [
+    { value: '450+', label: 'Hirings completed',      sub: 'since 2008' },
+    { value: '70+',  label: 'Client companies',       sub: 'across 3 continents' },
+    { value: '94%',  label: 'Retention at 6 months',  sub: 'industry avg: ~60%' },
+    { value: '16',   label: 'Years in market',         sub: 'founded Buenos Aires, 2008' },
+  ],
+  es: [
+    { value: '450+', label: 'Contrataciones realizadas', sub: 'desde 2008' },
+    { value: '70+',  label: 'Empresas clientes',         sub: 'en 3 continentes' },
+    { value: '94%',  label: 'Retención a 6 meses',       sub: 'promedio industria: ~60%' },
+    { value: '16',   label: 'Años en el mercado',         sub: 'fundada Buenos Aires, 2008' },
+  ],
+}
+
+// ── REGIONS ───────────────────────────────────────────────────────────
+const regions = [
+  { label: 'United States', projects: 44, x: 19, y: 38 },
+  { label: 'Argentina',     projects: 34, x: 29, y: 76 },
+  { label: 'México',        projects: 6,  x: 17, y: 50 },
+  { label: 'España',        projects: 2,  x: 47, y: 31 },
+  { label: 'Germany',       projects: 1,  x: 51, y: 27 },
+  { label: 'Global/Remote', projects: 60, x: 73, y: 44 },
+]
+
+// ── CASE STUDIES ──────────────────────────────────────────────────────
+const cases = [
+  {
+    slug: 'redhat',
+    client: 'Red Hat',
+    type: { en: 'Market Study + Consulting', es: 'Estudio de Mercado + Consultoría' },
+    region: 'LATAM — Argentina, Perú, Chile, Brasil',
+    year: '2023–2024',
+    headline: {
+      en: 'Mapping senior tech talent across Latin America for a global enterprise',
+      es: 'Mapeo de talento técnico senior en toda América Latina para una empresa global',
+    },
+    challenge: {
+      en: "Red Hat needed to understand the availability and compensation landscape for senior technical profiles — Java Engineers, Software Architects, Cloud Infrastructure specialists — across four countries simultaneously. A traditional search alone wouldn't answer the question: they needed market intelligence, not just a shortlist.",
+      es: 'Red Hat necesitaba entender la disponibilidad y el contexto salarial de perfiles técnicos senior — Programadores Java, Arquitectos de Software, especialistas en Cloud — en cuatro países simultáneamente. Una búsqueda tradicional sola no respondía la pregunta: necesitaban inteligencia de mercado, no sólo un shortlist.',
+    },
+    approach: {
+      en: "Bondy ran a regional talent mapping exercise across Argentina, Perú, Chile and Brazil. We analyzed 156 profiles in total — conducting structured evaluations on technical depth, compensation expectations, and market availability. The engagement combined direct sourcing with strategic consulting to deliver a complete picture of the market, not just candidates.",
+      es: 'Bondy realizó un mapeo regional de talento en Argentina, Perú, Chile y Brasil. Analizamos 156 perfiles en total, realizando evaluaciones estructuradas sobre profundidad técnica, expectativas salariales y disponibilidad de mercado. El proyecto combinó sourcing directo con consultoría estratégica para entregar una visión completa del mercado, no sólo candidatos.',
+    },
+    result: {
+      en: "One hire placed (Programador Java, Perú). More importantly: Red Hat received a comprehensive market map covering 4 countries and 156 profiles, with clarity on realistic compensation ranges, candidate availability by country, and architectural talent density in the region — intelligence that informed their hiring strategy well beyond the immediate openings.",
+      es: 'Una contratación realizada (Programador Java, Perú). Más importante: Red Hat recibió un mapa de mercado completo que cubre 4 países y 156 perfiles, con claridad sobre rangos salariales realistas, disponibilidad de candidatos por país y densidad de talento arquitectónico en la región — inteligencia que informó su estrategia de contratación mucho más allá de las posiciones abiertas inmediatas.',
+    },
+    metrics: [
+      { n: '156', label: { en: 'profiles analyzed',  es: 'perfiles analizados' } },
+      { n: '4',   label: { en: 'countries covered',  es: 'países cubiertos' } },
+      { n: '11',  label: { en: 'roles mapped',        es: 'roles mapeados' } },
+    ],
+    tags: ['Market Intelligence', 'Senior Technical', 'LATAM', 'Java / AWS / Cloud'],
+  },
+  {
+    slug: 'arcor',
+    client: 'Arcor',
+    type: { en: 'Embedded Recruiter / RPO', es: 'Recruiter Embebido / RPO' },
+    region: 'Argentina + Bolivia',
+    year: '2022–2023',
+    headline: {
+      en: 'Building technical teams from scratch in markets with no existing playbook',
+      es: 'Construir equipos técnicos desde cero en mercados sin playbook previo',
+    },
+    challenge: {
+      en: "Arcor needed to hire technical profiles in two markets with very different constraints — Argentina and Bolivia. In Bolivia especially, there were no established salary benchmarks for tech roles, few active candidates in the relevant profiles, and no recruiter with reliable expertise in the local market.",
+      es: 'Arcor necesitaba contratar perfiles técnicos en dos mercados con restricciones muy distintas — Argentina y Bolivia. En Bolivia especialmente, no había benchmarks salariales establecidos para roles tech, pocos candidatos activos en los perfiles relevantes, y ningún recruiter con expertise confiable en el mercado local.',
+    },
+    approach: {
+      en: "Bondy deployed an embedded recruiting model in both markets: we operated as an extension of their HR team, running end-to-end sourcing and selection. In Bolivia, this meant building sourcing channels from scratch, establishing compensation references for a market with no precedent, and adapting screening criteria to local availability. In Argentina, we activated our existing network with the specific constraints of a large enterprise client.",
+      es: 'Bondy desplegó un modelo de recruiting embebido en ambos mercados: operamos como extensión de su equipo de RRHH, gestionando el sourcing y la selección de punta a punta. En Bolivia, esto implicó construir canales de sourcing desde cero, establecer referencias salariales para un mercado sin precedentes, y adaptar los criterios de screening a la disponibilidad real. En Argentina, activamos nuestra red existente con las restricciones específicas de un cliente corporativo grande.',
+    },
+    result: {
+      en: "Technical hires completed in both countries. Arcor gained not just candidates, but a repeatable process and market intelligence — particularly for Bolivia — that they could continue to leverage internally.",
+      es: 'Contrataciones técnicas completadas en ambos países. Arcor obtuvo no sólo candidatos, sino un proceso replicable e inteligencia de mercado — especialmente para Bolivia — que pudieron seguir aprovechando internamente.',
+    },
+    metrics: [
+      { n: 'RPO',  label: { en: 'engagement model',        es: 'modelo de trabajo' } },
+      { n: '2',    label: { en: 'markets operated in',     es: 'mercados abordados' } },
+      { n: '0→✓', label: { en: 'Bolivia benchmarks built', es: 'benchmarks Bolivia construidos' } },
+    ],
+    tags: ['RPO', 'Embedded', 'Argentina', 'Bolivia', 'Market Entry'],
+  },
+  {
+    slug: 'disbyte',
+    client: 'Disbyte',
+    type: { en: 'TA Consulting + Capability Building', es: 'Consultoría TA + Capacitación' },
+    region: 'Argentina',
+    year: '2024',
+    headline: {
+      en: 'Training a team to hire well — not just filling their open roles',
+      es: 'Capacitar a un equipo para contratar bien — no sólo cubrir sus posiciones abiertas',
+    },
+    challenge: {
+      en: "Disbyte had hiring managers involved in selection who weren't equipped to run structured interviews. The process was inconsistent: subjective feedback, no shared evaluation criteria, and decisions based on gut feel rather than observable evidence. The ask wasn't just 'help us hire' — it was 'help us build a hiring capability we can run ourselves.'",
+      es: 'Disbyte tenía hiring managers involucrados en la selección que no estaban equipados para conducir entrevistas estructuradas. El proceso era inconsistente: feedback subjetivo, sin criterios de evaluación compartidos, y decisiones basadas en intuición en lugar de evidencia observable. El pedido no era sólo "ayúdanos a contratar" — era "ayúdanos a construir una capacidad de contratación que podamos operar solos."',
+    },
+    approach: {
+      en: "Bondy designed and delivered a full interview training workshop for Disbyte's leaders — covering structured interviewing techniques, STAR methodology, scorecard design, and cognitive bias recognition. Alongside the training, we built a candidate database architecture for their ongoing searches and designed a complete hiring blueprint: from kick-off template to feedback protocol. All materials were delivered as a shared Notion workspace the team could keep using independently.",
+      es: 'Bondy diseñó y ejecutó un taller completo de capacitación en entrevistas para los líderes de Disbyte — cubriendo técnicas de entrevista estructurada, metodología STAR, diseño de scorecards y reconocimiento de sesgos cognitivos. Junto al taller, armamos la arquitectura de una base de datos de candidatos para sus búsquedas continuas y diseñamos un blueprint completo de contratación: desde el template de kickoff hasta el protocolo de feedback. Todos los materiales fueron entregados como un workspace de Notion compartido que el equipo puede seguir usando de forma independiente.',
+    },
+    result: {
+      en: "Disbyte's hiring managers now run structured interviews with shared scorecards and a common feedback language. They have a candidate database, a repeatable hiring process, and a resource library they own. The engagement ended with the team being more self-sufficient — which was the whole point.",
+      es: 'Los hiring managers de Disbyte ahora conducen entrevistas estructuradas con scorecards compartidos y un lenguaje de feedback común. Tienen una base de datos de candidatos, un proceso de contratación replicable y una biblioteca de recursos propia. El proyecto terminó con el equipo siendo más autosuficiente — que era exactamente el objetivo.',
+    },
+    metrics: [
+      { n: '1',     label: { en: 'full training workshop delivered', es: 'taller de capacitación completo' } },
+      { n: 'DB',    label: { en: 'candidate database architected',   es: 'base de candidatos diseñada' } },
+      { n: 'Notion',label: { en: 'resource library, owned by client', es: 'biblioteca de recursos, del cliente' } },
+    ],
+    tags: ['TA Consulting', 'Hiring Capability', 'Scorecards', 'Interview Training', 'Argentina'],
+  },
+]
+
+const industries = [
+  'B2B SaaS', 'Fintech', 'Gaming', 'E-commerce', 'Data & Analytics',
+  'Blockchain / Web3', 'Healthcare Tech', 'Logistics Tech', 'Telecom',
+  'Enterprise Software', 'Marketplace', 'EdTech',
+]
+
+// ── PAGE ──────────────────────────────────────────────────────────────
+export default function WorkClient({ params }: { params: { lang: Lang } }) {
+  const lang = params.lang
+  const tr = t(lang)
+  const lk = (href: string) => `/${lang}${href}`
+  const c = copy[lang]
+  const [openCase, setOpenCase] = useState<string | null>(null)
+
+  return (
+    <main style={{ background: '#F0EBE3', minHeight: '100vh' }}>
+      <Nav lang={lang} tr={tr.nav} />
+
+      {/* ── HEADER — blanco puro */}
+      <header style={{ paddingTop: '60px', background: '#FFFFFF', borderBottom: '1px solid #E8E4DE' }}>
+        <div className="work-header-grid">
+          {/* Left */}
+          <div style={{ padding: '4rem clamp(1.25rem,4vw,3.5rem)', borderRight: '1px solid #E8E4DE', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
+                <div style={{ width: '22px', height: '1px', background: '#C06A2D' }} />
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
+                  {c.label}
+                </span>
+                <div style={{ width: '22px', height: '1px', background: 'rgba(192,106,45,0.4)' }} />
+              </div>
+              <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(44px,5.5vw,76px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: '#1A1A1A', marginBottom: '1.75rem' }}>
+                {c.h1a}<br />
+                <em style={{ color: '#C06A2D', fontStyle: 'italic' }}>{c.h1b}</em>
+              </h1>
+              <p style={{ fontSize: '16px', lineHeight: 1.78, fontWeight: 300, maxWidth: '420px', color: '#6B6966' }}>
+                {c.intro}
+              </p>
+            </div>
+          </div>
+
+          {/* Right — stats grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+            {stats[lang].map((s, i) => (
+              <div
+                key={s.label}
+                style={{
+                  padding: '2.5rem clamp(1rem,3vw,2.5rem)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  borderRight: i % 2 === 0 ? '1px solid #E8E4DE' : 'none',
+                  borderBottom: i < 2 ? '1px solid #E8E4DE' : 'none',
+                  background: i === 3 ? '#F8F4EF' : 'transparent',
+                }}
+              >
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#A09D99', lineHeight: 1.5 }}>
+                  {s.sub}
+                </span>
+                <div>
+                  <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(44px,4.5vw,60px)', fontWeight: 900, lineHeight: 1, color: '#1A1A1A', letterSpacing: '-0.02em' }}>
+                    {s.value.endsWith('+')
+                      ? <>{s.value.slice(0, -1)}<span style={{ color: '#C06A2D', fontSize: '60%' }}>+</span></>
+                      : s.value
+                    }
+                  </div>
+                  <div style={{ fontSize: '13px', fontWeight: 300, marginTop: '6px', color: '#6B6966' }}>{s.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      {/* ── MAP — stone */}
+      <section style={{ background: '#F0EBE3', borderBottom: '1px solid #E0DBD3' }}>
+        <div style={{ padding: '1.5rem clamp(1.25rem,5vw,4rem)', borderBottom: '1px solid #E0DBD3' }}>
+          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
+            {c.mapLabel}
+          </div>
+        </div>
+        <div style={{ padding: '2.5rem clamp(1.25rem,5vw,4rem) 3rem' }}>
+          <WorldMap lang={lang} />
+        </div>
+      </section>
+
+      {/* ── CASE STUDIES — blanco */}
+      <section style={{ background: '#FFFFFF', borderBottom: '1px solid #E0DBD3' }}>
+        <div style={{ padding: '1.5rem clamp(1.25rem,5vw,4rem)', borderBottom: '1px solid #E8E4DE' }}>
+          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D' }}>
+            {c.casesLabel}
+          </div>
+        </div>
+
+        <div>
+          {cases.map((cs, idx) => (
+            <div key={cs.slug} style={{ borderBottom: '1px solid #EBE7E1' }}>
+              <div
+                style={{ padding: '2.5rem clamp(1.25rem,5vw,4rem)', display: 'grid', gridTemplateColumns: '48px 1fr auto', gap: '1.5rem 2.5rem', alignItems: 'start', cursor: 'pointer', transition: 'background 0.15s', background: openCase === cs.slug ? '#F8F4EF' : 'transparent' }}
+                onClick={() => setOpenCase(openCase === cs.slug ? null : cs.slug)}
+              >
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#C06A2D', letterSpacing: '0.15em', paddingTop: '4px' }}>
+                  0{idx + 1}
+                </span>
+
+                <div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                    <h2 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(22px,2.5vw,32px)', fontWeight: 900, color: '#1A1A1A', letterSpacing: '-0.01em', lineHeight: 1.1 }}>
+                      {cs.client}
+                    </h2>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C06A2D', border: '1px solid rgba(192,106,45,0.45)', padding: '3px 10px' }}>
+                      {cs.type[lang]}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '15px', lineHeight: 1.78, fontWeight: 300, maxWidth: '640px', marginBottom: '12px', color: '#5A5754' }}>
+                    {cs.headline[lang]}
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', color: '#A09D99' }}>{cs.region}</span>
+                    <span style={{ color: '#C4BFB8' }}>·</span>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', color: '#A09D99' }}>{cs.year}</span>
+                  </div>
+                </div>
+
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: openCase === cs.slug ? '#C06A2D' : '#A09D99', paddingTop: '4px', flexShrink: 0, transition: 'color 0.15s' }}>
+                  {openCase === cs.slug ? c.close : c.readMore}
+                </div>
+              </div>
+
+              {openCase === cs.slug && (
+                <div style={{ borderTop: '1px solid #E8E4DE', background: '#F8F4EF', padding: '3rem clamp(1.25rem,5vw,4rem) 3.5rem' }}>
+                  {/* Metrics */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', marginBottom: '3rem', paddingBottom: '3rem', borderBottom: '1px solid #E0DBD3' }}>
+                    {cs.metrics.map((m) => (
+                      <div key={m.label[lang]} style={{ borderLeft: '2px solid rgba(192,106,45,0.3)', paddingLeft: '1.25rem' }}>
+                        <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '40px', fontWeight: 900, color: '#1A1A1A', lineHeight: 1, marginBottom: '8px' }}>
+                          {m.n}
+                        </div>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B6966' }}>
+                          {m.label[lang]}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CDA */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2.5rem' }} className="case-cda-grid">
+                    {[
+                      { label: c.challenge, text: cs.challenge[lang] },
+                      { label: c.approach,  text: cs.approach[lang] },
+                      { label: c.result,    text: cs.result[lang] },
+                    ].map(({ label, text }) => (
+                      <div key={label}>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '1rem' }}>
+                          {label}
+                        </div>
+                        <p style={{ fontSize: '15px', lineHeight: 1.82, fontWeight: 300, color: '#5A5754' }}>{text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tags */}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '2.5rem' }}>
+                    {cs.tags.map((tag) => (
+                      <span key={tag} style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B6966', border: '1px solid #DDD8D0', padding: '6px 12px' }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── INDUSTRIES — stone */}
+      <section style={{ background: '#F0EBE3', borderBottom: '1px solid #E0DBD3', padding: '3rem clamp(1.25rem,5vw,4rem)' }}>
+        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '1.75rem' }}>
+          {c.industriesLabel}
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+          {industries.map((ind) => (
+            <span key={ind} style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B6966', border: '1px solid #C4BFB8', padding: '8px 16px', background: '#FFFFFF', transition: 'all 0.15s' }}>
+              {ind}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA — negro */}
+      <section style={{ background: '#1A1A1A', padding: '5rem clamp(1.25rem,5vw,4rem)', textAlign: 'center' }}>
+        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C06A2D', marginBottom: '1.75rem' }}>
+          {c.ctaLabel}
+        </div>
+        <h2 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.01em', color: '#F4F2EE', marginBottom: '2.5rem' }}>
+          {c.ctaH2a}<br />
+          <em style={{ color: '#C06A2D', fontStyle: 'italic' }}>{c.ctaH2b}</em>
+        </h2>
+        <Link
+          href={`/${lang}/contact`}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: '#C06A2D', color: '#0E0E0E', fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', padding: '16px 40px', textDecoration: 'none', fontWeight: 500 }}
+        >
+          {c.ctaBtn}
+        </Link>
+      </section>
+
+      <Footer lang={lang} tr={tr.footer} />
+
+      <style>{`
+        .work-header-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .case-cda-grid { grid-template-columns: 1fr 1fr 1fr; }
+        @media (max-width: 768px) {
+          .work-header-grid { grid-template-columns: 1fr !important; }
+          .work-header-grid > div:first-child { border-right: none !important; border-bottom: 1px solid #E8E4DE; }
+          .case-cda-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </main>
+  )
+}

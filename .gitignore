@@ -1,0 +1,4 @@
+bondy-site/node_modules/
+bondy-site/.next/
+bondy-site/.env*
+*.tsbuildinfo
