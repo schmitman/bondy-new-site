@@ -13,13 +13,24 @@ export async function generateMetadata({
   params: { lang: Lang }
 }): Promise<Metadata> {
   const tr = t(params.lang)
+  const baseUrl = 'https://wearebondy.com'
+  const canonical = params.lang === 'en' ? `${baseUrl}/en` : `${baseUrl}/es`
+
   return {
+    metadataBase: new URL(baseUrl),
     title: 'Bondy — The standard for technical hiring',
     description: tr.home.meta.description,
+    alternates: {
+      canonical,
+      languages: {
+        'en': `${baseUrl}/en`,
+        'es': `${baseUrl}/es`,
+      },
+    },
     openGraph: {
       title: 'Bondy',
       description: tr.home.meta.description,
-      url: 'https://wearebondy.com',
+      url: canonical,
       siteName: 'Bondy',
       locale: params.lang === 'es' ? 'es_AR' : 'en_US',
       type: 'website',
