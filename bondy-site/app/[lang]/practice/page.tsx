@@ -154,7 +154,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             <p style={{ fontFamily: 'Playfair Display, Georgia, serif', fontWeight: 700, fontStyle: 'italic', fontSize: '1.2rem', color: 'rgba(244,242,238,.5)', maxWidth: '480px', lineHeight: 1.4 }}>
               Not a PDF. A <strong style={{ color: '#C06A2D', fontWeight: 900 }}>living system</strong> your team uses on day 101 — without us.
             </p>
-            <Link href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" style={ display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.13em', textTransform: 'uppercase', background: '#C06A2D', color: '#fff', padding: '13px 26px', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }>
+            <Link href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.13em', textTransform: 'uppercase', background: '#C06A2D', color: '#fff', padding: '13px 26px', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
               Book a free diagnostic →
             </Link>
           </div>
@@ -321,7 +321,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
               <p style={{ fontSize: '15px', lineHeight: 1.75, fontWeight: 300, color: 'rgba(244,242,238,.45)', marginBottom: '2rem' }}>
                 A bespoke diagnostic of the talent state of your organization. Where are your risks? Who are your key people? What does your bench look like? Built once, used continuously.
               </p>
-              <Link href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" style={ display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.13em', textTransform: 'uppercase', background: '#C06A2D', color: '#fff', padding: '13px 26px', textDecoration: 'none' }>
+              <Link href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.13em', textTransform: 'uppercase', background: '#C06A2D', color: '#fff', padding: '13px 26px', textDecoration: 'none' }}>
                 Request a Tablero →
               </Link>
             </div>
