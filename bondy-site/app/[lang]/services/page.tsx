@@ -4,6 +4,49 @@ import Link from 'next/link'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 
+import type { Metadata } from 'next'
+
+const pageMeta = {
+  en: {
+    title: 'Technical Recruiting Services — Bondy',
+    description: 'Bondy offers specialized technical recruiting services in Argentina and LATAM: executive search, staffing, and RPO for engineering teams. We hire engineers others can't find.',
+  },
+  es: {
+    title: 'Servicios de Recruiting Técnico — Bondy',
+    description: 'Bondy ofrece servicios especializados de recruiting técnico en Argentina y LATAM: búsqueda ejecutiva, staffing y RPO para equipos de ingeniería.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: 'en' | 'es' }
+}): Promise<Metadata> {
+  const baseUrl = 'https://wearebondy.com'
+  const meta = pageMeta[params.lang] ?? pageMeta.en
+  const canonical = `${baseUrl}/${params.lang}/services`
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical,
+      languages: {
+        en: `${baseUrl}/en/services`,
+        es: `${baseUrl}/es/services`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: canonical,
+      siteName: 'Bondy',
+      locale: params.lang === 'es' ? 'es_AR' : 'en_US',
+      type: 'website',
+    },
+  }
+}
+
+
 export default function ServicesPage({ params }: { params: { lang: Lang } }) {
   const lang = params.lang
   const tr = t(lang)

@@ -4,6 +4,49 @@ import Link from 'next/link'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 
+import type { Metadata } from 'next'
+
+const pageMeta = {
+  en: {
+    title: 'About Bondy — Technical Recruiting Firm, Buenos Aires',
+    description: 'Founded in Buenos Aires in 2008, Bondy is a technical recruiting firm led by organizational psychologists. We define fit before we search for it.',
+  },
+  es: {
+    title: 'Sobre Bondy — Firma de Recruiting Técnico, Buenos Aires',
+    description: 'Fundada en Buenos Aires en 2008, Bondy es una firma de recruiting técnico liderada por psicólogos organizacionales. Definimos el fit antes de ir a buscarlo.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: 'en' | 'es' }
+}): Promise<Metadata> {
+  const baseUrl = 'https://wearebondy.com'
+  const meta = pageMeta[params.lang] ?? pageMeta.en
+  const canonical = `${baseUrl}/${params.lang}/about`
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical,
+      languages: {
+        en: `${baseUrl}/en/about`,
+        es: `${baseUrl}/es/about`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: canonical,
+      siteName: 'Bondy',
+      locale: params.lang === 'es' ? 'es_AR' : 'en_US',
+      type: 'website',
+    },
+  }
+}
+
+
 const team = [
   {
     name: 'Mara Schmitman',

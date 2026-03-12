@@ -4,6 +4,49 @@ import Link from 'next/link'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 
+import type { Metadata } from 'next'
+
+const pageMeta = {
+  en: {
+    title: 'Bondy — Technical Recruiting for Engineering Teams in LATAM',
+    description: 'Bondy is a technical recruiting firm based in Buenos Aires. We help CTOs and VPs of Engineering hire backend, frontend, and data engineers in Argentina and across Latin America.',
+  },
+  es: {
+    title: 'Bondy — Recruiting Técnico para Equipos de Ingeniería en LATAM',
+    description: 'Bondy es una firma de recruiting técnico con base en Buenos Aires. Ayudamos a CTOs y VPs de Engineering a contratar ingenieros backend, frontend y datos en Argentina y LATAM.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: 'en' | 'es' }
+}): Promise<Metadata> {
+  const baseUrl = 'https://wearebondy.com'
+  const meta = pageMeta[params.lang] ?? pageMeta.en
+  const canonical = `${baseUrl}/${params.lang}`
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical,
+      languages: {
+        en: `${baseUrl}/en`,
+        es: `${baseUrl}/es`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: canonical,
+      siteName: 'Bondy',
+      locale: params.lang === 'es' ? 'es_AR' : 'en_US',
+      type: 'website',
+    },
+  }
+}
+
+
 export default function Home({ params }: { params: { lang: Lang } }) {
   const lang = params.lang
   const tr = t(lang)

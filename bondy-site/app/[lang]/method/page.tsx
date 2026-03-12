@@ -4,6 +4,49 @@ import Link from 'next/link'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 
+import type { Metadata } from 'next'
+
+const pageMeta = {
+  en: {
+    title: 'The Bondy Method — How We Hire Engineers Right',
+    description: 'We don't move fast. We move right. Learn the process Bondy uses to find, evaluate, and place technical talent in engineering teams across LATAM.',
+  },
+  es: {
+    title: 'El Método Bondy — Cómo Contratamos Ingenieros Bien',
+    description: 'No nos movemos rápido. Nos movemos bien. Conocé el proceso que usa Bondy para encontrar, evaluar y colocar talento técnico en equipos de ingeniería en LATAM.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: 'en' | 'es' }
+}): Promise<Metadata> {
+  const baseUrl = 'https://wearebondy.com'
+  const meta = pageMeta[params.lang] ?? pageMeta.en
+  const canonical = `${baseUrl}/${params.lang}/method`
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical,
+      languages: {
+        en: `${baseUrl}/en/method`,
+        es: `${baseUrl}/es/method`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: canonical,
+      siteName: 'Bondy',
+      locale: params.lang === 'es' ? 'es_AR' : 'en_US',
+      type: 'website',
+    },
+  }
+}
+
+
 export default function MethodPage({ params }: { params: { lang: Lang } }) {
   const lang = params.lang
   const tr = t(lang)

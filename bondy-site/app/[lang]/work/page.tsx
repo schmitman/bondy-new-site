@@ -8,6 +8,49 @@ import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 import WorldMap from '@/components/WorldMap'
 
+import type { Metadata } from 'next'
+
+const pageMeta = {
+  en: {
+    title: 'Our Work — Real Technical Hires Across LATAM | Bondy',
+    description: '450+ technical hires completed. 94% retention at 6 months. See the real engagements behind Bondy's track record hiring engineers in Argentina and across Latin America.',
+  },
+  es: {
+    title: 'Nuestro Trabajo — Contrataciones Técnicas Reales en LATAM | Bondy',
+    description: 'Más de 450 contrataciones técnicas. 94% de retención a los 6 meses. Conocé los proyectos reales detrás del track record de Bondy contratando ingenieros en Argentina y LATAM.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: 'en' | 'es' }
+}): Promise<Metadata> {
+  const baseUrl = 'https://wearebondy.com'
+  const meta = pageMeta[params.lang] ?? pageMeta.en
+  const canonical = `${baseUrl}/${params.lang}/work`
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical,
+      languages: {
+        en: `${baseUrl}/en/work`,
+        es: `${baseUrl}/es/work`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: canonical,
+      siteName: 'Bondy',
+      locale: params.lang === 'es' ? 'es_AR' : 'en_US',
+      type: 'website',
+    },
+  }
+}
+
+
 // ── COPY ─────────────────────────────────────────────────────────────
 const copy = {
   en: {
