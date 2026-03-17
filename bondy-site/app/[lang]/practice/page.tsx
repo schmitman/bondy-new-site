@@ -26,7 +26,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
 
         {/* product nav pills */}
         <div className="hero-pills" style={{ position: 'absolute', top: 'calc(60px + 3rem)', left: 'clamp(1.5rem,5vw,3rem)', display: 'flex', gap: '2px', zIndex: 1 }}>
-          {['Talent OS', 'Workshops', 'Market Intel', 'Tablero'].map((label, i) => {
+          {['Talent OS', 'Workshops', 'Market Intel', lang === 'en' ? 'Talent Dashboard' : 'Tablero'].map((label, i) => {
             const anchors = ['talent-os', 'workshops', 'market-intelligence', 'tablero']
             return (
               <a key={label} href={`#${anchors[i]}`} style={{ fontFamily: 'DM Mono, monospace', fontSize: '8.5px', letterSpacing: '.14em', textTransform: 'uppercase', padding: '6px 14px', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', color: 'rgba(244,242,238,.35)', textDecoration: 'none' }}>
@@ -76,7 +76,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             { n: '01 —', name: 'Talent', em: 'OS', anchor: 'talent-os', status: '● Available', statusColor: 'rgba(80,160,100,.7)' },
             { n: '02 —', name: 'Work', em: 'shops', anchor: 'workshops', status: '● Available', statusColor: 'rgba(80,160,100,.7)' },
             { n: '03 —', name: 'Market', em: 'Intel', anchor: 'market-intelligence', status: '● Available', statusColor: 'rgba(80,160,100,.7)' },
-            { n: '04 —', name: 'Tablero de', em: 'Comando', anchor: 'tablero', status: '○ By request', statusColor: '#C8C5C0' },
+            { n: '04 —', name: lang === 'en' ? 'Talent' : 'Tablero de', em: lang === 'en' ? 'Dashboard' : 'Comando', anchor: 'tablero', status: '○ By request', statusColor: '#C8C5C0' },
           ].map((p) => (
             <a key={p.anchor} href={`#${p.anchor}`} style={{ background: '#F0EBE3', padding: '2rem 1.75rem', textDecoration: 'none', display: 'block' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#C8C5C0', display: 'block', marginBottom: '.75rem' }}>{p.n}</span>
@@ -313,7 +313,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem' }}>
                 <div style={{ width: '22px', height: '1px', background: '#C06A2D' }} />
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#C06A2D' }}>04 — Tablero de Comando</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#C06A2D' }}>04 — {lang === 'en' ? 'Talent Dashboard' : 'Tablero de Comando'}</span>
               </div>
               <h2 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontWeight: 900, fontSize: 'clamp(2.5rem,4.5vw,4rem)', lineHeight: '.92', letterSpacing: '-.03em', color: '#F4F2EE', marginBottom: '1.5rem' }}>
                 See your talent<br />clearly — <em style={{ color: '#C06A2D', fontStyle: 'italic' }}>all of it.</em>
@@ -322,7 +322,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
                 A bespoke diagnostic of the talent state of your organization. Where are your risks? Who are your key people? What does your bench look like? Built once, used continuously.
               </p>
               <Link href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '.13em', textTransform: 'uppercase', background: '#C06A2D', color: '#fff', padding: '13px 26px', textDecoration: 'none' }}>
-                Request a Tablero →
+                Request a diagnostic →
               </Link>
             </div>
 
@@ -330,7 +330,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             <div style={{ background: '#111', border: '1px solid rgba(255,255,255,.08)', overflow: 'hidden' }}>
               <div style={{ height: '36px', background: '#0A0A0A', borderBottom: '1px solid rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', padding: '0 1rem', gap: '.5rem' }}>
                 {['#FF5F57','#FFBD2E','#28CA41'].map((c) => <div key={c} style={{ width: '8px', height: '8px', borderRadius: '50%', background: c }} />)}
-                <div style={{ flex: 1, textAlign: 'center', fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.1em', color: 'rgba(255,255,255,.2)' }}>Tablero de Comando</div>
+                <div style={{ flex: 1, textAlign: 'center', fontFamily: 'DM Mono, monospace', fontSize: '9px', letterSpacing: '.1em', color: 'rgba(255,255,255,.2)' }}>{lang === 'en' ? 'Talent Dashboard' : 'Tablero de Comando'}</div>
               </div>
               <div style={{ padding: '1.5rem' }}>
                 <div className="mob-col-kpi" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', background: 'rgba(255,255,255,.05)', marginBottom: '1rem' }}>
@@ -413,7 +413,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             {[
               { tag: 'For startups post-ronda', title: 'Need to build hiring infrastructure from scratch', desc: '→ Talent OS is probably your product.' },
               { tag: 'For scale-ups with teams', title: 'Need to upskill your people or get market clarity', desc: '→ Workshops or Market Intelligence.' },
-              { tag: 'For CHROs + People leaders', title: 'Need a full picture of your talent state', desc: '→ Tablero de Comando.' },
+              { tag: 'For CHROs + People leaders', title: 'Need a full picture of your talent state', desc: `→ ${lang === 'en' ? 'Talent Dashboard' : 'Tablero de Comando'}.` },
               { tag: 'Not sure yet', title: 'Just know something isn\'t working', desc: '→ Talk to us. We\'ll figure it out together.' },
             ].map((opt) => (
               <div key={opt.tag} style={{ background: 'rgba(255,255,255,.02)', padding: '1.75rem', textAlign: 'left' }}>
