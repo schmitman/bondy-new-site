@@ -258,9 +258,9 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
         }
         .tw-footer-link {
           font-family: 'Courier Prime', 'Courier New', monospace;
-          font-size: 10px;
-          letter-spacing: 0.08em;
-          color: #9A948E;
+          font-size: 13px;
+          letter-spacing: 0.06em;
+          color: #5A5550;
           text-decoration: none;
         }
         .tw-footer-link:hover { color: #1A1A1A; }
@@ -694,7 +694,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             <a key={l.label} href={l.href} className="tw-footer-link">{l.label}</a>
           ))}
         </nav>
-        <span style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', color: tw.inkFaint, whiteSpace: 'nowrap' }}>
+        <span style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '12px', color: '#7A7874', whiteSpace: 'nowrap' }}>
           &copy; 2026 &middot; Buenos Aires
         </span>
       </footer>
