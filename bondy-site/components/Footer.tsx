@@ -94,7 +94,7 @@ export default function Footer({ lang, tr }: FooterProps) {
             {[
               { href: '/method',   label: tr.links.method   },
               { href: '/work',     label: tr.links.work     },
-              { href: '/practice', label: tr.links.about    },
+              { href: '/about',    label: tr.links.about    },
             ].map(({ href, label }) => (
               <li key={href}>
                 <Link href={lk(href)} style={{
