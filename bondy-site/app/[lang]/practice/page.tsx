@@ -10,9 +10,9 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
   const tw = {
     bg: '#FEFCF9',
     ink: '#1A1A1A',
-    inkMid: '#5A5550',
-    inkSub: '#7A7874',
-    inkFaint: '#9A948E',
+    inkMid: '#3A3530',
+    inkSub: '#5A5550',
+    inkFaint: '#7A7874',
     inkRule: '#C0BAB4',
     green: '#4A8C40',
     stone: 'rgba(244,238,229,0.75)',
@@ -58,7 +58,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
           position: sticky;
           top: 0;
           z-index: 100;
-          height: 52px;
+          height: 60px;
           background: rgba(254,252,249,0.96);
           border-bottom: 1.5px solid #1A1A1A;
           display: flex;
@@ -74,16 +74,16 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
         }
         .tw-nav-link {
           font-family: 'Courier Prime', 'Courier New', monospace;
-          font-size: 11px;
-          letter-spacing: 0.06em;
+          font-size: 14px;
+          letter-spacing: 0.04em;
           color: #5A5550;
           text-decoration: none;
         }
         .tw-nav-link:hover { color: #1A1A1A; }
         .tw-nav-cta {
           font-family: 'Courier Prime', 'Courier New', monospace;
-          font-size: 11px;
-          letter-spacing: 0.06em;
+          font-size: 14px;
+          letter-spacing: 0.04em;
           color: #1A1A1A;
           text-decoration: none;
           border-bottom: 1.5px solid #4A8C40;
@@ -409,7 +409,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
       </div>
 
       {/* ══ 01 &#8212; TALENT OS ══ */}
-      <section id="talent-os" className="tw-section" style={{ scrollMarginTop: '52px' }}>
+      <section id="talent-os" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
           01 &#8212; Talent OS
         </div>
@@ -476,7 +476,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
       </section>
 
       {/* ══ 02 &#8212; WORKSHOPS ══ */}
-      <section id="workshops" className="tw-section" style={{ scrollMarginTop: '52px' }}>
+      <section id="workshops" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
           02 &#8212; Workshops
         </div>
@@ -537,7 +537,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
       </section>
 
       {/* ══ 03 &#8212; MARKET INTELLIGENCE ══ */}
-      <section id="market-intelligence" className="tw-section" style={{ scrollMarginTop: '52px' }}>
+      <section id="market-intelligence" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
           03 &#8212; Market Intelligence
         </div>
@@ -577,7 +577,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
       </section>
 
       {/* ══ 04 &#8212; TALENT DASHBOARD ══ */}
-      <section id="tablero" className="tw-section" style={{ scrollMarginTop: '52px' }}>
+      <section id="tablero" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
           04 &#8212; {lang === 'en' ? 'Talent Dashboard' : 'Tablero de Comando'}
         </div>
