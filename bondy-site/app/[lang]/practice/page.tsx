@@ -39,8 +39,6 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
     <main style={{ background: tw.bg, minHeight: '100vh', backgroundImage: notebookBg }}>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
-
         .tw-ink       { filter: contrast(1.15) brightness(0.92); }
         .tw-ink-heavy { filter: contrast(1.25) brightness(0.88) saturate(0.9); -webkit-font-smoothing: none; }
 
