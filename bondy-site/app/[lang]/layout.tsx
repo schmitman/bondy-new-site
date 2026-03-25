@@ -1,7 +1,26 @@
 import type { Metadata } from 'next'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
+import { Special_Elite, Courier_Prime } from 'next/font/google'
 import '../globals.css'
+
+// ⚠️  FUENTES — next/font self-hostea automáticamente en /_next/static/media/
+// NO agregar <link href="fonts.googleapis.com"> en ningún lado. Ya ocurrió 3 veces.
+// Estas dos líneas son la ÚNICA fuente de verdad para Special Elite y Courier Prime.
+const specialElite = Special_Elite({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-special-elite',
+})
+
+const courierPrime = Courier_Prime({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-courier',
+})
 
 export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'es' }]
@@ -130,7 +149,7 @@ export default function LangLayout({
   params: { lang: Lang }
 }) {
   return (
-    <html lang={params.lang}>
+    <html lang={params.lang} className={`${specialElite.variable} ${courierPrime.variable}`}>
       <head>
         {/* GA4 — Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4J2J3Q2WGE" />
@@ -146,9 +165,11 @@ export default function LangLayout({
         />
         {/*
           ⚠️  FUENTES — LEER ANTES DE TOCAR ESTE ARCHIVO
-          Special Elite + Courier Prime están self-hosted via next/font (globals.css).
-          NO agregar links a fonts.googleapis.com acá. Ya ocurrió dos veces — commit 462ea18.
+          Special Elite + Courier Prime se cargan via next/font/google (arriba, líneas ~7-21).
+          next/font las self-hostea en /_next/static/media/ — SIN depender de Google CDN.
+          NO agregar links a fonts.googleapis.com acá. Ya ocurrió 3 veces — commits 462ea18, fix 25/03.
           Si ves preconnect o stylesheet de Google Fonts = regresión, revertir de inmediato.
+          Las variables CSS --font-special-elite y --font-courier se inyectan via className en <html>.
 
           ⚠️  DISEÑO — REGLA ABSOLUTA
           NO modificar tipografía, colores, layout ni elementos visuales de este sitio.
