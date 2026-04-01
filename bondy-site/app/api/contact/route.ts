@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const NOTIFY_LEAD_URL = 'https://tools.wearebondy.com/api/notify-lead'
+const NOTIFY_LEAD_SECRET = process.env.NOTIFY_LEAD_SECRET || 'bondy-notify-lead-internal'
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
@@ -7,6 +10,17 @@ export async function POST(req: NextRequest) {
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    }
+
+    const leadData = {
+      name,
+      email,
+      company,
+      role,
+      service,
+      message,
+      source: 'new-website',
+      created_at: new Date().toISOString(),
     }
 
     // Supabase insert
@@ -22,28 +36,36 @@ export async function POST(req: NextRequest) {
           'Authorization': `Bearer ${supabaseKey}`,
           'Prefer': 'return=minimal',
         },
-        body: JSON.stringify({
-          name,
-          email,
-          company,
-          role,
-          service,
-          message,
-          source: 'new-website',
-          created_at: new Date().toISOString(),
-        }),
+        body: JSON.stringify(leadData),
       })
 
       if (!response.ok) {
         const errText = await response.text()
         console.error('Supabase error:', errText)
-        // Don't fail silently — still return success to user but log the issue
       }
     } else {
-      // Supabase not configured — log to console in dev
-      console.log('Contact form submission (Supabase not configured):', {
-        name, email, company, role, service, message
+      console.log('Contact form submission (Supabase not configured):', leadData)
+    }
+
+    // Notificación por email via bondy-tools
+    // No bloqueamos el response al usuario si falla el email
+    try {
+      const notifyRes = await fetch(NOTIFY_LEAD_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-notify-secret': NOTIFY_LEAD_SECRET,
+        },
+        body: JSON.stringify(leadData),
       })
+      if (!notifyRes.ok) {
+        const errText = await notifyRes.text()
+        console.error('[contact] notify-lead error:', notifyRes.status, errText)
+      } else {
+        console.log('[contact] notify-lead ok')
+      }
+    } catch (notifyErr) {
+      console.error('[contact] notify-lead fetch failed:', notifyErr)
     }
 
     return NextResponse.json({ ok: true })
