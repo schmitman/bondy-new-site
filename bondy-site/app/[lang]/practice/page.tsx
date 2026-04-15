@@ -5,6 +5,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
   const lang = params.lang
   const tr = t(lang)
   const lk = (href: string) => `/${lang}${href}`
+  const es = lang === 'es'
 
   /* ── typewriter CSS tokens ── */
   const tw = {
@@ -30,9 +31,9 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
 
   const products = [
     { n: '01', name: 'Talent OS', anchor: 'talent-os', avail: true },
-    { n: '02', name: 'Workshops', anchor: 'workshops', avail: true },
-    { n: '03', name: 'Market Intel', anchor: 'market-intelligence', avail: true },
-    { n: '04', name: lang === 'en' ? 'Talent Dashboard' : 'Tablero', anchor: 'tablero', avail: false },
+    { n: '02', name: es ? 'Talleres' : 'Workshops', anchor: 'workshops', avail: true },
+    { n: '03', name: es ? 'Inteligencia de Mercado' : 'Market Intel', anchor: 'market-intelligence', avail: true },
+    { n: '04', name: es ? 'Tablero' : 'Talent Dashboard', anchor: 'tablero', avail: false },
   ]
 
   return (
@@ -348,11 +349,11 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
           BONDY
         </div>
         <div className="tw-nav-links">
-          <a href={lk('/method')} className="tw-nav-link">Method</a>
-          <a href={lk('/services')} className="tw-nav-link">Services</a>
-          <a href={lk('/work')} className="tw-nav-link">Cases</a>
+          <a href={lk('/method')} className="tw-nav-link">{es ? 'Método' : 'Method'}</a>
+          <a href={lk('/services')} className="tw-nav-link">{es ? 'Servicios' : 'Services'}</a>
+          <a href={lk('/work')} className="tw-nav-link">{es ? 'Casos' : 'Cases'}</a>
           <span className="tw-nav-link" style={{ color: tw.ink, fontWeight: 700, cursor: 'default' }}>The Practice</span>
-          <a href={lk('/contact')} className="tw-nav-cta">Work with us &#x2197;</a>
+          <a href={lk('/contact')} className="tw-nav-cta">{es ? 'Trabajá con nosotros' : 'Work with us'} &#x2197;</a>
         </div>
       </nav>
 
@@ -361,7 +362,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '2rem' }}>
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tw.green }} />
           <span style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: tw.inkMid }}>
-            By Bondy &#8212; Strategic people consulting
+            {es ? 'Por Bondy — Consultoría estratégica de personas' : 'By Bondy — Strategic people consulting'}
           </span>
         </div>
 
@@ -370,20 +371,24 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
         </h1>
 
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '3rem' }}>
-          Since 2008
+          {es ? 'Desde 2008' : 'Since 2008'}
         </div>
 
         <div className="tw-hero-body" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'end' }}>
           <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '15px', lineHeight: 1.8, color: tw.inkSub, margin: 0 }}>
-            Recruiting fills roles. The Practice builds the systems, capabilities, and intelligence that make great hiring possible &#8212; whether we&apos;re executing the search or not.
+            {es
+              ? 'El recruiting llena posiciones. The Practice construye los sistemas, capacidades e inteligencia que hacen posible un gran hiring — tanto si nosotros ejecutamos la búsqueda como si no.'
+              : "Recruiting fills roles. The Practice builds the systems, capabilities, and intelligence that make great hiring possible — whether we're executing the search or not."}
           </p>
           <div>
             <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '14px', lineHeight: 1.75, fontStyle: 'italic', color: tw.inkMid, marginBottom: '2rem' }}>
-              Four products. One belief: technical hiring is a discipline, not a transaction.
+              {es
+                ? 'Cuatro productos. Una convicción: el hiring técnico es una disciplina, no una transacción.'
+                : 'Four products. One belief: technical hiring is a discipline, not a transaction.'}
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="#talent-os" className="tw-btn-primary">See our work &#x2192;</a>
-              <a href={lk('/contact')} className="tw-btn-ghost">Talk to us &#x2197;</a>
+              <a href="#talent-os" className="tw-btn-primary">{es ? 'Ver nuestro trabajo' : 'See our work'} &#x2192;</a>
+              <a href={lk('/contact')} className="tw-btn-ghost">{es ? 'Hablemos' : 'Talk to us'} &#x2197;</a>
             </div>
           </div>
         </div>
@@ -400,42 +405,68 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
               {p.name}
             </span>
             <span style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '8px', letterSpacing: '0.12em', marginLeft: 'auto', color: p.avail ? tw.green : tw.inkFaint }}>
-              {p.avail ? '&#x25CF; Available' : '&#x25CB; By request'}
+              {p.avail
+                ? (es ? '● Disponible' : '● Available')
+                : (es ? '○ A pedido' : '○ By request')}
             </span>
           </a>
         ))}
       </div>
 
-      {/* ══ 01 &#8212; TALENT OS ══ */}
+      {/* ══ 01 — TALENT OS ══ */}
       <section id="talent-os" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
-          01 &#8212; Talent OS
+          01 — Talent OS
         </div>
         <h2 className="tw-ink-heavy" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: 'clamp(2rem,4.5vw,48px)', lineHeight: 1.05, letterSpacing: '0.01em', color: tw.ink, marginBottom: '1.5rem' }}>
-          The 100-day people <span className="tw-ul-lg" style={{ display: 'inline' }}>sprint.</span>
+          {es ? 'El sprint de personas de ' : 'The 100-day people '}
+          <span className="tw-ul-lg" style={{ display: 'inline' }}>{es ? '100 días.' : 'sprint.'}</span>
         </h2>
 
         <div className="tw-section-grid">
           <div>
             <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '14px', lineHeight: 1.8, color: tw.inkSub, marginBottom: '2.5rem' }}>
-              You just closed your Seed or Series A. Investor pressure to hire is immediate. But no one has built the system to hire well. We install your entire Talent OS in 100 days &#8212; so you can scale from 15 to 150 without breaking.
+              {es
+                ? 'Acabás de cerrar tu Seed o Serie A. La presión inversora para contratar es inmediata. Pero nadie construyó el sistema para hacerlo bien. Instalamos tu Talent OS completo en 100 días — para que puedas escalar de 15 a 150 personas sin romperte.'
+                : 'You just closed your Seed or Series A. Investor pressure to hire is immediate. But no one has built the system to hire well. We install your entire Talent OS in 100 days — so you can scale from 15 to 150 without breaking.'}
             </p>
 
             <div className="tw-phases">
               {[
-                { n: '01', days: 'Days 1&#x2013;30', title: 'Foundation', items: ['Current-state audit', 'Culture DNA: values &#x2192; behaviors', 'Legal compliance baseline'] },
-                { n: '02', days: 'Days 31&#x2013;70', title: 'Build', items: ['Hiring engine + scorecards', '30-day onboarding playbook', 'Compensation philosophy + bands'] },
-                { n: '03', days: 'Days 71&#x2013;100', title: 'Handoff', items: ['Full Talent OS in Notion', 'Performance rhythm installed', 'First HR hire profile + process'] },
+                {
+                  n: '01',
+                  days: es ? 'Días 1–30' : 'Days 1–30',
+                  title: es ? 'Diagnóstico' : 'Foundation',
+                  items: es
+                    ? ['Auditoría del estado actual', 'ADN cultural: valores → comportamientos', 'Baseline de compliance legal']
+                    : ['Current-state audit', 'Culture DNA: values → behaviors', 'Legal compliance baseline'],
+                },
+                {
+                  n: '02',
+                  days: es ? 'Días 31–70' : 'Days 31–70',
+                  title: es ? 'Construcción' : 'Build',
+                  items: es
+                    ? ['Motor de hiring + scorecards', 'Playbook de onboarding 30 días', 'Filosofía de compensación + bandas']
+                    : ['Hiring engine + scorecards', '30-day onboarding playbook', 'Compensation philosophy + bands'],
+                },
+                {
+                  n: '03',
+                  days: es ? 'Días 71–100' : 'Days 71–100',
+                  title: es ? 'Entrega' : 'Handoff',
+                  items: es
+                    ? ['Talent OS completo en Notion', 'Ritmo de performance instalado', 'Perfil + proceso para primera contratación de RRHH']
+                    : ['Full Talent OS in Notion', 'Performance rhythm installed', 'First HR hire profile + process'],
+                },
               ].map((phase) => (
                 <div key={phase.title} className="tw-phase">
                   <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: tw.green, marginBottom: '6px' }}>{phase.n}</div>
-                  <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '8px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '8px' }} dangerouslySetInnerHTML={{ __html: phase.days }} />
+                  <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '8px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '8px' }}>{phase.days}</div>
                   <div className="tw-ink" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: '18px', color: tw.ink, marginBottom: '10px' }}>{phase.title}</div>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '5px' }}>
                     {phase.items.map((item) => (
                       <li key={item} style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '12px', lineHeight: 1.5, color: tw.inkMid, paddingLeft: '14px', position: 'relative' }}>
                         <span style={{ position: 'absolute', left: 0, top: '0.6em', width: '6px', height: '1px', background: tw.green, display: 'block' }} />
-                        <span dangerouslySetInnerHTML={{ __html: item }} />
+                        {item}
                       </li>
                     ))}
                   </ul>
@@ -444,72 +475,84 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             </div>
 
             <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '14px', fontStyle: 'italic', lineHeight: 1.7, color: tw.inkMid }}>
-              Not a PDF. A living system your team uses on day 101 &#8212; without us.
+              {es
+                ? 'No es un PDF. Es un sistema vivo que tu equipo usa el día 101 — sin nosotros.'
+                : 'Not a PDF. A living system your team uses on day 101 — without us.'}
             </p>
           </div>
 
           <div>
             <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '12px' }}>
-              Sprint specs
+              {es ? 'Especificaciones del sprint' : 'Sprint specs'}
             </div>
             {[
-              { k: 'Duration', v: '100 days' },
+              { k: es ? 'Duración' : 'Duration', v: '100 días' },
               { k: 'Format', v: 'Co-pilot' },
-              { k: 'Target', v: 'Seed &#x2192; Series A' },
-              { k: 'Deliverable', v: 'Notion OS' },
-              { k: 'Scale', v: '15 &#x2192; 150' },
+              { k: es ? 'Perfil' : 'Target', v: 'Seed → Series A' },
+              { k: es ? 'Entregable' : 'Deliverable', v: 'Notion OS' },
+              { k: es ? 'Escala' : 'Scale', v: '15 → 150' },
             ].map((row) => (
               <div key={row.k} className="tw-spec-row">
                 <span style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.10em', textTransform: 'uppercase', color: tw.inkFaint }}>{row.k}</span>
-                <span className="tw-ink" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: '15px', color: tw.ink }} dangerouslySetInnerHTML={{ __html: row.v }} />
+                <span className="tw-ink" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: '15px', color: tw.ink }}>{row.v}</span>
               </div>
             ))}
             <div style={{ marginTop: '2.5rem' }}>
               <a href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" className="tw-btn-primary">
-                Book a free diagnostic &#x2192;
+                {es ? 'Agendá un diagnóstico gratis' : 'Book a free diagnostic'} &#x2192;
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══ 02 &#8212; WORKSHOPS ══ */}
+      {/* ══ 02 — WORKSHOPS ══ */}
       <section id="workshops" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
-          02 &#8212; Workshops
+          02 — {es ? 'Talleres' : 'Workshops'}
         </div>
         <h2 className="tw-ink-heavy" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: 'clamp(2rem,4.5vw,48px)', lineHeight: 1.05, letterSpacing: '0.01em', color: tw.ink, marginBottom: '1.5rem' }}>
-          Train the people who <span className="tw-ul" style={{ display: 'inline' }}>hire</span> people.
+          {es ? 'Formá a quienes ' : 'Train the people who '}
+          <span className="tw-ul" style={{ display: 'inline' }}>{es ? 'contratan' : 'hire'}</span>
+          {es ? ' personas.' : ' people.'}
         </h2>
         <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '14px', lineHeight: 1.8, color: tw.inkSub, maxWidth: '640px', marginBottom: '0' }}>
-          Most hiring mistakes aren&apos;t sourcing problems &#8212; they&apos;re interviewing problems. We run focused workshops that turn founders, hiring managers, and internal recruiters into disciplined evaluators.
+          {es
+            ? 'La mayoría de los errores de hiring no son problemas de sourcing — son problemas de entrevistas. Damos talleres focalizados que convierten a founders, hiring managers y recruiters internos en evaluadores disciplinados.'
+            : "Most hiring mistakes aren't sourcing problems — they're interviewing problems. We run focused workshops that turn founders, hiring managers, and internal recruiters into disciplined evaluators."}
         </p>
 
         <div className="tw-workshops">
           {[
             {
-              tag: 'For hiring managers',
-              title: 'Hire Like an Expert',
-              desc: 'Structured interviewing, behavioral techniques, scorecard-based evaluation. For technical leaders who interview constantly but were never taught how.',
-              meta: [['Format', 'Half-day'], ['Group', '15 pax'], ['Delivery', 'In-person or remote']],
+              tag: es ? 'Para hiring managers' : 'For hiring managers',
+              title: es ? 'Contratá como un experto' : 'Hire Like an Expert',
+              desc: es
+                ? 'Entrevistas estructuradas, técnicas de comportamiento, evaluación por scorecard. Para líderes técnicos que entrevistan constantemente pero nunca les enseñaron cómo.'
+                : 'Structured interviewing, behavioral techniques, scorecard-based evaluation. For technical leaders who interview constantly but were never taught how.',
+              meta: [[es ? 'Formato' : 'Format', es ? 'Medio día' : 'Half-day'], [es ? 'Grupo' : 'Group', '15 pax'], [es ? 'Modalidad' : 'Delivery', es ? 'Presencial o remoto' : 'In-person or remote']],
             },
             {
-              tag: 'For founders + HR',
-              title: 'Culture-Based Hiring',
-              desc: 'Translate your values into observable, measurable behaviors. Build a hiring process that selects for fit &#8212; not just skill &#8212; before the first offer is made.',
-              meta: [['Format', 'Full-day'], ['Group', 'Leadership team'], ['Delivery', 'In-person preferred']],
+              tag: es ? 'Para founders + RRHH' : 'For founders + HR',
+              title: es ? 'Hiring Basado en Cultura' : 'Culture-Based Hiring',
+              desc: es
+                ? 'Traducí tus valores en comportamientos observables y medibles. Construí un proceso de hiring que seleccione por fit — no solo por habilidad — antes de hacer la primera oferta.'
+                : 'Translate your values into observable, measurable behaviors. Build a hiring process that selects for fit — not just skill — before the first offer is made.',
+              meta: [[es ? 'Formato' : 'Format', es ? 'Día completo' : 'Full-day'], [es ? 'Grupo' : 'Group', es ? 'Equipo de liderazgo' : 'Leadership team'], [es ? 'Modalidad' : 'Delivery', es ? 'Presencial preferido' : 'In-person preferred']],
             },
             {
-              tag: 'For internal teams',
-              title: 'Recruiter Bootcamp',
-              desc: 'A multi-session program for internal recruiters and TA teams. Covers sourcing strategy, role definition, process design, and candidate experience.',
-              meta: [['Format', 'Multiple sessions'], ['Group', 'TA/HR teams'], ['Delivery', 'Custom']],
+              tag: es ? 'Para equipos internos' : 'For internal teams',
+              title: es ? 'Bootcamp de Recruiters' : 'Recruiter Bootcamp',
+              desc: es
+                ? 'Un programa de múltiples sesiones para recruiters internos y equipos de TA. Cubre estrategia de sourcing, definición de rol, diseño de proceso y experiencia del candidato.'
+                : 'A multi-session program for internal recruiters and TA teams. Covers sourcing strategy, role definition, process design, and candidate experience.',
+              meta: [[es ? 'Formato' : 'Format', es ? 'Múltiples sesiones' : 'Multiple sessions'], [es ? 'Grupo' : 'Group', es ? 'Equipos TA/RRHH' : 'TA/HR teams'], [es ? 'Modalidad' : 'Delivery', es ? 'A medida' : 'Custom']],
             },
           ].map((card) => (
             <div key={card.title} className="tw-workshop-card">
               <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '12px' }}>{card.tag}</div>
               <div className="tw-ink" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: '20px', color: tw.ink, marginBottom: '10px', lineHeight: 1.1 }}>{card.title}</div>
-              <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '12.5px', lineHeight: 1.7, color: tw.inkMid, marginBottom: '16px' }} dangerouslySetInnerHTML={{ __html: card.desc }} />
+              <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '12.5px', lineHeight: 1.7, color: tw.inkMid, marginBottom: '16px' }}>{card.desc}</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 {card.meta.map(([k, v]) => (
                   <div key={k} style={{ display: 'flex', gap: '8px', fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px' }}>
@@ -524,36 +567,49 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
 
         <div className="tw-case-strip">
           <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: tw.green, marginBottom: '12px' }}>
-            Case &#8212; Disbyte
+            {es ? 'Caso — Disbyte' : 'Case — Disbyte'}
           </div>
           <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '13.5px', lineHeight: 1.75, color: tw.inkMid, margin: 0 }}>
-            Disbyte brought us in after realizing their engineering managers were making hiring decisions based on gut feel. After one full-day Culture-Based Hiring workshop, they unified their evaluation criteria across three offices.{' '}
-            <em className="tw-ul" style={{ display: 'inline' }}>Every level left with a shared language for hiring</em>
-            {' '}&#8212; and a scorecard they still use today.
+            {es ? (
+              <>
+                Disbyte nos convocó cuando se dio cuenta de que sus engineering managers tomaban decisiones de hiring basadas en intuición. Después de un día completo del taller de Hiring Basado en Cultura, unificaron sus criterios de evaluación en tres oficinas.{' '}
+                <em className="tw-ul" style={{ display: 'inline' }}>Todos los niveles salieron con un lenguaje común para contratar</em>
+                {' '}— y un scorecard que usan hasta hoy.
+              </>
+            ) : (
+              <>
+                Disbyte brought us in after realizing their engineering managers were making hiring decisions based on gut feel. After one full-day Culture-Based Hiring workshop, they unified their evaluation criteria across three offices.{' '}
+                <em className="tw-ul" style={{ display: 'inline' }}>Every level left with a shared language for hiring</em>
+                {' '}— and a scorecard they still use today.
+              </>
+            )}
           </p>
         </div>
       </section>
 
-      {/* ══ 03 &#8212; MARKET INTELLIGENCE ══ */}
+      {/* ══ 03 — MARKET INTELLIGENCE ══ */}
       <section id="market-intelligence" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
-          03 &#8212; Market Intelligence
+          03 — {es ? 'Inteligencia de Mercado' : 'Market Intelligence'}
         </div>
         <h2 className="tw-ink-heavy" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: 'clamp(2rem,4.5vw,48px)', lineHeight: 1.05, letterSpacing: '0.01em', color: tw.ink, marginBottom: '1.5rem' }}>
-          Hire with <span className="tw-ul-lg" style={{ display: 'inline' }}>data.</span>
+          {es ? 'Contratá con ' : 'Hire with '}
+          <span className="tw-ul-lg" style={{ display: 'inline' }}>{es ? 'datos.' : 'data.'}</span>
         </h2>
         <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '14px', lineHeight: 1.8, color: tw.inkSub, maxWidth: '640px', marginBottom: '0' }}>
-          Most companies make hiring decisions with no market data at all. We give you the intelligence to hire smarter &#8212; based on 17 years of active sourcing across LATAM&apos;s tech ecosystem.
+          {es
+            ? 'La mayoría de las empresas toman decisiones de hiring sin ningún dato de mercado. Te damos la inteligencia para contratar mejor — basada en 17 años de sourcing activo en el ecosistema tech de LATAM.'
+            : "Most companies make hiring decisions with no market data at all. We give you the intelligence to hire smarter — based on 17 years of active sourcing across LATAM's tech ecosystem."}
         </p>
 
         <div className="tw-stats">
           {[
-            { n: '17+', label: 'Years of active market data across LATAM tech' },
-            { n: '1 in 4', label: 'Our benchmark: if less than 1 in 4 advance, we stop and realign' },
-            { n: 'A &#x2192; IPO', label: 'Clients across every growth stage' },
+            { n: '17+', label: es ? 'Años de datos de mercado activos en tech LATAM' : 'Years of active market data across LATAM tech' },
+            { n: '1 de cada 4', label: es ? 'Nuestro benchmark: si menos de 1 de cada 4 avanza, paramos y realineamos' : 'Our benchmark: if less than 1 in 4 advance, we stop and realign' },
+            { n: 'A → IPO', label: es ? 'Clientes en todas las etapas de crecimiento' : 'Clients across every growth stage' },
           ].map((stat) => (
             <div key={stat.n} className="tw-stat">
-              <div className="tw-ink-heavy" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: 'clamp(2rem,4vw,48px)', color: tw.ink, lineHeight: 1, marginBottom: '8px' }} dangerouslySetInnerHTML={{ __html: stat.n }} />
+              <div className="tw-ink-heavy" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: 'clamp(2rem,4vw,48px)', color: tw.ink, lineHeight: 1, marginBottom: '8px' }}>{stat.n}</div>
               <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '11px', lineHeight: 1.6, color: tw.inkSub }}>{stat.label}</div>
             </div>
           ))}
@@ -561,39 +617,62 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
 
         <div className="tw-intel">
           {[
-            { title: 'Salary Benchmarks by Role + Stack', desc: 'What are engineers actually earning in your market? We cut by seniority, stack, and sector &#8212; not just country averages.' },
-            { title: 'Profile Scarcity + Time-to-Hire Maps', desc: 'How long should it realistically take to fill this role? Which profiles are scarce? Plan your hiring runway before you need it.' },
-            { title: 'Why You\'re Losing Candidates', desc: 'You offered. They declined. We diagnose the exact friction points &#8212; compensation, process, employer brand &#8212; and fix them.' },
-            { title: 'Build Your Hiring Roadmap', desc: 'A 90-day hiring plan calibrated to your growth, the market, and your team\'s actual capacity to evaluate well.' },
+            {
+              title: es ? 'Benchmarks salariales por rol + stack' : 'Salary Benchmarks by Role + Stack',
+              desc: es
+                ? '¿Cuánto ganan realmente los ingenieros en tu mercado? Segmentamos por seniority, stack y sector — no solo por promedios de país.'
+                : 'What are engineers actually earning in your market? We cut by seniority, stack, and sector — not just country averages.',
+            },
+            {
+              title: es ? 'Escasez de perfiles + mapas de time-to-hire' : 'Profile Scarcity + Time-to-Hire Maps',
+              desc: es
+                ? '¿Cuánto tiempo debería llevar realisticamente cubrir este rol? ¿Qué perfiles escasean? Planificá tu runway de hiring antes de necesitarlo.'
+                : 'How long should it realistically take to fill this role? Which profiles are scarce? Plan your hiring runway before you need it.',
+            },
+            {
+              title: es ? 'Por qué perdés candidatos' : "Why You're Losing Candidates",
+              desc: es
+                ? 'Hiciste una oferta. La rechazaron. Diagnosticamos los puntos exactos de fricción — compensación, proceso, employer brand — y los corregimos.'
+                : 'You offered. They declined. We diagnose the exact friction points — compensation, process, employer brand — and fix them.',
+            },
+            {
+              title: es ? 'Armá tu roadmap de hiring' : 'Build Your Hiring Roadmap',
+              desc: es
+                ? 'Un plan de hiring a 90 días calibrado según tu crecimiento, el mercado y la capacidad real de tu equipo para evaluar bien.'
+                : "A 90-day hiring plan calibrated to your growth, the market, and your team's actual capacity to evaluate well.",
+            },
           ].map((item) => (
             <div key={item.title} className="tw-intel-item">
               <div className="tw-ink" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: '16px', color: tw.ink, marginBottom: '8px', lineHeight: 1.2 }}>{item.title}</div>
-              <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '12.5px', lineHeight: 1.7, color: tw.inkMid, margin: 0 }} dangerouslySetInnerHTML={{ __html: item.desc }} />
+              <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '12.5px', lineHeight: 1.7, color: tw.inkMid, margin: 0 }}>{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ══ 04 &#8212; TALENT DASHBOARD ══ */}
+      {/* ══ 04 — TABLERO ══ */}
       <section id="tablero" className="tw-section" style={{ scrollMarginTop: '60px' }}>
         <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '1.25rem' }}>
-          04 &#8212; {lang === 'en' ? 'Talent Dashboard' : 'Tablero de Comando'}
+          04 — {es ? 'Tablero de Comando' : 'Talent Dashboard'}
         </div>
         <h2 className="tw-ink-heavy" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: 'clamp(2rem,4.5vw,48px)', lineHeight: 1.05, letterSpacing: '0.01em', color: tw.ink, marginBottom: '1.5rem' }}>
-          See your talent clearly &#8212; <span className="tw-ul-lg" style={{ display: 'inline' }}>{lang === 'en' ? 'all of it.' : 'todo.'}</span>
+          {es ? 'Mirá tu talento con claridad — ' : 'See your talent clearly — '}
+          <span className="tw-ul-lg" style={{ display: 'inline' }}>{es ? 'todo.' : 'all of it.'}</span>
         </h2>
 
         <div className="tw-tablero-grid">
           <div>
             <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '14px', lineHeight: 1.8, color: tw.inkSub, marginBottom: '2rem' }}>
-              A bespoke diagnostic of the talent state of your organization. Where are your risks? Who are your key people? What does your bench look like? Built once, used continuously.
+              {es
+                ? 'Un diagnóstico a medida del estado de talento de tu organización. ¿Dónde están tus riesgos? ¿Quiénes son tus personas clave? ¿Cómo está tu bench? Construido una vez, usado continuamente.'
+                : 'A bespoke diagnostic of the talent state of your organization. Where are your risks? Who are your key people? What does your bench look like? Built once, used continuously.'}
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1px', background: 'rgba(26,26,26,0.08)', border: '1px solid rgba(26,26,26,0.08)', marginBottom: '2rem' }}>
               {[
-                { n: 'Current state', item: 'Team audit' },
-                { n: 'Hiring funnel', item: 'Pipeline analysis' },
-                { n: 'Output', item: '90-day action plan' },
+                { n: es ? 'Estado actual' : 'Current state', item: es ? 'Auditoría del equipo' : 'Team audit' },
+                { n: es ? 'Funnel de hiring' : 'Hiring funnel', item: es ? 'Análisis de pipeline' : 'Pipeline analysis' },
+                { n: es ? 'Entregable' : 'Output', item: es ? 'Plan de acción 90 días' : '90-day action plan' },
               ].map((phase) => (
                 <div key={phase.n} style={{ background: tw.bg, padding: '20px 18px' }}>
                   <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: tw.green, marginBottom: '6px' }}>{phase.n}</div>
@@ -603,7 +682,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
             </div>
 
             <a href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" className="tw-btn-primary">
-              Request a diagnostic &#x2192;
+              {es ? 'Pedí un diagnóstico' : 'Request a diagnostic'} &#x2192;
             </a>
           </div>
 
@@ -613,15 +692,15 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
                 <div key={c} style={{ width: '8px', height: '8px', borderRadius: '50%', background: c }} />
               ))}
               <div style={{ flex: 1, textAlign: 'center', fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '9px', letterSpacing: '0.10em', color: tw.inkFaint }}>
-                {lang === 'en' ? 'Talent Dashboard' : 'Tablero de Comando'}
+                {es ? 'Tablero de Comando' : 'Talent Dashboard'}
               </div>
             </div>
             <div className="tw-kpi-grid">
               {[
-                { label: 'Open roles', val: '8', delta: '+3 vs last qtr', pos: true },
-                { label: 'Avg time-to-hire', val: '47d', delta: '+12d vs benchmark', pos: false },
-                { label: 'Offer acceptance', val: '78%', delta: 'Market avg 72%', pos: true },
-                { label: 'Retention 12m', val: '91%', delta: 'Above benchmark', pos: true },
+                { label: es ? 'Roles abiertos' : 'Open roles', val: '8', delta: es ? '+3 vs trim. anterior' : '+3 vs last qtr', pos: true },
+                { label: es ? 'Time-to-hire prom.' : 'Avg time-to-hire', val: '47d', delta: es ? '+12d vs benchmark' : '+12d vs benchmark', pos: false },
+                { label: es ? 'Aceptación de oferta' : 'Offer acceptance', val: '78%', delta: es ? 'Prom. mercado 72%' : 'Market avg 72%', pos: true },
+                { label: es ? 'Retención 12m' : 'Retention 12m', val: '91%', delta: es ? 'Por encima del benchmark' : 'Above benchmark', pos: true },
               ].map((kpi) => (
                 <div key={kpi.label} className="tw-kpi">
                   <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '7.5px', letterSpacing: '0.10em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '4px' }}>{kpi.label}</div>
@@ -631,7 +710,7 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
               ))}
             </div>
             <div style={{ padding: '8px 16px 16px', fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '10px', color: tw.inkFaint, textAlign: 'center', fontStyle: 'italic' }}>
-              Live view of your organization&apos;s talent state
+              {es ? 'Vista en vivo del estado de talento de tu organización' : "Live view of your organization's talent state"}
             </div>
           </div>
         </div>
@@ -641,25 +720,28 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
       <div className="tw-cta-final">
         <div className="tw-cta-left">
           <h2 className="tw-ink-heavy" style={{ fontFamily: "'Special Elite','Courier New',monospace", fontSize: 'clamp(1.8rem,3.5vw,38px)', lineHeight: 1.1, color: tw.ink, marginBottom: '1.25rem' }}>
-            Not sure which product is <span className="tw-ul" style={{ display: 'inline' }}>right?</span>
+            {es ? '¿No sabés cuál producto es el ' : 'Not sure which product is the '}
+            <span className="tw-ul" style={{ display: 'inline' }}>{es ? 'correcto?' : 'right one?'}</span>
           </h2>
           <p style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '14px', lineHeight: 1.8, color: tw.inkSub, marginBottom: '2rem' }}>
-            We&apos;ll tell you. Book a 30-minute call with no agenda other than understanding your situation.
+            {es
+              ? 'Te lo decimos nosotros. Agendá una llamada de 30 minutos sin otra agenda que entender tu situación.'
+              : "We'll tell you. Book a 30-minute call with no agenda other than understanding your situation."}
           </p>
           <a href="https://calendar.app.google/gthsXL3grcJiTxda6" target="_blank" rel="noopener noreferrer" className="tw-btn-primary">
-            Book a free 30-min call &#x2192;
+            {es ? 'Agendá una llamada gratis de 30 min' : 'Book a free 30-min call'} &#x2192;
           </a>
         </div>
 
         <div className="tw-cta-right">
           <div style={{ fontFamily: "'Courier Prime','Courier New',monospace", fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '20px' }}>
-            Find your path
+            {es ? 'Encontrá tu camino' : 'Find your path'}
           </div>
           {[
-            { label: 'For startups', dest: 'Talent OS' },
-            { label: 'For scale-ups', dest: 'Workshops or Market Intelligence' },
-            { label: 'For CHROs', dest: lang === 'en' ? 'Talent Dashboard' : 'Tablero de Comando' },
-            { label: 'Not sure', dest: 'Talk to us' },
+            { label: es ? 'Para startups' : 'For startups', dest: 'Talent OS' },
+            { label: es ? 'Para scale-ups' : 'For scale-ups', dest: es ? 'Talleres o Inteligencia de Mercado' : 'Workshops or Market Intelligence' },
+            { label: es ? 'Para CHROs' : 'For CHROs', dest: es ? 'Tablero de Comando' : 'Talent Dashboard' },
+            { label: es ? 'No estoy seguro/a' : 'Not sure', dest: es ? 'Hablemos' : 'Talk to us' },
           ].map((item) => (
             <div key={item.label} className="tw-routing-item">
               <span style={{ color: tw.inkSub, minWidth: '120px' }}>{item.label}</span>
@@ -683,11 +765,11 @@ export default function PracticePage({ params }: { params: { lang: Lang } }) {
         </div>
         <nav className="tw-footer-links">
           {[
-            { label: 'Method', href: lk('/method') },
-            { label: 'Services', href: lk('/services') },
+            { label: es ? 'Método' : 'Method', href: lk('/method') },
+            { label: es ? 'Servicios' : 'Services', href: lk('/services') },
             { label: 'The Practice', href: '#' },
-            { label: 'Cases', href: lk('/work') },
-            { label: 'Contact', href: lk('/contact') },
+            { label: es ? 'Casos' : 'Cases', href: lk('/work') },
+            { label: es ? 'Contacto' : 'Contact', href: lk('/contact') },
           ].map((l) => (
             <a key={l.label} href={l.href} className="tw-footer-link">{l.label}</a>
           ))}
