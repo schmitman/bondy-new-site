@@ -303,6 +303,61 @@ export default function Home({ params }: { params: { lang: Lang } }) {
       </section>
 
       <Footer lang={lang} tr={tr.footer} />
+
+      {/* FAQ JSON-LD — targets Google People Also Ask — EN only */}
+      {lang === 'en' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'How long does it take to hire an engineer in Argentina?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: "Most of our searches reach a qualified shortlist in 5 to 7 business days. From kickoff to accepted offer, expect 3 to 6 weeks — depending on role complexity and how fast your interview process moves. We don't pad timelines. We also don't rush them.",
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What types of technical roles does Bondy recruit for?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'The full stack — backend, frontend, full-stack, data, DevOps, mobile, and increasingly AI/ML and LLM engineering. If evaluating the role requires technical judgment, we can run the search. We recruit for what the market needs now, not just what we have placed before.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Do you work with early-stage startups or only larger companies?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: "Both. Our clients range from Series A startups to public companies. What they have in common is that a wrong hire is genuinely costly — in time, in team dynamics, in momentum. We're the right fit when good enough isn't.",
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What makes Bondy different from other technical recruiting firms in LATAM?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: "Mara Schmitman, our founder, has 18+ years in technical hiring in this market. In that time, Bondy was a pioneer in data protection standards and bias-aware recruitment practices in the region, and has consistently set the benchmark for what professional technical recruiting looks like here. Our 1-in-4 rule — if fewer than 1 in 4 candidates we present advance, we stop and realign — isn't a policy. It's what happens when you spend 18 years studying your own mistakes.",
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: "How does Bondy's pricing work?",
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'It depends on the service. For most searches we ask for a kickoff fee equivalent to 30% of the role\'s monthly salary — a minimal commitment that gets credited against the final fee. Hunting fees start at 14% of the placed engineer\'s annual salary, up to 23% depending on complexity. RPO engagements start at USD 3,500. Advisory work starts at USD 400/hour. Every engagement is scoped individually.',
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      )}
     </main>
   )
 }
