@@ -3,40 +3,20 @@
 @tailwind utilities;
 
 /*
-  ⚠️  FUENTES — self-hosted via @font-face en /public/fonts/
-  Registradas bajo sus nombres REALES para que funcionen con todos los inline styles.
-  NO agregar <link href="fonts.googleapis.com"> ni next/font/google para estas fuentes.
-  NO cambiar los nombres de los archivos en /public/fonts/ sin actualizar los src: abajo.
+  ⚠️  FUENTES — Special Elite self-hosted via @font-face en /public/fonts/
+  Plus Jakarta Sans cargada via Google Fonts @import (body/labels/UI — Brand v4 actualizado 16/04/2026).
+  Courier Prime removida — reemplazada por Plus Jakarta Sans.
+  NO agregar next/font/google para Special Elite — usa @font-face abajo.
 */
+
+/* Plus Jakarta Sans — body, labels, UI (weights 400 + 500) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500&display=swap');
+
 @font-face {
   font-family: 'Special Elite';
   src: url('/fonts/special-elite-latin.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Courier Prime';
-  src: url('/fonts/courier-prime-regular-latin.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Courier Prime';
-  src: url('/fonts/courier-prime-bold-latin.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Courier Prime';
-  src: url('/fonts/courier-prime-italic-latin.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -53,14 +33,17 @@
   --tw-margin:     rgba(210,100,80,0.10);
   --tw-lines:      rgba(100,140,200,0.09);
 
-  /* Variables de fuente — apuntan a los nombres reales registrados en @font-face */
+  /* Variables de fuente */
   --font-special-elite: 'Special Elite', Georgia, serif;
-  --font-courier:       'Courier Prime', Courier, monospace;
+  --font-body:          'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Alias legacy para compatibilidad (se puede quitar luego) */
+  --font-courier:       'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 @layer base {
   html {
-    font-family: var(--font-courier);
+    font-family: var(--font-body);
     font-weight: 400;
     color: var(--tw-ink);
     background: var(--tw-bg);
@@ -85,7 +68,7 @@
   }
 
   .font-body {
-    font-family: var(--font-courier);
+    font-family: var(--font-body);
   }
 
   /* Fondo cuaderno */
