@@ -58,7 +58,7 @@ export default function Footer({ lang, tr }: FooterProps) {
             </span>
           </Link>
           <p style={{
-            fontFamily: "'Courier Prime', Courier, monospace",
+            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             fontSize: '9px',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
@@ -68,7 +68,7 @@ export default function Footer({ lang, tr }: FooterProps) {
             The standard for technical hiring since 2008
           </p>
           <p style={{
-            fontFamily: "'Courier Prime', Courier, monospace",
+            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             fontSize: '13px',
             color: '#7A7874',
             lineHeight: 1.7,
@@ -81,7 +81,7 @@ export default function Footer({ lang, tr }: FooterProps) {
         {/* Company */}
         <div>
           <div style={{
-            fontFamily: "'Courier Prime', Courier, monospace",
+            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             fontSize: '9px',
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
@@ -98,7 +98,7 @@ export default function Footer({ lang, tr }: FooterProps) {
             ].map(({ href, label }) => (
               <li key={href}>
                 <Link href={lk(href)} style={{
-                  fontFamily: "'Courier Prime', Courier, monospace",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                   fontSize: '13px',
                   color: '#5A5550',
                   textDecoration: 'none',
@@ -114,7 +114,7 @@ export default function Footer({ lang, tr }: FooterProps) {
         {/* Services */}
         <div>
           <div style={{
-            fontFamily: "'Courier Prime', Courier, monospace",
+            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             fontSize: '9px',
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
@@ -132,7 +132,7 @@ export default function Footer({ lang, tr }: FooterProps) {
             ].map(({ href, label }) => (
               <li key={href}>
                 <Link href={lk(href)} style={{
-                  fontFamily: "'Courier Prime', Courier, monospace",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                   fontSize: '13px',
                   color: '#5A5550',
                   textDecoration: 'none',
@@ -148,7 +148,7 @@ export default function Footer({ lang, tr }: FooterProps) {
         {/* Contact */}
         <div>
           <div style={{
-            fontFamily: "'Courier Prime', Courier, monospace",
+            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             fontSize: '9px',
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
@@ -160,7 +160,7 @@ export default function Footer({ lang, tr }: FooterProps) {
           <a
             href="mailto:hello@wearebondy.com"
             style={{
-              fontFamily: "'Courier Prime', Courier, monospace",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '13px',
               color: '#4A8C40',
               textDecoration: 'none',
@@ -175,7 +175,7 @@ export default function Footer({ lang, tr }: FooterProps) {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              fontFamily: "'Courier Prime', Courier, monospace",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '10px',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
@@ -199,14 +199,14 @@ export default function Footer({ lang, tr }: FooterProps) {
         alignItems: 'center',
       }}>
         <span style={{
-          fontFamily: "'Courier Prime', Courier, monospace",
+          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           fontSize: '12px',
           color: '#7A7874',
         }}>
           © {new Date().getFullYear()} {tr.copyright}
         </span>
         <span style={{
-          fontFamily: "'Courier Prime', Courier, monospace",
+          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           fontSize: '12px',
           color: '#7A7874',
         }}>

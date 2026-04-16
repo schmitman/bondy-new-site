@@ -105,7 +105,7 @@ export default function Nav({ lang, tr }: NavProps) {
               <Link
                 href={lk(href)}
                 style={{
-                  fontFamily: "'Courier Prime', Courier, monospace",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                   fontSize: '14px',
                   letterSpacing: '0.04em',
                   textDecoration: 'none',
@@ -121,7 +121,7 @@ export default function Nav({ lang, tr }: NavProps) {
           {/* Lang toggle */}
           <li style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span style={{
-              fontFamily: "'Courier Prime', Courier, monospace",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '11px',
               letterSpacing: '0.13em',
               textTransform: 'uppercase',
@@ -133,7 +133,7 @@ export default function Nav({ lang, tr }: NavProps) {
             <button
               onClick={switchLang}
               style={{
-                fontFamily: "'Courier Prime', Courier, monospace",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 fontSize: '11px',
                 letterSpacing: '0.13em',
                 textTransform: 'uppercase',
@@ -153,7 +153,7 @@ export default function Nav({ lang, tr }: NavProps) {
             <Link
               href={lk('/contact')}
               style={{
-                fontFamily: "'Courier Prime', Courier, monospace",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 fontSize: '11px',
                 letterSpacing: '0.10em',
                 textTransform: 'uppercase',
@@ -203,7 +203,7 @@ export default function Nav({ lang, tr }: NavProps) {
               href={lk(href)}
               onClick={() => setMenuOpen(false)}
               style={{
-                fontFamily: "'Courier Prime', Courier, monospace",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 fontSize: '14px',
                 letterSpacing: '0.04em',
                 textDecoration: 'none',
@@ -219,7 +219,7 @@ export default function Nav({ lang, tr }: NavProps) {
           <button
             onClick={() => { switchLang(); setMenuOpen(false) }}
             style={{
-              fontFamily: "'Courier Prime', Courier, monospace",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '14px',
               letterSpacing: '0.04em',
               background: 'none',
@@ -237,7 +237,7 @@ export default function Nav({ lang, tr }: NavProps) {
             href={lk('/contact')}
             onClick={() => setMenuOpen(false)}
             style={{
-              fontFamily: "'Courier Prime', Courier, monospace",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '14px',
               letterSpacing: '0.04em',
               textDecoration: 'none',

@@ -220,10 +220,10 @@ export default function WorldMap({ lang = 'es' }: { lang?: string }) {
     <div className="w-full">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <span style={{ fontFamily: "'Courier Prime', Courier, monospace", fontSize: '10px', letterSpacing: '.16em', textTransform: 'uppercase', color: '#4A8C40' }}>
+        <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: '10px', letterSpacing: '.16em', textTransform: 'uppercase', color: '#4A8C40' }}>
           {mapLabel}
         </span>
-        <span style={{ fontFamily: "'Courier Prime', Courier, monospace", fontSize: '10px', letterSpacing: '.13em', color: '#7A7874' }}>
+        <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: '10px', letterSpacing: '.13em', color: '#7A7874' }}>
           {totalProjects}+ {projectsLbl} · {REGIONS.length} {marketsLbl}
         </span>
       </div>
@@ -304,11 +304,11 @@ export default function WorldMap({ lang = 'es' }: { lang?: string }) {
               <g transform={`translate(${tx},${ty})`} style={{ pointerEvents: 'none', animation: 'tipIn .15s ease forwards' }}>
                 <rect width="156" height="72" rx="2" fill="#FFFFFF" stroke="#E8E4DE" strokeWidth=".8" />
                 <rect width="156" height="3" rx="1" fill="#4A8C40" />
-                <text x="12" y="22" style={{ fontFamily: "'Courier Prime', Courier, monospace", fontSize: '13px', fontWeight: 700, fill: '#3A3530' }}>
+                <text x="12" y="22" style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: '13px', fontWeight: 700, fill: '#3A3530' }}>
                   {hovered.label}
                 </text>
                 <line x1="12" y1="29" x2="144" y2="29" stroke="#E8E4DE" strokeWidth=".7" />
-                <text x="12" y="46" style={{ fontFamily: "'Courier Prime', Courier, monospace", fontSize: '8px', letterSpacing: '.14em', fill: '#7A7874', textTransform: 'uppercase' }}>
+                <text x="12" y="46" style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: '8px', letterSpacing: '.14em', fill: '#7A7874', textTransform: 'uppercase' }}>
                   {projectsLbl.toUpperCase()}
                 </text>
                 <text x="12" y="65" style={{ fontFamily: "'Special Elite', Georgia, serif", fontSize: '22px', fill: '#4A8C40' }}>
