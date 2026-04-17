@@ -52,6 +52,7 @@ export default function Nav({ lang, tr }: NavProps) {
     { href: '/method',   label: tr.method   },
     { href: '/services', label: tr.services },
     { href: '/work',     label: tr.work     },
+    { href: '/roles',    label: tr.roles    },
     { href: '/thinking', label: tr.thinking },
     { href: '/about',    label: tr.about    },
     { href: '/practice', label: tr.practice },
