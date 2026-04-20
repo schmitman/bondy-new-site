@@ -2,8 +2,21 @@
 // Source of truth for all /thinking articles — EN and ES.
 // Each article has: slug, category, date, readingTime, meta (title + description), and content (full HTML string).
 
-export type ArticleCategory = 'Trends' | 'Bondy Method' | 'Tendencias' | 'Método Bondy'
+export type ArticleCategory =
+  | 'Trends' | 'Bondy Method' | 'Market intel' | 'Leadership' | 'Culture'
+  | 'Tendencias' | 'Método Bondy' | 'Inteligencia de mercado' | 'Liderazgo' | 'Cultura'
 export type Lang = 'en' | 'es'
+
+export interface DataCallout {
+  num: string           // e.g. '+38%'
+  label: string         // e.g. 'Variación promedio · 2023–2025'
+  desc: string          // supporting text
+}
+
+export interface PullQuote {
+  text: string
+  cite?: string
+}
 
 export interface Article {
   slug: string
@@ -18,6 +31,18 @@ export interface Article {
     description: string
   }
   content: string       // Full article body as HTML
+
+  // Optional fields for the v4 editorial design.
+  // When absent, the UI falls back to sensible defaults.
+  author?: string            // e.g. 'Mara Schmitman'
+  authorInitials?: string    // e.g. 'MS' — used in avatars. Max 2 chars.
+  authorRole?: string        // e.g. 'Founder, Bondy Group'
+  authorBio?: string         // short paragraph for the AuthorBio block
+  tags?: string[]            // small inline tags in the hero
+  quoteImage?: string        // multi-line string (\n as separator). Max 3 lines, max 6 words per line. Last line gets the green underline.
+  pullQuote?: PullQuote      // rendered as a green-bordered block in the body
+  dataCallout?: DataCallout  // rendered as a green-number stat card in the body
+  featured?: boolean         // if true, surfaced at the top of the /thinking list
 }
 
 // ─────────────────────────────────────────────
@@ -270,6 +295,67 @@ For senior roles in Buenos Aires working for a US company, competitive total com
   },
 
   {
+    slug: 'why-salary-benchmarking-2023-is-obsolete',
+    lang: 'en',
+    category: 'Market intel',
+    date: '2026-04-20',
+    readingTime: '8 min read',
+    title: 'Why 2023 salary benchmarking no longer works — and what to do about it.',
+    excerpt: "Compensation ranges for LATAM engineering moved more in 18 months than in the previous 5 years. If you're still using 2023 data, you're working from an outdated map.",
+    meta: {
+      title: 'Why 2023 Salary Benchmarking No Longer Works — Bondy',
+      description: 'Compensation ranges for LATAM engineering have shifted +38% for Senior+ profiles since 2023. Here is what actually changed, why it happened, and how to build a defensible rate today.',
+    },
+    author: 'Mara Schmitman',
+    authorInitials: 'MS',
+    authorRole: 'Founder, Bondy Group',
+    authorBio: 'Organizational psychologist and founder of Bondy Group. Since 2008, leading searches for technical profiles for Series A to public companies across LATAM and globally. Her work starts with diagnostics before going to market.',
+    tags: ['Market intel', 'Compensation', 'LATAM'],
+    quoteImage: 'Speed\nis not\na virtue.',
+    pullQuote: {
+      text: 'An outdated map doesn\'t take you to the wrong place. It leaves you standing in the right place, convinced you\'ve already arrived.',
+      cite: 'Mara Schmitman, Bondy Group',
+    },
+    dataCallout: {
+      num: '+38%',
+      label: 'Average variation · 2023–2025',
+      desc: 'Increase in salary expectations for Senior+ engineering profiles across LATAM. Internal Bondy data based on 340 closed processes during the period.',
+    },
+    featured: true,
+    content: `
+<p>Three years ago, a Senior Backend Engineer in Buenos Aires asked for <strong>USD 4,000 to 6,000 monthly</strong>. Today the same profile asks for <strong>USD 6,500 to 9,000</strong>. The market moved. Candidate expectations moved. But many hiring managers still reference 2023 ranges.</p>
+
+<p>The result is predictable: rejected offers, processes that drag on, and candidates who drop at the final stage because the number is nowhere near what they expected.</p>
+
+<h2>Why this happened.</h2>
+
+<p>Three factors combined. First, the <strong>de facto dollarization</strong> of the tech market: most profiles with more than 5 years of experience in LATAM today have direct access to US and European companies via remote. The reference floor is no longer local.</p>
+
+<p>Second, <strong>demand concentration</strong>. The best profiles have multiple processes open at once. When scarcity is real, price goes up.</p>
+
+<p>Third, <strong>company-side lag</strong>. Internal compensation bands are set annually. The market moves every quarter. The gap compounds.</p>
+
+<h2>What to do about it.</h2>
+
+<h3>1. Update your reference before opening the process.</h3>
+<p>Don't assume what you paid 18 months ago is still competitive. Before defining the range, ask your recruiting firm for recent data on closed processes in the same stack and level.</p>
+
+<h3>2. Separate the range from the budget.</h3>
+<p>The range you show the candidate doesn't have to be identical to the internal approved ceiling. Showing it before the candidate defines their expectation anchors the conversation around the wrong number.</p>
+
+<h3>3. Speed is a compensation variable.</h3>
+<p>A process that takes 6 weeks competes at a disadvantage even if the number is correct. Clarity in stages and fast feedback are worth more than they seem.</p>
+
+<hr>
+
+<p>At Bondy we've been closing technical searches in LATAM for 16 years. What we're seeing today is not an anomaly: it's the new normal of a market that integrated globally faster than internal structures could process.</p>
+
+<hr>
+<p class="article-sources"><strong>Sources:</strong> Internal Bondy Group data (340 closed processes, 2023–2025). Cross-referenced against Howdy <em>LatAm Software Engineer Cost Benchmarks 2026</em> and Teilur Talent <em>LATAM Developer Salary Report 2026</em>.</p>
+`,
+  },
+
+  {
     slug: 'the-diagnostic-we-run-before-every-search',
     lang: 'en',
     category: 'Bondy Method',
@@ -483,6 +569,67 @@ Para roles senior en Buenos Aires trabajando para una empresa de EE.UU., la comp
 <p class="article-sources"><strong>Fuentes:</strong> Datos internos de sourcing y colocación de Bondy Group (2008–presente). SHRM estimaciones costo de contratación fallida (1,5–2x salario anual).</p>
 `,
   },
+
+  {
+    slug: 'por-que-el-salary-benchmarking-de-2023-ya-no-sirve',
+    lang: 'es',
+    category: 'Inteligencia de mercado',
+    date: '2026-04-20',
+    readingTime: '8 min',
+    title: 'Por qué el salary benchmarking de 2023 ya no sirve — y qué hacer con eso.',
+    excerpt: 'Los rangos de compensación en engineering LATAM se movieron más en 18 meses que en los 5 años previos. Si todavía estás usando los datos de 2023, estás trabajando con un mapa desactualizado.',
+    meta: {
+      title: 'Por qué el salary benchmarking de 2023 ya no sirve — Bondy',
+      description: 'Los rangos de compensación en engineering LATAM se movieron +38% para perfiles Senior+ desde 2023. Esto es lo que cambió, por qué pasó, y cómo armar un rango defendible hoy.',
+    },
+    author: 'Mara Schmitman',
+    authorInitials: 'MS',
+    authorRole: 'Founder, Bondy Group',
+    authorBio: 'Psicóloga organizacional y fundadora de Bondy Group. Desde 2008 lidera búsquedas de perfiles técnicos para empresas Serie A a públicas en LATAM y globalmente. Su trabajo parte de un diagnóstico antes de salir al mercado.',
+    tags: ['Inteligencia', 'Compensación', 'LATAM'],
+    quoteImage: 'Speed\nis not\na virtue.',
+    pullQuote: {
+      text: 'Un mapa desactualizado no te lleva al lugar equivocado. Te deja parado en el lugar correcto, convencido de que ya llegaste.',
+      cite: 'Mara Schmitman, Bondy Group',
+    },
+    dataCallout: {
+      num: '+38%',
+      label: 'Variación promedio · 2023–2025',
+      desc: 'Incremento en expectativas salariales de perfiles Senior+ en engineering LATAM. Datos internos Bondy basados en 340 procesos cerrados en el período.',
+    },
+    featured: true,
+    content: `
+<p>Hace tres años, un Senior Backend Engineer en Buenos Aires pedía entre <strong>USD 4.000 y 6.000 mensuales</strong>. Hoy el mismo perfil pide entre <strong>USD 6.500 y 9.000</strong>. El mercado se movió. Las expectativas de los candidatos se movieron. Pero muchos hiring managers siguen usando los mismos rangos de 2023 como referencia.</p>
+
+<p>El resultado es predecible: ofertas rechazadas, procesos que se alargan, y candidatos que se caen en la última etapa porque la cifra no está ni cerca de lo que esperaban.</p>
+
+<h2>Por qué pasó esto.</h2>
+
+<p>Tres factores se combinaron. Primero, la <strong>dolarización de facto</strong> del mercado tech: la mayoría de los perfiles con más de 5 años de experiencia en LATAM hoy tiene acceso directo a empresas de EEUU y Europa vía remote. El piso de referencia dejó de ser local.</p>
+
+<p>Segundo, la <strong>concentración de la demanda</strong>. Los mejores perfiles tienen múltiples procesos abiertos en simultáneo. Cuando hay escasez real, el precio sube.</p>
+
+<p>Tercero, el <strong>desfasaje del lado empresa</strong>. Las bandas salariales internas se fijan anualmente. El mercado se mueve cada trimestre. La brecha se acumula.</p>
+
+<h2>Qué hacer con esto.</h2>
+
+<h3>1. Actualizá tu referencia antes de abrir el proceso.</h3>
+<p>No des por sentado que lo que pagaste hace 18 meses sigue siendo competitivo. Antes de definir el rango, pedíle a tu firma de recruiting datos recientes de procesos cerrados en el mismo stack y nivel.</p>
+
+<h3>2. Separá el rango del presupuesto.</h3>
+<p>El rango que le mostrás al candidato no tiene que ser idéntico al techo interno aprobado. Mostrarlo antes de que el candidato defina su expectativa ancla la conversación en el número equivocado.</p>
+
+<h3>3. La velocidad es una variable de compensación.</h3>
+<p>Un proceso que tarda 6 semanas compite en desventaja aunque el número sea correcto. Claridad en las etapas y feedback rápido valen más de lo que parece.</p>
+
+<hr>
+
+<p>En Bondy llevamos 16 años cerrando búsquedas técnicas en LATAM. Lo que vemos hoy no es una anomalía: es la nueva normalidad de un mercado que se integró globalmente más rápido de lo que las estructuras internas pudieron procesar.</p>
+
+<hr>
+<p class="article-sources"><strong>Fuentes:</strong> Datos internos Bondy Group (340 procesos cerrados, 2023–2025). Contrastados con Howdy <em>LatAm Software Engineer Cost Benchmarks 2026</em> y Teilur Talent <em>LATAM Developer Salary Report 2026</em>.</p>
+`,
+  },
 ]
 
 // ─────────────────────────────────────────────
@@ -501,4 +648,31 @@ export function getArticleBySlug(slug: string, lang: Lang): Article | undefined 
 
 export function getAllSlugs(lang: Lang): string[] {
   return articles.filter(a => a.lang === lang).map(a => a.slug)
+}
+
+export function getFeaturedArticle(lang: Lang): Article | undefined {
+  const byLang = articles.filter(a => a.lang === lang)
+  return byLang.find(a => a.featured) ?? byLang[0]
+}
+
+export function getRelatedArticles(slug: string, lang: Lang, limit = 3): Article[] {
+  return articles
+    .filter(a => a.lang === lang && a.slug !== slug)
+    .slice(0, limit)
+}
+
+// Builds a short "Apr 2026" / "Abr 2026" style label from an ISO date.
+export function formatArticleDate(iso: string, lang: Lang): string {
+  const d = new Date(iso + 'T00:00:00')
+  const monthsEn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+  const monthsEs = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+  const months = lang === 'es' ? monthsEs : monthsEn
+  return `${months[d.getMonth()]} ${d.getFullYear()}`
+}
+
+// Normalizes the string 'Line 1\nLine 2' into an array of trimmed lines (max 3).
+// Used by QuoteImage to produce the SVG from the frontmatter.
+export function splitQuoteImage(quote: string | undefined): string[] {
+  if (!quote) return []
+  return quote.split('\n').map(s => s.trim()).filter(Boolean).slice(0, 3)
 }
