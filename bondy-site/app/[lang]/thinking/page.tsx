@@ -11,6 +11,7 @@ import {
   type Article,
 } from '@/lib/thinking/articles'
 import QuoteImage from '@/components/thinking/QuoteImage'
+import NewsletterInline from '@/components/thinking/NewsletterInline'
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 
@@ -201,7 +202,7 @@ export default function ThinkingPage({ params }: { params: { lang: Lang } }) {
           maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 32,
           alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between',
         }}>
-          <div style={{ flex: '1 1 360px' }}>
+          <div style={{ flex: '1 1 320px', minWidth: 280 }}>
             <span style={{
               fontFamily: body, fontSize: 10, letterSpacing: '0.14em',
               textTransform: 'uppercase', color: tw.green, display: 'block',
@@ -216,17 +217,25 @@ export default function ThinkingPage({ params }: { params: { lang: Lang } }) {
               {L.newsletterTitle}
             </p>
           </div>
-          <Link
-            href={lk('/contact')}
-            style={{
-              fontFamily: body, fontSize: 10, letterSpacing: '0.12em',
-              textTransform: 'uppercase', padding: '14px 26px',
-              background: tw.green, color: '#fff', textDecoration: 'none',
-              whiteSpace: 'nowrap', fontWeight: 500,
-            }}
-          >
-            {L.subscribe}
-          </Link>
+          <div style={{ flex: '1 1 320px', minWidth: 280 }}>
+            <NewsletterInline
+              lang={lang as 'en' | 'es'}
+              placeholder={L.newsletterPlaceholder}
+              cta={isEN ? 'Subscribe' : 'Suscribirse'}
+              successTitle={isEN ? 'Check your inbox.' : 'Revisá tu casilla.'}
+              successBody={
+                isEN
+                  ? "We just sent you a confirmation email. Click the link inside and you're in."
+                  : 'Te acabamos de mandar un mail de confirmación. Hacé click en el link y listo.'
+              }
+              errorGeneric={
+                isEN
+                  ? 'Something went wrong. Try again in a moment.'
+                  : 'Algo salió mal. Probá de nuevo en un momento.'
+              }
+              errorInvalid={isEN ? 'Please enter a valid email.' : 'Ingresá un email válido.'}
+            />
+          </div>
         </div>
       </section>
 

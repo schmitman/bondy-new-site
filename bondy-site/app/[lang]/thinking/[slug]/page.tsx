@@ -12,6 +12,7 @@ import {
 } from '@/lib/thinking/articles'
 import { notFound } from 'next/navigation'
 import QuoteImage from '@/components/thinking/QuoteImage'
+import NewsletterInline from '@/components/thinking/NewsletterInline'
 
 // ── Static params ─────────────────────────────────────────────────────────────
 
@@ -553,22 +554,27 @@ export default function ArticlePage({
               </span>
               <p style={{
                 fontFamily: serif, fontSize: '0.95rem', color: tw.mid,
-                opacity: 0.9, marginBottom: 12, margin: 0,
+                opacity: 0.9, margin: '0 0 14px 0',
               }}>
                 {L.newsletterTitle}
               </p>
-              <Link
-                href={lk('/contact')}
-                style={{
-                  fontFamily: body, fontSize: 9, letterSpacing: '0.10em',
-                  textTransform: 'uppercase', padding: '9px', width: '100%',
-                  background: tw.green, color: '#fff', textDecoration: 'none',
-                  display: 'block', textAlign: 'center', marginTop: 12,
-                  fontWeight: 500,
-                }}
-              >
-                {L.subscribe}
-              </Link>
+              <NewsletterInline
+                lang={lang as 'en' | 'es'}
+                placeholder={isEN ? 'your@email.com' : 'tu@email.com'}
+                cta={isEN ? 'Subscribe' : 'Suscribirse'}
+                successTitle={isEN ? 'Check your inbox.' : 'Revisá tu casilla.'}
+                successBody={
+                  isEN
+                    ? "Click the link in the email we just sent and you're in."
+                    : 'Hacé click en el link del mail que acabamos de mandar.'
+                }
+                errorGeneric={
+                  isEN
+                    ? 'Something went wrong. Try again.'
+                    : 'Algo salió mal. Probá de nuevo.'
+                }
+                errorInvalid={isEN ? 'Enter a valid email.' : 'Ingresá un email válido.'}
+              />
             </div>
           </aside>
         </div>
