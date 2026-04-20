@@ -5,11 +5,12 @@
 // are anchored to the bottom-left. This SVG is the primary visual of the
 // article both in the /thinking list (card) and in the detail hero.
 //
-// Design source: Alex Diseño brief, 20/04/2026. Rules:
+// Design: minimal — only the quote typography + signature block. No watermark
+// numbers, no internal notebook grid (the page background already provides it
+// at the section level). Rules:
 // - Max 6 words per line, max 3 lines (enforced softly — we just render)
 // - Last line underlined in green (#4A8C40)
 // - Bondy 4-square mark + author NAME + "BONDY · THINKING" in bottom-left
-// - Background: cream with faint notebook grid lines
 //
 // The component is a pure function and can be rendered server-side.
 
@@ -71,29 +72,6 @@ export default function QuoteImage({
       aria-label={hasLines ? lines.join(' ') : 'Bondy Thinking'}
       role="img"
     >
-      {/* Notebook grid — horizontal blue lines every 32px */}
-      <line x1="0" y1="32"  x2={W} y2="32"  stroke="rgba(100,140,200,0.08)" strokeWidth="1" />
-      <line x1="0" y1="64"  x2={W} y2="64"  stroke="rgba(100,140,200,0.08)" strokeWidth="1" />
-      <line x1="0" y1="96"  x2={W} y2="96"  stroke="rgba(100,140,200,0.08)" strokeWidth="1" />
-      <line x1="0" y1="128" x2={W} y2="128" stroke="rgba(100,140,200,0.08)" strokeWidth="1" />
-      <line x1="0" y1="160" x2={W} y2="160" stroke="rgba(100,140,200,0.08)" strokeWidth="1" />
-      <line x1="0" y1="192" x2={W} y2="192" stroke="rgba(100,140,200,0.08)" strokeWidth="1" />
-      <line x1="0" y1="224" x2={W} y2="224" stroke="rgba(100,140,200,0.08)" strokeWidth="1" />
-      {/* Vertical red margin line */}
-      <line x1="20" y1="0" x2="20" y2={H} stroke="rgba(210,100,80,0.06)" strokeWidth="1" />
-
-      {/* Big ghost number — decorative watermark (year shorthand) */}
-      <text
-        x="18"
-        y="170"
-        fontFamily="'Special Elite', Georgia, serif"
-        fontSize="130"
-        fill="#4A8C40"
-        opacity="0.06"
-      >
-        16
-      </text>
-
       {/* The quote lines */}
       {hasLines &&
         lines.map((line, i) => (
