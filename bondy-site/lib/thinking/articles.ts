@@ -571,6 +571,116 @@ Para roles senior en Buenos Aires trabajando para una empresa de EE.UU., la comp
   },
 
   {
+    slug: 'por-que-los-ingenieros-senior-en-argentina-son-mas-dificiles-de-contratar',
+    lang: 'es',
+    category: 'Tendencias',
+    date: '2026-04-15',
+    readingTime: '7 min',
+    title: 'Por qué los ingenieros senior en Argentina son más difíciles de contratar que hace dos años',
+    excerpt: 'En 2025, contratar un ingeniero de software senior en Argentina — genuinamente senior — es más difícil que antes de los layoffs globales. Esto es lo que cambió y qué significa para las empresas que quieren contratar ahora.',
+    meta: {
+      title: 'Por qué los ingenieros senior en Argentina son más difíciles de contratar — Bondy',
+      description: 'La ventana de los layoffs se cerró. Las empresas de EE.UU. absorbieron el talento senior. Qué cambió en el mercado de ingeniería argentino desde 2023 y qué significa para tu próxima búsqueda.',
+    },
+    content: `
+<p>Hace dos años, las empresas que se acercaban a Argentina buscando talento senior tenían una ventana.</p>
+<p>Los despidos masivos en tech de 2022–2023 habían liberado una parte del talento senior que estaba bloqueado en arreglos remotos con empresas estadounidenses. Por unos meses, candidatos que normalmente nunca respondían a outreach estaban contestando mensajes. Algunos hasta aplicaban a cosas.</p>
+<p>Esa ventana se cerró.</p>
+<p>En 2025, contratar un ingeniero de software senior en Argentina — genuinamente senior, no solo "cinco años y el título" — es más difícil que antes de que empezaran los layoffs. Esto es lo que cambió y qué significa para las empresas que quieren contratar ahora.</p>
+
+<h2>Qué le pasó al pool de talento</h2>
+<p>La versión corta: las empresas estadounidenses lo absorbieron.</p>
+<p>Entre 2021 y 2024, la demanda de empresas de EE.UU. y Europa por ingenieros remotos de LATAM creció un 286% según informes regionales de hiring. Argentina, con su nivel de inglés y alineación horaria, absorbió una parte desproporcionada de esa demanda. Empresas que despidieron ingenieros basados en EE.UU. muchas veces los reemplazaron directamente con talento argentino y colombiano a un costo significativamente menor.</p>
+<p>Los ingenieros que consiguieron esos roles no los dejaron. Siguen en ellos. La tasa de attrición de ingenieros argentinos trabajando para empresas estadounidenses fue baja, porque la propuesta de valor es clara: cobran en dólares, trabajan en problemas interesantes y la alternativa es un mercado local que no puede competir en salario.</p>
+<p>Lo que esto creó es una capa senior que está en gran medida bloqueada. No desempleada. No buscando. Accesible pasivamente en el mejor de los casos.</p>
+
+<h2>El efecto de compresión salarial</h2>
+<p>Cuando las empresas estadounidenses entraron al mercado argentino agresivamente, trajeron expectativas de compensación cercanas a las de EE.UU. Las tarifas que eran competitivas en 2020 empezaron a quedarse cortas en 2022. Para 2025, un ingeniero Backend o Python senior en Buenos Aires con experiencia real en producción espera entre USD 50.000 y 75.000 anuales. Los especialistas en AI/ML y los buenos perfiles Full-Stack rutinariamente piden más.</p>
+<p>Datos verificados de nómina de la red de Howdy (12.500+ desarrolladores de LATAM) muestran a Argentina liderando la región con un promedio de USD 63.000 anuales para ingenieros de software en todos los niveles de seniority.</p>
+<p>Para empresas cuyos presupuestos fueron fijados en base a datos de 2021 o 2022, esto es un problema. Llegan a Argentina esperando un mercado de descuento y encuentran algo más cercano a uno competitivo para los perfiles senior.</p>
+
+<h2>La brecha de experiencia es real</h2>
+<p>No toda la experiencia es equivalente, y esto importa más que antes cuando el mercado era más grande. Un ingeniero con siete años de experiencia en una startup argentina local tiene un perfil distinto al de un ingeniero con siete años construyendo sistemas distribuidos para una empresa estadounidense en Series C. Ambos tienen el mismo seniority en papel. El contexto técnico relevante, el inglés fluido en un standup que va rápido, la familiaridad con la cultura de desarrollo de producto de una empresa estadounidense — esas cosas son distintas.</p>
+<p>Los perfiles que combinan seniority, escala productiva y fluidez trabajando con equipos internacionales distribuidos son los más demandados. Y también los que menos probablemente estén buscando activamente.</p>
+
+<h2>La IA subió el bar de qué significa "bueno"</h2>
+<p>Los despidos en el sector tech global están cada vez más enfocados en reestructuraciones alrededor de modelos de productividad basados en IA. Los roles puramente de coding están contrayendo. La demanda crece para ingenieros que pueden trabajar junto a herramientas de IA, que entienden cómo integrar LLMs en sistemas de producción, que pueden tomar decisiones arquitecturales en un contexto donde el multiplicador de productividad es real pero los modos de falla son nuevos.</p>
+<p>Los premiums salariales para perfiles AI/ML y Backend adyacente a IA en Argentina llegaron a USD 85.000–100.000 anuales. Las empresas que vienen a Argentina buscando un ingeniero senior y describen el rol como "algo de IA" están describiendo uno de los perfiles más difíciles de cubrir en el mercado.</p>
+
+<h2>Qué significa esto en la práctica</h2>
+<ul>
+<li><strong>El outreach tarda más en generar respuestas.</strong> Los ingenieros senior que vale la pena encontrar no están actualizando LinkedIn. Se requieren paciencia y especificidad.</li>
+<li><strong>La calibración salarial tiene que pasar antes del sourcing.</strong> Un presupuesto que no refleja las tarifas de 2025 va a producir rechazos en la etapa de oferta después de semanas de proceso.</li>
+<li><strong>El brief tiene que ser preciso.</strong> Una búsqueda vaga de "backend senior" produce resultados vagos.</li>
+<li><strong>La velocidad importa más que antes.</strong> Los candidatos senior en 2025 típicamente tienen más de un proceso corriendo al mismo tiempo. Las empresas que cierran se mueven de la primera entrevista a la oferta en dos o tres semanas.</li>
+</ul>
+
+<h2>El mercado sigue valiendo la pena</h2>
+<p>Nada de esto significa que Argentina no sea un buen lugar para contratar. Lo es. Los ingenieros son sólidos, el nivel de inglés es real, los husos horarios funcionan. Incluso con el crecimiento salarial, la diferencia de costo versus EE.UU. sigue siendo significativa: USD 50.000–80.000 para un ingeniero senior en Argentina frente a USD 120.000–160.000+ para un perfil comparable en EE.UU.</p>
+<p>Pero ya no es un mercado comprador en el nivel senior. Las empresas que construyen bien aquí lo tratan como lo que es: un mercado competitivo para una oferta específica y limitada de talento senior.</p>
+
+<hr>
+<p class="article-sources"><strong>Fuentes:</strong> Howdy <em>LatAm Software Engineer Cost Benchmarks 2026</em>; Rest of World (2023) sobre patrones de reemplazo post-layoffs en LATAM; index.dev <em>LATAM Developer Rates in 2025</em> (crecimiento de demanda del 286%); TechTarget sobre reestructuración impulsada por IA; EF English Proficiency Index 2024.</p>
+`,
+  },
+
+  {
+    slug: 'el-diagnostico-que-corremos-antes-de-cada-busqueda',
+    lang: 'es',
+    category: 'Método Bondy',
+    date: '2026-04-15',
+    readingTime: '9 min',
+    title: 'El diagnóstico que corremos antes de cada búsqueda (y por qué la mayoría de las firmas lo saltea)',
+    excerpt: 'La mayoría de los procesos de recruiting empiezan igual: el cliente manda una JD, el recruiter empieza a sourcear. Esa secuencia saltea el paso más importante — y saltearlo es la razón por la que tantas búsquedas tardan más de lo que deberían.',
+    meta: {
+      title: 'El Diagnóstico que Corremos Antes de Cada Búsqueda — Bondy',
+      description: 'Antes de sourcear a una sola persona, Bondy corre un diagnóstico estructurado. Qué cubre, por qué lleva una semana, y por qué las búsquedas corridas sin él cierran significativamente peor.',
+    },
+    content: `
+<p>La mayoría de los procesos de recruiting empiezan igual: el cliente manda una descripción del puesto, el recruiter empieza a sourcear y los primeros candidatos aparecen en dos semanas.</p>
+<p>El problema con esta secuencia es que saltea el paso más importante. Y saltearlo es la razón por la que tantas búsquedas tardan más de lo que deberían, producen candidatos que no encajan, y terminan con alguien contratado que no funciona en el primer año.</p>
+<p>Antes de sourcear a una sola persona, corremos un diagnóstico. Toma tiempo que no facturamos. Retrasa el inicio del sourcing una o dos semanas. Y es lo que más contribuye a que las búsquedas cierren bien.</p>
+
+<h2>En qué consiste el diagnóstico</h2>
+<p>No es complicado. Es una conversación estructurada — generalmente de 60 a 90 minutos — con las personas que van a evaluar candidatos y tomar la decisión de contratación. No solo el recruiter que abrió el req. El engineering lead, el hiring manager y, cuando es posible, alguien del equipo al que se va a unir la persona.</p>
+<p>El objetivo es responder un conjunto específico de preguntas que la mayoría de las job descriptions dejan sin definir:</p>
+<p><strong>¿Cómo se ve "bueno" a los 90 días?</strong> No la lista de requisitos. ¿Qué cosas específicas debería haber hecho, construido o cambiado esta persona en sus primeros tres meses para que la contratación se considere exitosa? Si las personas en la sala dan respuestas distintas a esta pregunta, tienen un problema que el sourcing no va a resolver.</p>
+<p><strong>¿Cómo es el trabajo en el día a día?</strong> ¿Qué va a hacer la persona un martes a las 3pm? ¿Con quién habla? ¿Qué sistemas toca?</p>
+<p><strong>¿Cuál es el contexto del equipo?</strong> El seniority en papel no significa nada sin saber qué significa seniority en este equipo específico. Un ingeniero senior que entra a un equipo de staff+ engineers está en un rol distinto al de un ingeniero senior que va a ser la persona con más experiencia en la sala.</p>
+<p><strong>¿Cuáles son las restricciones reales?</strong> Timeline, presupuesto, must-haves versus nice-to-haves, dealbreakers. Tuve clientes que pasaron 45 minutos describiendo los requisitos técnicos en detalle y después mencionaron al final que el rol es presencial en Buenos Aires tres días por semana. Eso no es una nota al pie. Elimina al 80% de las personas que íbamos a sourcear.</p>
+<p><strong>¿Dónde fallaron las búsquedas anteriores para este rol?</strong> Esta está subutilizada. Si la empresa ya intentó contratar para este rol, los patrones en esos fracasos te dicen más que cualquier lista de requisitos.</p>
+
+<h2>Qué sale de la conversación</h2>
+<p>Al final del diagnóstico, producimos un brief escrito. No la job description — el brief es un documento interno, de dos o tres páginas, que captura lo que aprendimos y cómo se traduce en la búsqueda.</p>
+<p>Define: el nivel de seniority específico con ejemplos concretos, el bar técnico con los must-haves reales separados de los deseos, los requisitos de estilo de trabajo, el rango de compensación calibrado al mercado a la fecha de inicio de la búsqueda, el proceso de entrevistas y quién es dueño de cada etapa, y las red flags que descalificarían a un candidato que de otro modo es fuerte.</p>
+<p>Compartimos este brief con el cliente. Si lo leen y dicen "no es exactamente eso", hablamos de por qué. Esa conversación, antes de que empiece el sourcing, vale más que cualquier cantidad de sourcing hecho contra un brief vago.</p>
+
+<h2>Por qué se saltea este paso</h2>
+<p>La respuesta honesta es que cuesta tiempo y no se parece a un entregable. Los clientes que están contratando con urgencia quieren ver candidatos rápido. Una firma que empieza a mandar perfiles en la primera semana parece que está avanzando. Una firma que pide una llamada de 90 minutos antes de hacer cualquier cosa parece que está generando fricción.</p>
+<p>Las firmas que saltean el diagnóstico pueden mandar perfiles más rápido. Solo que mandan más perfiles equivocados. El cliente pasa tres semanas entrevistando candidatos que no están del todo bien, ajusta el brief informalmente a partir de los rechazos y eventualmente aparece la persona correcta. Para cuando se los contrata, el proceso tardó más de lo que hubiese tardado una búsqueda bien briefeada.</p>
+
+<h2>El ángulo de la psicología organizacional</h2>
+<p>Mi formación es en psicología organizacional, y eso moldea cómo pienso en esto. Una job description es un documento de expectativas de comportamiento. Cuando está bien escrito, describe lo que una persona necesita hacer, cómo necesita interactuar y por qué resultados es responsable. La mayoría no están bien escritas.</p>
+<p>El diagnóstico es un proceso estructurado para extraer las expectativas de comportamiento que la job description no capturó. No los requisitos técnicos — esos generalmente están bien. El estilo de trabajo, el encaje organizacional, la dinámica del equipo, el modelo de toma de decisiones.</p>
+<p>En 17 años de recruiting técnico, la mayoría de las salidas tempranas — las contrataciones que se van antes de los seis meses — no fueron fracasos de evaluación técnica. La persona podía programar. No podía comunicarse de la manera que el equipo necesitaba. O necesitaba más estructura de la que el rol provea. O el rol cambió dos meses después y no estaban construidos para la ambigüedad. Estos desajustes son predecibles antes de que se haga la contratación si hacés las preguntas correctas.</p>
+
+<h2>Qué pueden hacer los clientes antes de llamarnos</h2>
+<p>Si estás considerando una búsqueda técnica en Argentina y querés empezar el trabajo de diagnóstico antes de contactar una firma, estas son las preguntas que vale la pena responder internamente:</p>
+<ol>
+<li>¿Cómo se ve el éxito a 90 días? Escribílo en tres oraciones específicas.</li>
+<li>¿Cuál es el entorno técnico real — escala, stack, tamaño del equipo, proceso de desarrollo?</li>
+<li>¿Qué presupuesto tenemos fijado, y está actualizado con las tarifas de mercado de 2025?</li>
+<li>¿Ya intentamos contratar para este rol antes? ¿Qué pasó?</li>
+<li>¿Quién en nuestra organización va a entrevistar y cuál es el rol de cada persona en la decisión?</li>
+</ol>
+<p>Si esas respuestas están claras antes de la primera conversación con un recruiter, la búsqueda va a ser más rápida. Si no están claras, para eso existe el diagnóstico.</p>
+
+<hr>
+<p class="article-sources"><strong>Fuentes:</strong> Metodología interna y datos de placement de Bondy Group (2008–presente). Estimaciones de costo de contratación fallida de SHRM (1,5–2 veces el salario anual). Literatura de psicología organizacional sobre marcos de expectativas de comportamiento (base del enfoque diagnóstico de Bondy, a partir de la formación de Mara Schmitman en UdeSA).</p>
+`,
+  },
+
+  {
     slug: 'por-que-el-salary-benchmarking-de-2023-ya-no-sirve',
     lang: 'es',
     category: 'Inteligencia de mercado',
