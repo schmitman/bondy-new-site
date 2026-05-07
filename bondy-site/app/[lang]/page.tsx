@@ -41,6 +41,7 @@ export async function generateMetadata({
       siteName: 'Bondy',
       locale: params.lang === 'es' ? 'es_AR' : 'en_US',
       type: 'website',
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
     },
   }
 }

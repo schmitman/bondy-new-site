@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { lang: 'en' | 'es'
   return {
     title: meta.title, description: meta.description,
     alternates: { canonical, languages: { en: `${baseUrl}/en/services`, es: `${baseUrl}/es/services` } },
-    openGraph: { title: meta.title, description: meta.description, url: canonical, siteName: 'Bondy', locale: params.lang === 'es' ? 'es_AR' : 'en_US', type: 'website' },
+    openGraph: { title: meta.title, description: meta.description, url: canonical, siteName: 'Bondy', locale: params.lang === 'es' ? 'es_AR' : 'en_US', type: 'website', images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Bondy' }] },
   }
 }
 
