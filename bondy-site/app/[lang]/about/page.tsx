@@ -200,7 +200,7 @@ export default function AboutPage({ params }: { params: { lang: Lang } }) {
               <p style={{ fontFamily: mono, fontSize: '14px', lineHeight: 1.78, color: tw.inkSub }}>{a.team.joinBody}</p>
             </div>
             <div>
-              <a href="mailto:hola@wearebondy.com?subject=sumarse" style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: tw.green, textDecoration: 'none' }}>
+              <a href="mailto:hello@wearebondy.com?subject=sumarse" style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: tw.green, textDecoration: 'none' }}>
                 {a.team.joinCta} →
               </a>
             </div>
