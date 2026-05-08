@@ -57,12 +57,12 @@ export const translations = {
         h1_3: 'Built for',
         h1_em1: 'LATAM',
         h1_em2: 'engineering.',
-        body: "We help global teams hire senior engineers across Argentina and LATAM. Sixteen years, one method, no resume floods.",
+        body: "We help global teams hire senior engineers across Argentina and LATAM. Eighteen years, one method, no resume floods.",
         cta_primary: 'Talk to us ↗',
         cta_secondary: 'Our method →',
       },
       stats: {
-        experience: { label: 'Experience', value: '16', sup: '+', desc: 'years in technical recruitment' },
+        experience: { label: 'Experience', value: '18', sup: '+', desc: 'years in technical recruitment' },
         speed:      { label: 'Speed',      value: '5–7', sup: 'd', desc: 'to your first qualified candidate' },
         retention:  { label: 'Retention',  value: '94', sup: '%', desc: 'of placements still in role at 6 months' },
         method:     { label: 'Method',     title: 'The Bondy\nMethod™', desc: 'A proprietary framework for technical hiring' },
@@ -299,7 +299,7 @@ export const translations = {
         p1: "Bondy was founded with a specific frustration: that technical recruiting was being done by people who didn't understand engineers, for companies that didn't understand what they were really looking for.",
         p2: "The result was predictable — high volume, low quality, short tenures. A $30,000 mistake dressed up as a service.",
         p3: "We started with a different approach: apply the rigor of organizational psychology to the search process. Define what \"fit\" actually means before looking for it. Interview deeply. Send fewer candidates — and better ones.",
-        p4: "Sixteen years later, 94% of the people we place are still in role at 6 months. That number is the only metric we care about.",
+        p4: "Eighteen years later, 94% of the people we place are still in role at 6 months. That number is the only metric we care about.",
       },
       values: {
         label: 'How we work',
@@ -451,7 +451,7 @@ export const translations = {
     home: {
       meta: {
         title: 'Bondy — El estándar en contratación técnica',
-        description: 'No te mandamos candidatos. Te mandamos el correcto. Bondy lleva 16 años colocando ingenieros senior en empresas tech de alto crecimiento.',
+        description: 'No te mandamos candidatos. Te mandamos el correcto. Bondy lleva 18 años colocando ingenieros senior en empresas tech de alto crecimiento.',
       },
       topbar: {
         left: 'El estándar en contratación técnica.',
@@ -464,12 +464,12 @@ export const translations = {
         h1_3: 'vas a',
         h1_em1: 'necesitar',
         h1_em2: 'alguna vez.',
-        body: 'La mayoría de los recruiters te mandan candidatos. Nosotros te mandamos el indicado. La diferencia es enorme — y llevamos 16 años perfeccionándola.',
+        body: 'La mayoría de los recruiters te mandan candidatos. Nosotros te mandamos el indicado. La diferencia es enorme — y llevamos 18 años perfeccionándola.',
         cta_primary: 'Hablemos ↗',
         cta_secondary: 'Nuestro método →',
       },
       stats: {
-        experience: { label: 'Experiencia', value: '16', sup: '+', desc: 'años en reclutamiento técnico' },
+        experience: { label: 'Experiencia', value: '18', sup: '+', desc: 'años en reclutamiento técnico' },
         speed:      { label: 'Velocidad',    value: '5–7', sup: 'd', desc: 'hasta tu primera terna calificada' },
         retention:  { label: 'Retención',    value: '94', sup: '%', desc: 'de los perfiles siguen en el puesto a los 6 meses' },
         method:     { label: 'Método',       title: 'El Método\nBondy™', desc: 'Un framework propietario de contratación técnica' },
@@ -702,7 +702,7 @@ export const translations = {
         p1: 'Bondy nació de una frustración concreta: el reclutamiento técnico lo hacían personas que no entendían a los ingenieros, para empresas que no sabían bien qué estaban buscando.',
         p2: 'El resultado era predecible — alto volumen, baja calidad, rotación temprana. Un error de 30.000 dólares disfrazado de servicio.',
         p3: 'Empezamos con un enfoque diferente: aplicar el rigor de la psicología organizacional al proceso de búsqueda. Definir qué significa "fit" antes de ir a buscarlo. Entrevistar en profundidad. Mandar menos candidatos — y mejores.',
-        p4: 'Dieciséis años después, el 94% de las personas que colocamos siguen en el puesto a los 6 meses. Ese número es la única métrica que nos importa.',
+        p4: 'Dieciocho años después, el 94% de las personas que colocamos siguen en el puesto a los 6 meses. Ese número es la única métrica que nos importa.',
       },
       values: {
         label: 'Cómo trabajamos',

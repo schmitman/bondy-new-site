@@ -348,7 +348,7 @@ For senior roles in Buenos Aires working for a US company, competitive total com
 
 <hr>
 
-<p>At Bondy we've been closing technical searches in LATAM for 16 years. What we're seeing today is not an anomaly: it's the new normal of a market that integrated globally faster than internal structures could process.</p>
+<p>At Bondy we've been closing technical searches in LATAM for 18 years. What we're seeing today is not an anomaly: it's the new normal of a market that integrated globally faster than internal structures could process.</p>
 
 <hr>
 <p class="article-sources"><strong>Sources:</strong> Internal Bondy Group data (340 closed processes, 2023–2025). Cross-referenced against Howdy <em>LatAm Software Engineer Cost Benchmarks 2026</em> and Teilur Talent <em>LATAM Developer Salary Report 2026</em>.</p>
@@ -734,7 +734,7 @@ Para roles senior en Buenos Aires trabajando para una empresa de EE.UU., la comp
 
 <hr>
 
-<p>En Bondy llevamos 16 años cerrando búsquedas técnicas en LATAM. Lo que vemos hoy no es una anomalía: es la nueva normalidad de un mercado que se integró globalmente más rápido de lo que las estructuras internas pudieron procesar.</p>
+<p>En Bondy llevamos 18 años cerrando búsquedas técnicas en LATAM. Lo que vemos hoy no es una anomalía: es la nueva normalidad de un mercado que se integró globalmente más rápido de lo que las estructuras internas pudieron procesar.</p>
 
 <hr>
 <p class="article-sources"><strong>Fuentes:</strong> Datos internos Bondy Group (340 procesos cerrados, 2023–2025). Contrastados con Howdy <em>LatAm Software Engineer Cost Benchmarks 2026</em> y Teilur Talent <em>LATAM Developer Salary Report 2026</em>.</p>
