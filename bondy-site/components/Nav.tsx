@@ -79,7 +79,6 @@ export default function Nav({ lang, tr }: NavProps) {
 
   const rm = tr.resourcesMenu
   const resourceItems = rm ? [
-    { title: rm.candidatesTitle, desc: rm.candidatesDesc, href: rm.candidatesHref, external: true,  badge: 'NEW' },
     { title: rm.recruitersTitle, desc: rm.recruitersDesc, href: rm.recruitersHref, external: true,  badge: null  },
     { title: rm.hiringTitle,     desc: rm.hiringDesc,     href: rm.hiringHref,     external: false, badge: null  },
     { title: rm.thinkingTitle,   desc: rm.thinkingDesc,   href: rm.thinkingHref,   external: false, badge: null  },
@@ -145,6 +144,50 @@ export default function Nav({ lang, tr }: NavProps) {
               </Link>
             </li>
           ))}
+
+          {/* We're hiring — top-level con dot pulsante */}
+          {tr.weAreHiring && (
+            <li>
+              <Link
+                href={lk('/roles')}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontFamily: mono,
+                  fontSize: '14px',
+                  letterSpacing: '0.04em',
+                  textDecoration: 'none',
+                  color: isActive('/roles') ? '#1A1A1A' : '#1A1A1A',
+                  transition: 'color 0.18s',
+                }}
+              >
+                <span style={{ position: 'relative', display: 'inline-flex', width: '8px', height: '8px' }}>
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      borderRadius: '50%',
+                      background: '#4A8C40',
+                      animation: 'bondyPulseRing 1.8s ease-out infinite',
+                      opacity: 0.6,
+                    }}
+                  />
+                  <span
+                    style={{
+                      position: 'relative',
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#4A8C40',
+                    }}
+                  />
+                </span>
+                {tr.weAreHiring}
+              </Link>
+            </li>
+          )}
 
           {/* Resources dropdown */}
           {rm && (
@@ -369,6 +412,42 @@ export default function Nav({ lang, tr }: NavProps) {
               {label}
             </Link>
           ))}
+
+          {/* Mobile: We're hiring */}
+          {tr.weAreHiring && (
+            <Link
+              href={lk('/roles')}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                fontFamily: mono,
+                fontSize: '14px',
+                letterSpacing: '0.04em',
+                textDecoration: 'none',
+                color: '#1A1A1A',
+                padding: '1rem clamp(1.25rem,5vw,4rem)',
+                borderBottom: '1px solid #E8E4DE',
+              }}
+            >
+              <span style={{ position: 'relative', display: 'inline-flex', width: '8px', height: '8px' }}>
+                <span
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: '50%',
+                    background: '#4A8C40',
+                    animation: 'bondyPulseRing 1.8s ease-out infinite',
+                    opacity: 0.6,
+                  }}
+                />
+                <span style={{ position: 'relative', width: '8px', height: '8px', borderRadius: '50%', background: '#4A8C40' }} />
+              </span>
+              {tr.weAreHiring}
+            </Link>
+          )}
 
           {/* Mobile resources section — expanded inline */}
           {rm && (
