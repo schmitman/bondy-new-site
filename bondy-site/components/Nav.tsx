@@ -79,10 +79,10 @@ export default function Nav({ lang, tr }: NavProps) {
 
   const rm = tr.resourcesMenu
   const resourceItems = rm ? [
-    { title: rm.candidatesTitle, desc: rm.candidatesDesc, href: rm.candidatesHref, external: false, badge: null },
-    { title: rm.recruitersTitle, desc: rm.recruitersDesc, href: rm.recruitersHref, external: false, badge: null },
-    { title: rm.hiringTitle,     desc: rm.hiringDesc,     href: rm.hiringHref,     external: false, badge: null },
-    { title: rm.teamTitle,       desc: rm.teamDesc,       href: rm.teamHref,       external: false, badge: null },
+    { title: rm.candidatesTitle, desc: rm.candidatesDesc, href: rm.candidatesHref, external: true, badge: null },
+    { title: rm.recruitersTitle, desc: rm.recruitersDesc, href: rm.recruitersHref, external: true, badge: null },
+    { title: rm.hiringTitle,     desc: rm.hiringDesc,     href: rm.hiringHref,     external: true, badge: null },
+    { title: rm.teamTitle,       desc: rm.teamDesc,       href: rm.teamHref,       external: true, badge: null },
   ] : []
 
   return (
@@ -193,9 +193,12 @@ export default function Nav({ lang, tr }: NavProps) {
           {/* Resources dropdown */}
           {rm && (
             <li ref={resourcesRef} style={{ position: 'relative' }}>
-              <button
-                onClick={() => setResourcesOpen(!resourcesOpen)}
+              <a
+                href="https://tools.wearebondy.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseEnter={() => setResourcesOpen(true)}
+                onFocus={() => setResourcesOpen(true)}
                 aria-expanded={resourcesOpen}
                 aria-haspopup="true"
                 style={{
@@ -211,13 +214,14 @@ export default function Nav({ lang, tr }: NavProps) {
                   alignItems: 'center',
                   gap: '6px',
                   transition: 'color 0.18s',
+                  textDecoration: 'none',
                 }}
               >
                 {tr.resources}
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transform: resourcesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.18s' }}>
                   <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-              </button>
+              </a>
 
               {resourcesOpen && (
                 <div
