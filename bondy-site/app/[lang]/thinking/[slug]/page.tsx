@@ -45,7 +45,7 @@ export async function generateMetadata({
       locale: params.lang === 'es' ? 'es_AR' : 'en_US',
       type: 'article',
       publishedTime: article.date,
-      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
+      images: [{ url: '/og-image-v2.png', width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
     },
   }
 }

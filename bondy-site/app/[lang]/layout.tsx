@@ -45,7 +45,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: '/og-image.png',
+          url: '/og-image-v2.png',
           width: 1200,
           height: 630,
           alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM',
@@ -56,7 +56,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: 'Bondy — The standard for technical hiring',
       description: tr.home.meta.description,
-      images: ['/og-image.png'],
+      images: ['/og-image-v2.png'],
     },
     robots: { index: true, follow: true },
     icons: {

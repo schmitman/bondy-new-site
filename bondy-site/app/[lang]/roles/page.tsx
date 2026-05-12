@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
       description: tr.roles.meta.description,
       url: `${baseUrl}/${params.lang}/roles`,
       type: 'website',
-      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
+      images: [{ url: '/og-image-v2.png', width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
     },
   }
 }
