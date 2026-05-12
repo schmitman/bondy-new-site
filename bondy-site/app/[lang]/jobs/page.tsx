@@ -2,6 +2,7 @@
 
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import Turnstile from '@/components/Turnstile'
 import { useState } from 'react'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
@@ -118,6 +119,8 @@ export default function JobsPage({ params }: { params: { lang: Lang } }) {
   const c = copy[lang]
 
   const [form, setForm] = useState<FormState>({ name: '', email: '', linkedin: '', roleInterest: '', yearsExperience: '', message: '' })
+  const [website, setWebsite] = useState('') // honeypot
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -128,7 +131,20 @@ export default function JobsPage({ params }: { params: { lang: Lang } }) {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await fetch('/api/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      const res = await fetch('/api/jobs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          linkedin: form.linkedin || undefined,
+          currentPosition: form.roleInterest || undefined,
+          yearsExperience: form.yearsExperience ? Number(form.yearsExperience) : undefined,
+          pitch: form.message || undefined,
+          turnstileToken,
+          website, // honeypot — server filtra si no está vacío
+        }),
+      })
       if (!res.ok) throw new Error('Failed')
       setStatus('success')
     } catch { setStatus('error') }
@@ -242,8 +258,15 @@ export default function JobsPage({ params }: { params: { lang: Lang } }) {
                   </div>
                 </div>
                 <div><label style={lbl}>{c.message}</label><textarea name="message" value={form.message} onChange={handleChange} required rows={5} placeholder={c.messagePlaceholder} style={{ ...inputStyle, resize: 'none' }} /></div>
+                {/* Honeypot — humanos no lo ven, bots lo llenan */}
+                <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none', height: 0, overflow: 'hidden' }} aria-hidden="true">
+                  <label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} /></label>
+                </div>
+                <div>
+                  <Turnstile onVerify={(token) => setTurnstileToken(token)} onExpire={() => setTurnstileToken(null)} />
+                </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <button type="submit" disabled={status === 'loading'} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: tw.green, color: '#fff', fontFamily: mono, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '13px 28px', border: 'none', cursor: 'pointer', opacity: status === 'loading' ? 0.5 : 1 }}>
+                  <button type="submit" disabled={status === 'loading' || !turnstileToken} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: tw.green, color: '#fff', fontFamily: mono, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '13px 28px', border: 'none', cursor: (status === 'loading' || !turnstileToken) ? 'not-allowed' : 'pointer', opacity: (status === 'loading' || !turnstileToken) ? 0.5 : 1 }}>
                     {status === 'loading' ? c.sending : c.submit}
                   </button>
                   {status === 'error' && <span style={{ fontFamily: mono, fontSize: '10px', color: '#C0392B', letterSpacing: '0.1em' }}>{c.errorMsg}</span>}
