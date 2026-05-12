@@ -79,9 +79,10 @@ export default function Nav({ lang, tr }: NavProps) {
 
   const rm = tr.resourcesMenu
   const resourceItems = rm ? [
-    { title: rm.recruitersTitle, desc: rm.recruitersDesc, href: rm.recruitersHref, external: true,  badge: null  },
-    { title: rm.hiringTitle,     desc: rm.hiringDesc,     href: rm.hiringHref,     external: false, badge: null  },
-    { title: rm.thinkingTitle,   desc: rm.thinkingDesc,   href: rm.thinkingHref,   external: false, badge: null  },
+    { title: rm.candidatesTitle, desc: rm.candidatesDesc, href: rm.candidatesHref, external: false, badge: null },
+    { title: rm.recruitersTitle, desc: rm.recruitersDesc, href: rm.recruitersHref, external: false, badge: null },
+    { title: rm.hiringTitle,     desc: rm.hiringDesc,     href: rm.hiringHref,     external: false, badge: null },
+    { title: rm.teamTitle,       desc: rm.teamDesc,       href: rm.teamHref,       external: false, badge: null },
   ] : []
 
   return (

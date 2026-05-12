@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import RoleShareButton from '@/components/RoleShareButton'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 import { listPublishedRoles, publicClientLabel, formatSalary, type Role } from '@/lib/roles'
@@ -44,7 +45,14 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
       description: tr.roles.meta.description,
       url: `${baseUrl}/${params.lang}/roles`,
       type: 'website',
-      images: [{ url: '/og-image-v2.png', width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
+      siteName: 'Bondy',
+      images: [{ url: `${baseUrl}/og-image-v2.png`, width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: tr.roles.meta.title,
+      description: tr.roles.meta.description,
+      images: [`${baseUrl}/og-image-v2.png`],
     },
   }
 }
@@ -185,21 +193,28 @@ function RoleRow({
   if (role.modality) metaItems.push(role.modality)
   if (role.location) metaItems.push(role.location)
 
+  const shareUrl = `https://wearebondy.com/${lang}/roles/${role.slug}`
+
   return (
     <li
       style={{
         borderTop: isFirst ? `1px solid ${tw.rule}` : 'none',
         borderBottom: `1px solid ${tw.rule}`,
         background: role.is_featured ? 'rgba(74,140,64,0.04)' : 'transparent',
+        position: 'relative',
       }}
     >
+      {/* Share button — positioned over the row, outside the Link */}
+      <div style={{ position: 'absolute', top: 'clamp(1.25rem,3vw,2rem)', right: 'clamp(0.5rem,2vw,1.5rem)', zIndex: 5 }}>
+        <RoleShareButton url={shareUrl} title={role.title} company={publicClientLabel(role, lang)} lang={lang} variant="compact" />
+      </div>
       <Link
         href={`/${lang}/roles/${role.slug}`}
         style={{
           display: 'grid',
           gridTemplateColumns: 'minmax(0,1fr) auto',
           gap: '1.5rem',
-          padding: 'clamp(1.25rem,3vw,2rem) clamp(0.5rem,2vw,1.5rem)',
+          padding: 'clamp(1.25rem,3vw,2rem) clamp(3.5rem,6vw,4.5rem) clamp(1.25rem,3vw,2rem) clamp(0.5rem,2vw,1.5rem)',
           textDecoration: 'none',
           color: 'inherit',
           alignItems: 'center',

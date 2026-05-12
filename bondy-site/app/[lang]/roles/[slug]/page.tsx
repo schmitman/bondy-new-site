@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import RoleShareButton from '@/components/RoleShareButton'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 import {
@@ -81,7 +82,14 @@ export async function generateMetadata({
       description: desc,
       url: `${baseUrl}/${params.lang}/roles/${role.slug}`,
       type: 'article',
-      images: [{ url: '/og-image-v2.png', width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
+      siteName: 'Bondy',
+      images: [{ url: `${baseUrl}/og-image-v2.png`, width: 1200, height: 630, alt: 'Bondy — Technical Recruiting for Engineering Teams in LATAM' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: desc,
+      images: [`${baseUrl}/og-image-v2.png`],
     },
   }
 }
@@ -206,7 +214,7 @@ export default async function RoleDetailPage({
           {salary && <Spec label={s.salary} value={salary} />}
         </div>
 
-        <div style={{ marginTop: 'clamp(1.5rem,3vw,2.25rem)' }}>
+        <div style={{ marginTop: 'clamp(1.5rem,3vw,2.25rem)', display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
           <a
             href="#apply"
             style={{
@@ -225,6 +233,13 @@ export default async function RoleDetailPage({
           >
             {tr.roles.detail.apply}
           </a>
+          <RoleShareButton
+            url={`https://wearebondy.com/${lang}/roles/${role.slug}`}
+            title={role.title}
+            company={clientLabel}
+            lang={lang}
+            variant="full"
+          />
         </div>
       </section>
 
