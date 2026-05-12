@@ -2,9 +2,21 @@
 // Server-side helpers for the public job board (/roles + /roles/[slug]).
 // Uses the Supabase REST API directly — no JS SDK to keep bundle light.
 // All queries respect RLS: anon can only SELECT where status='published'.
-
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tchppyxhapxtjemxrbqm.supabase.co'
-const SUPABASE_ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+//
+// IMPORTANT: bondy_roles lives in the SCRAPER Supabase project (tchppyxhapxtjemxrbqm),
+// NOT in the main bondy-tools project (ejvjpjwcbxicbknrbddb). We hardcode the URL
+// and anon key as fallbacks because (a) NEXT_PUBLIC_SUPABASE_URL in Vercel has
+// shipped with a trailing \n in the past, and (b) if NEXT_PUBLIC_SUPABASE_ANON_KEY
+// is unset or points to the wrong project, the page silently renders empty.
+const SUPABASE_URL = (
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  'https://tchppyxhapxtjemxrbqm.supabase.co'
+).trim()
+const SUPABASE_ANON = (
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  // Public anon key for project tchppyxhapxtjemxrbqm — safe to hardcode (RLS-enforced).
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaHBweXhoYXB4dGplbXhyYnFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MzE5NTUsImV4cCI6MjA4NzUwNzk1NX0.GwH_UZV_62cOkd8x1UknkajQVk1eDosLL0DkV8hsjhw'
+).trim()
 
 export type Role = {
   id: string
