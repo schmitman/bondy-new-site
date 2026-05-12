@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import type { Lang, Translations } from '@/lib/i18n/translations'
 
@@ -28,10 +28,15 @@ const notebookBg = [
   'repeating-linear-gradient(180deg, transparent 0px, transparent 31px, rgba(100,140,200,0.09) 31px, rgba(100,140,200,0.09) 32px)',
 ].join(',')
 
+const mono = "'Plus Jakarta Sans', system-ui, sans-serif"
+const serif = "'Special Elite', Georgia, serif"
+
 export default function Nav({ lang, tr }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [resourcesOpen, setResourcesOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const resourcesRef = useRef<HTMLLIElement>(null)
 
   const otherLang: Lang = lang === 'en' ? 'es' : 'en'
 
@@ -48,15 +53,37 @@ export default function Nav({ lang, tr }: NavProps) {
 
   const lk = (href: string) => `/${lang}${href}`
 
+  // Cerrar dropdown con click outside o Esc
+  useEffect(() => {
+    if (!resourcesOpen) return
+    const onClick = (e: MouseEvent) => {
+      if (resourcesRef.current && !resourcesRef.current.contains(e.target as Node)) {
+        setResourcesOpen(false)
+      }
+    }
+    const onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') setResourcesOpen(false) }
+    document.addEventListener('mousedown', onClick)
+    document.addEventListener('keydown', onEsc)
+    return () => {
+      document.removeEventListener('mousedown', onClick)
+      document.removeEventListener('keydown', onEsc)
+    }
+  }, [resourcesOpen])
+
   const navLinks = [
     { href: '/method',   label: tr.method   },
     { href: '/services', label: tr.services },
     { href: '/work',     label: tr.work     },
-    { href: '/roles',    label: tr.roles    },
-    { href: '/thinking', label: tr.thinking },
     { href: '/about',    label: tr.about    },
-    { href: '/practice', label: tr.practice },
   ]
+
+  const rm = tr.resourcesMenu
+  const resourceItems = rm ? [
+    { title: rm.candidatesTitle, desc: rm.candidatesDesc, href: rm.candidatesHref, external: true,  badge: 'NEW' },
+    { title: rm.recruitersTitle, desc: rm.recruitersDesc, href: rm.recruitersHref, external: true,  badge: null  },
+    { title: rm.hiringTitle,     desc: rm.hiringDesc,     href: rm.hiringHref,     external: false, badge: null  },
+    { title: rm.thinkingTitle,   desc: rm.thinkingDesc,   href: rm.thinkingHref,   external: false, badge: null  },
+  ] : []
 
   return (
     <nav
@@ -87,7 +114,7 @@ export default function Nav({ lang, tr }: NavProps) {
         >
           <BondyLogo size={22} />
           <span style={{
-            fontFamily: "'Special Elite', Georgia, serif",
+            fontFamily: serif,
             fontSize: '17px',
             color: '#1A1A1A',
             letterSpacing: '0.04em',
@@ -99,14 +126,14 @@ export default function Nav({ lang, tr }: NavProps) {
         {/* Desktop links */}
         <ul
           className="hidden md:flex"
-          style={{ alignItems: 'center', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}
+          style={{ alignItems: 'center', gap: '1.75rem', listStyle: 'none', margin: 0, padding: 0 }}
         >
           {navLinks.map(({ href, label }) => (
             <li key={href}>
               <Link
                 href={lk(href)}
                 style={{
-                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  fontFamily: mono,
                   fontSize: '14px',
                   letterSpacing: '0.04em',
                   textDecoration: 'none',
@@ -119,10 +146,133 @@ export default function Nav({ lang, tr }: NavProps) {
             </li>
           ))}
 
+          {/* Resources dropdown */}
+          {rm && (
+            <li ref={resourcesRef} style={{ position: 'relative' }}>
+              <button
+                onClick={() => setResourcesOpen(!resourcesOpen)}
+                onMouseEnter={() => setResourcesOpen(true)}
+                aria-expanded={resourcesOpen}
+                aria-haspopup="true"
+                style={{
+                  fontFamily: mono,
+                  fontSize: '14px',
+                  letterSpacing: '0.04em',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: resourcesOpen ? '#1A1A1A' : '#7A7874',
+                  padding: 0,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'color 0.18s',
+                }}
+              >
+                {tr.resources}
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transform: resourcesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.18s' }}>
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              {resourcesOpen && (
+                <div
+                  onMouseLeave={() => setResourcesOpen(false)}
+                  style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 14px)',
+                    right: 0,
+                    width: '480px',
+                    background: '#FEFCF9',
+                    border: '1px solid #E8E4DE',
+                    boxShadow: '0 8px 32px rgba(26,26,26,0.08)',
+                    padding: '0.5rem',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '2px',
+                  }}
+                >
+                  {resourceItems.map((item) => {
+                    const content = (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                          <span style={{
+                            fontFamily: serif,
+                            fontSize: '13px',
+                            color: '#1A1A1A',
+                            letterSpacing: '0.02em',
+                          }}>
+                            {item.title}
+                          </span>
+                          {item.badge && (
+                            <span style={{
+                              fontFamily: mono,
+                              fontSize: '8px',
+                              letterSpacing: '0.18em',
+                              color: '#4A8C40',
+                              background: 'rgba(74,140,64,0.08)',
+                              padding: '2px 6px',
+                              borderRadius: '2px',
+                            }}>
+                              {item.badge}
+                            </span>
+                          )}
+                          {item.external && (
+                            <span style={{ fontSize: '10px', color: '#7A7874' }}>↗</span>
+                          )}
+                        </div>
+                        <div style={{
+                          fontFamily: mono,
+                          fontSize: '11px',
+                          lineHeight: 1.5,
+                          color: '#7A7874',
+                        }}>
+                          {item.desc}
+                        </div>
+                      </>
+                    )
+                    const cellStyle: React.CSSProperties = {
+                      display: 'block',
+                      padding: '14px 16px',
+                      textDecoration: 'none',
+                      borderRadius: '2px',
+                      transition: 'background 0.15s',
+                    }
+                    return item.external ? (
+                      <a
+                        key={item.title}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={cellStyle}
+                        onClick={() => setResourcesOpen(false)}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(74,140,64,0.06)' }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      <Link
+                        key={item.title}
+                        href={item.href}
+                        style={cellStyle}
+                        onClick={() => setResourcesOpen(false)}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(74,140,64,0.06)' }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+                      >
+                        {content}
+                      </Link>
+                    )
+                  })}
+                </div>
+              )}
+            </li>
+          )}
+
           {/* Lang toggle */}
           <li style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span style={{
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontFamily: mono,
               fontSize: '11px',
               letterSpacing: '0.13em',
               textTransform: 'uppercase',
@@ -134,7 +284,7 @@ export default function Nav({ lang, tr }: NavProps) {
             <button
               onClick={switchLang}
               style={{
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontFamily: mono,
                 fontSize: '11px',
                 letterSpacing: '0.13em',
                 textTransform: 'uppercase',
@@ -154,7 +304,7 @@ export default function Nav({ lang, tr }: NavProps) {
             <Link
               href={lk('/contact')}
               style={{
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontFamily: mono,
                 fontSize: '11px',
                 letterSpacing: '0.10em',
                 textTransform: 'uppercase',
@@ -162,7 +312,7 @@ export default function Nav({ lang, tr }: NavProps) {
                 color: '#4A8C40',
               }}
             >
-              {tr.cta} →
+              {tr.cta}
             </Link>
           </li>
         </ul>
@@ -196,6 +346,8 @@ export default function Nav({ lang, tr }: NavProps) {
             borderTop: '1px solid #E8E4DE',
             backgroundColor: '#FEFCF9',
             backgroundImage: notebookBg,
+            maxHeight: 'calc(100vh - 60px)',
+            overflowY: 'auto',
           }}
         >
           {navLinks.map(({ href, label }) => (
@@ -204,7 +356,7 @@ export default function Nav({ lang, tr }: NavProps) {
               href={lk(href)}
               onClick={() => setMenuOpen(false)}
               style={{
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontFamily: mono,
                 fontSize: '14px',
                 letterSpacing: '0.04em',
                 textDecoration: 'none',
@@ -217,10 +369,57 @@ export default function Nav({ lang, tr }: NavProps) {
               {label}
             </Link>
           ))}
+
+          {/* Mobile resources section — expanded inline */}
+          {rm && (
+            <div style={{ borderBottom: '1px solid #E8E4DE' }}>
+              <div style={{
+                fontFamily: mono,
+                fontSize: '10px',
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: '#4A8C40',
+                padding: '1rem clamp(1.25rem,5vw,4rem) 0.5rem',
+              }}>
+                {tr.resources}
+              </div>
+              {resourceItems.map((item) => {
+                const cellStyle: React.CSSProperties = {
+                  display: 'block',
+                  padding: '0.75rem clamp(1.25rem,5vw,4rem) 1rem',
+                  textDecoration: 'none',
+                }
+                const inner = (
+                  <>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+                      <span style={{ fontFamily: serif, fontSize: '14px', color: '#1A1A1A', letterSpacing: '0.02em' }}>
+                        {item.title}
+                      </span>
+                      {item.badge && (
+                        <span style={{ fontFamily: mono, fontSize: '8px', letterSpacing: '0.18em', color: '#4A8C40', background: 'rgba(74,140,64,0.08)', padding: '2px 6px', borderRadius: '2px' }}>
+                          {item.badge}
+                        </span>
+                      )}
+                      {item.external && <span style={{ fontSize: '10px', color: '#7A7874' }}>↗</span>}
+                    </div>
+                    <div style={{ fontFamily: mono, fontSize: '12px', lineHeight: 1.5, color: '#7A7874' }}>
+                      {item.desc}
+                    </div>
+                  </>
+                )
+                return item.external ? (
+                  <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer" style={cellStyle} onClick={() => setMenuOpen(false)}>{inner}</a>
+                ) : (
+                  <Link key={item.title} href={item.href} style={cellStyle} onClick={() => setMenuOpen(false)}>{inner}</Link>
+                )
+              })}
+            </div>
+          )}
+
           <button
             onClick={() => { switchLang(); setMenuOpen(false) }}
             style={{
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontFamily: mono,
               fontSize: '14px',
               letterSpacing: '0.04em',
               background: 'none',
@@ -238,7 +437,7 @@ export default function Nav({ lang, tr }: NavProps) {
             href={lk('/contact')}
             onClick={() => setMenuOpen(false)}
             style={{
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontFamily: mono,
               fontSize: '14px',
               letterSpacing: '0.04em',
               textDecoration: 'none',
@@ -247,7 +446,7 @@ export default function Nav({ lang, tr }: NavProps) {
               display: 'block',
             }}
           >
-            {tr.cta} →
+            {tr.cta}
           </Link>
         </div>
       )}
