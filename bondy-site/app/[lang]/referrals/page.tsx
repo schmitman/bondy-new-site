@@ -84,6 +84,7 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
   const c = copy[lang]
 
   const [form, setForm] = useState<FormState>({ referrerName: '', referrerEmail: '', refereeName: '', refereeLinkedIn: '', message: '' })
+  const [website, setWebsite] = useState('') // honeypot
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
 
@@ -96,7 +97,7 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
     if (!turnstileToken) { setStatus('error'); return }
     setStatus('loading')
     try {
-      const res = await fetch('/api/referrals', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, turnstileToken }) })
+      const res = await fetch('/api/referrals', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, turnstileToken, website }) })
       if (!res.ok) throw new Error('Failed')
       setStatus('success')
     } catch { setStatus('error') }
@@ -223,6 +224,10 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
                     <div><label style={lbl}>{c.refLinkedIn}</label><input name="refereeLinkedIn" value={form.refereeLinkedIn} onChange={handleChange} placeholder={c.refLinkedInPlaceholder} style={inputStyle} /></div>
                     <div><label style={lbl}>{c.message}</label><textarea name="message" value={form.message} onChange={handleChange} rows={4} placeholder={c.messagePlaceholder} style={{ ...inputStyle, resize: 'none' }} /></div>
                   </div>
+                </div>
+                {/* Honeypot — humanos no lo ven, bots lo llenan */}
+                <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none', height: 0, overflow: 'hidden' }} aria-hidden="true">
+                  <label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} /></label>
                 </div>
                 <Turnstile onVerify={(token) => setTurnstileToken(token)} onExpire={() => setTurnstileToken(null)} />
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
