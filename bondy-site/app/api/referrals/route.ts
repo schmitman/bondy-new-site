@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { verifyTurnstileToken } from '@/lib/turnstile'
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { referrerName, referrerEmail, refereeName, refereeLinkedIn, message } = body
+    const { referrerName, referrerEmail, refereeName, refereeLinkedIn, message, turnstileToken } = body
 
     if (!referrerName || !referrerEmail || !refereeName) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    }
+
+    const remoteIp = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || null
+    const ts = await verifyTurnstileToken(turnstileToken, remoteIp)
+    if (!ts.ok) {
+      return NextResponse.json({ error: 'Captcha verification failed', reason: ts.reason }, { status: 400 })
     }
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL

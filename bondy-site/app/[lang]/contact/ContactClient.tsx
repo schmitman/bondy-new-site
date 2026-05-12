@@ -2,7 +2,9 @@
 
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import Turnstile from '@/components/Turnstile'
 import { useState } from 'react'
+import Link from 'next/link'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 
@@ -28,6 +30,7 @@ export default function ContactClient({ params }: { params: { lang: Lang } }) {
 
   const [form, setForm] = useState<FormData>({ name: '', email: '', company: '', role: '', message: '', service: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -35,12 +38,16 @@ export default function ContactClient({ params }: { params: { lang: Lang } }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!turnstileToken) {
+      setStatus('error')
+      return
+    }
     setStatus('loading')
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, lang }),
+        body: JSON.stringify({ ...form, lang, turnstileToken }),
       })
       if (!res.ok) throw new Error('Failed')
       setStatus('success')
@@ -133,13 +140,32 @@ export default function ContactClient({ params }: { params: { lang: Lang } }) {
           {/* Right — form */}
           <div style={{ background: tw.white, padding: '4rem clamp(1.25rem,4vw,3.5rem)' }}>
             {status === 'success' ? (
-              <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ fontFamily: serif, fontSize: '2.5rem', color: tw.inkMid, marginBottom: '1rem' }} className="tw-ink">
-                  {c.success.title}
+              <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2rem' }}>
+                <div>
+                  <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: tw.green, marginBottom: '0.75rem' }}>
+                    ● {lang === 'en' ? 'Message received' : 'Mensaje recibido'}
+                  </div>
+                  <div style={{ fontFamily: serif, fontSize: 'clamp(2rem,3.5vw,2.75rem)', color: tw.inkMid, marginBottom: '1rem', lineHeight: 1.1 }} className="tw-ink">
+                    {c.success.title}
+                  </div>
+                  <p style={{ fontFamily: mono, fontSize: '15px', lineHeight: 1.75, maxWidth: '420px', color: tw.inkSub }}>
+                    {c.success.body}
+                  </p>
                 </div>
-                <p style={{ fontFamily: mono, fontSize: '15px', lineHeight: 1.75, maxWidth: '360px', color: tw.inkSub }}>
-                  {c.success.body}
-                </p>
+                <div style={{ borderTop: `1px solid ${tw.rule}`, paddingTop: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '0.25rem' }}>
+                    {lang === 'en' ? 'While you wait' : 'Mientras tanto'}
+                  </div>
+                  <Link href={`/${lang}/thinking`} style={{ fontFamily: mono, fontSize: '14px', color: tw.green, textDecoration: 'none' }}>
+                    → {lang === 'en' ? 'Read our latest thinking' : 'Leé nuestras ideas más recientes'}
+                  </Link>
+                  <a href="https://tools.wearebondy.com/busco-trabajo" target="_blank" rel="noopener noreferrer" style={{ fontFamily: mono, fontSize: '14px', color: tw.green, textDecoration: 'none' }}>
+                    → {lang === 'en' ? 'Browse open roles in LATAM ↗' : 'Explorá búsquedas abiertas en LATAM ↗'}
+                  </a>
+                  <a href="https://linkedin.com/company/bondygroup" target="_blank" rel="noopener noreferrer" style={{ fontFamily: mono, fontSize: '14px', color: tw.green, textDecoration: 'none' }}>
+                    → {lang === 'en' ? 'Follow Bondy on LinkedIn ↗' : 'Seguinos en LinkedIn ↗'}
+                  </a>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
@@ -180,16 +206,19 @@ export default function ContactClient({ params }: { params: { lang: Lang } }) {
                   <textarea name="message" value={form.message} onChange={handleChange} required rows={5} placeholder={c.form.messagePlaceholder} style={{ ...inputStyle, resize: 'none' }} />
                 </div>
 
+                <Turnstile onVerify={(token) => setTurnstileToken(token)} onExpire={() => setTurnstileToken(null)} />
+
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <button
                     type="submit"
-                    disabled={status === 'loading'}
+                    disabled={status === 'loading' || !turnstileToken}
                     style={{
                       display: 'inline-flex', alignItems: 'center', gap: '10px',
                       background: tw.green, color: '#fff',
                       fontFamily: mono, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase',
-                      padding: '13px 28px', border: 'none', cursor: 'pointer',
-                      opacity: status === 'loading' ? 0.5 : 1,
+                      padding: '13px 28px', border: 'none',
+                      cursor: (status === 'loading' || !turnstileToken) ? 'not-allowed' : 'pointer',
+                      opacity: (status === 'loading' || !turnstileToken) ? 0.5 : 1,
                     }}
                   >
                     {status === 'loading' ? c.form.sending : c.form.submit}

@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
+import Turnstile from '@/components/Turnstile'
 
 const tw = {
   ink: '#1A1A1A',
@@ -32,6 +33,7 @@ export default function ApplyForm({ roleId, roleSlug, lang }: Props) {
   const [cv, setCv] = useState<File | null>(null)
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [error, setError] = useState<string | null>(null)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const MAX_CV_BYTES = 5 * 1024 * 1024
@@ -70,6 +72,11 @@ export default function ApplyForm({ roleId, roleSlug, lang }: Props) {
       return
     }
 
+    if (!turnstileToken) {
+      setError(lang === 'en' ? 'Please complete the captcha.' : 'Por favor completá el captcha.')
+      return
+    }
+
     setStatus('sending')
     try {
       const fd = new FormData()
@@ -80,6 +87,7 @@ export default function ApplyForm({ roleId, roleSlug, lang }: Props) {
       if (linkedin.trim()) fd.append('linkedin_url', linkedin.trim())
       if (notes.trim()) fd.append('notes', notes.trim())
       if (cv) fd.append('cv', cv)
+      fd.append('turnstileToken', turnstileToken)
 
       const res = await fetch('/api/roles/apply', {
         method: 'POST',
@@ -330,10 +338,12 @@ export default function ApplyForm({ roleId, roleSlug, lang }: Props) {
           </div>
         )}
 
+        <Turnstile onVerify={(token) => setTurnstileToken(token)} onExpire={() => setTurnstileToken(null)} />
+
         <button
           type="button"
           onClick={onSubmit}
-          disabled={sending}
+          disabled={sending || !turnstileToken}
           style={{
             fontFamily: mono,
             fontSize: '12px',
@@ -343,10 +353,10 @@ export default function ApplyForm({ roleId, roleSlug, lang }: Props) {
             color: '#fff',
             border: 'none',
             padding: '14px 26px',
-            cursor: sending ? 'not-allowed' : 'pointer',
+            cursor: (sending || !turnstileToken) ? 'not-allowed' : 'pointer',
             alignSelf: 'flex-start',
             marginTop: '0.5rem',
-            opacity: sending ? 0.6 : 1,
+            opacity: (sending || !turnstileToken) ? 0.6 : 1,
           }}
         >
           {sending ? ap.sending : ap.submit}

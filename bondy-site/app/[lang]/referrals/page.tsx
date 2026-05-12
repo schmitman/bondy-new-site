@@ -2,7 +2,9 @@
 
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import Turnstile from '@/components/Turnstile'
 import { useState } from 'react'
+import Link from 'next/link'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 
@@ -83,6 +85,7 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
 
   const [form, setForm] = useState<FormState>({ referrerName: '', referrerEmail: '', refereeName: '', refereeLinkedIn: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -90,9 +93,10 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!turnstileToken) { setStatus('error'); return }
     setStatus('loading')
     try {
-      const res = await fetch('/api/referrals', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      const res = await fetch('/api/referrals', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, turnstileToken }) })
       if (!res.ok) throw new Error('Failed')
       setStatus('success')
     } catch { setStatus('error') }
@@ -184,9 +188,25 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
           {/* Right */}
           <div style={{ background: tw.white, padding: '4rem clamp(1.25rem,4vw,3.5rem)' }}>
             {status === 'success' ? (
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 0' }}>
-                <div style={{ fontFamily: serif, fontSize: '2.5rem', color: tw.inkMid, marginBottom: '1rem' }} className="tw-ink">{c.successTitle}</div>
-                <p style={{ fontFamily: mono, fontSize: '15px', lineHeight: 1.75, maxWidth: '360px', color: tw.inkSub }}>{c.successBody}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem 0' }}>
+                <div>
+                  <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: tw.green, marginBottom: '0.75rem' }}>
+                    ● {lang === 'en' ? 'Referral received' : 'Referido recibido'}
+                  </div>
+                  <div style={{ fontFamily: serif, fontSize: 'clamp(2rem,3.5vw,2.75rem)', color: tw.inkMid, marginBottom: '1rem', lineHeight: 1.1 }} className="tw-ink">{c.successTitle}</div>
+                  <p style={{ fontFamily: mono, fontSize: '15px', lineHeight: 1.75, maxWidth: '420px', color: tw.inkSub }}>{c.successBody}</p>
+                </div>
+                <div style={{ borderTop: `1px solid ${tw.rule}`, paddingTop: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '0.25rem' }}>
+                    {lang === 'en' ? 'In the meantime' : 'Mientras tanto'}
+                  </div>
+                  <a href="https://tools.wearebondy.com/busco-trabajo" target="_blank" rel="noopener noreferrer" style={{ fontFamily: mono, fontSize: '14px', color: tw.green, textDecoration: 'none' }}>
+                    → {lang === 'en' ? 'See open roles in LATAM ↗' : 'Ver búsquedas abiertas en LATAM ↗'}
+                  </a>
+                  <Link href={`/${lang}/thinking`} style={{ fontFamily: mono, fontSize: '14px', color: tw.green, textDecoration: 'none' }}>
+                    → {lang === 'en' ? 'Read our latest thinking' : 'Leé nuestras ideas más recientes'}
+                  </Link>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
@@ -204,8 +224,9 @@ export default function ReferralsPage({ params }: { params: { lang: Lang } }) {
                     <div><label style={lbl}>{c.message}</label><textarea name="message" value={form.message} onChange={handleChange} rows={4} placeholder={c.messagePlaceholder} style={{ ...inputStyle, resize: 'none' }} /></div>
                   </div>
                 </div>
+                <Turnstile onVerify={(token) => setTurnstileToken(token)} onExpire={() => setTurnstileToken(null)} />
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <button type="submit" disabled={status === 'loading'} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: tw.green, color: '#fff', fontFamily: mono, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '13px 28px', border: 'none', cursor: 'pointer', opacity: status === 'loading' ? 0.5 : 1 }}>
+                  <button type="submit" disabled={status === 'loading' || !turnstileToken} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: tw.green, color: '#fff', fontFamily: mono, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '13px 28px', border: 'none', cursor: (status === 'loading' || !turnstileToken) ? 'not-allowed' : 'pointer', opacity: (status === 'loading' || !turnstileToken) ? 0.5 : 1 }}>
                     {status === 'loading' ? c.sending : c.submit}
                   </button>
                   {status === 'error' && <span style={{ fontFamily: mono, fontSize: '10px', color: '#C0392B', letterSpacing: '0.1em' }}>{c.errorMsg}</span>}
