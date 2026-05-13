@@ -101,3 +101,55 @@
   80%  { transform: scale(2.8); opacity: 0;   }
   100% { transform: scale(2.8); opacity: 0;   }
 }
+
+/* ── Bondy refresh — HeroV2 responsive grid ── */
+/* Used by /components/bondy/HeroV2.tsx                          */
+/* Server-component-friendly (no styled-jsx, no 'use client').   */
+.bondy-hero-v2__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 80px;
+  align-items: start;
+}
+.bondy-hero-v2__aside {
+  padding: 14px 0;
+  border-top: 1px solid var(--tw-rule);
+  border-bottom: 1px solid var(--tw-rule);
+  align-self: start;
+  margin-top: 36px;
+}
+@media (max-width: 959px) {
+  .bondy-hero-v2__grid {
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: 48px;
+  }
+}
+@media (max-width: 719px) {
+  .bondy-hero-v2__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .bondy-hero-v2__aside {
+    margin-top: 0;
+  }
+  .bondy-hero-v2__title {
+    margin-top: 24px !important;
+  }
+}
+
+/* ── Bondy refresh — Friendly card grid (Home services) ── */
+.bondy-friendly-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 959px) {
+  .bondy-friendly-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 639px) {
+  .bondy-friendly-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

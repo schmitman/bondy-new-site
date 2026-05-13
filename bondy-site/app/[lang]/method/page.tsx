@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import HeroV2 from '@/components/bondy/HeroV2'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 import type { Metadata } from 'next'
@@ -48,25 +49,23 @@ export default function MethodPage({ params }: { params: { lang: Lang } }) {
     <main style={{ backgroundColor: tw.bg, backgroundImage: notebookBg, minHeight: '100vh' }}>
       <Nav lang={lang} tr={tr.nav} />
 
-      {/* Header */}
+      {/* Header — Hero V2 (editorial + metadata aside) */}
       <header style={{ background: tw.white, borderBottom: `1px solid ${tw.rule}` }}>
-        <div style={{ padding: '4.5rem clamp(1.25rem,5vw,4rem) 4rem', maxWidth: '860px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
-            <div style={{ width: '22px', height: '1px', background: tw.green }} />
-            <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: tw.green }}>
-              {m.label}
-            </span>
-          </div>
-          <h1 style={{ fontFamily: serif, fontSize: 'clamp(2.5rem,6vw,5rem)', lineHeight: 1.05, color: tw.inkMid, marginBottom: '0.5rem' }} className="tw-ink-heavy">
-            {m.h1_1}<br />{m.h1_2} {m.h1_em}
-          </h1>
-          <svg width="280" height="8" viewBox="0 0 280 8" fill="none" style={{ display: 'block', marginBottom: '2rem' }}>
-            <path d="M0 4 Q70 1 140 4 Q210 7 280 4" stroke="#4A8C40" strokeWidth="2" fill="none" strokeLinecap="round"/>
-          </svg>
-          <p style={{ fontFamily: mono, fontSize: '15px', lineHeight: 1.78, maxWidth: '580px', color: tw.inkSub }}>
-            {m.intro}
-          </p>
-        </div>
+        <HeroV2
+          kicker={m.label}
+          title={
+            <>
+              {m.h1_1}<br />{m.h1_2} <em style={{ fontStyle: 'normal', color: tw.green }}>{m.h1_em}</em>
+            </>
+          }
+          underlineWidth={260}
+          body={m.intro}
+          meta={[
+            { n: '05', label: lang === 'es' ? 'Pasos' : 'Steps' },
+            { n: '18', label: lang === 'es' ? 'Años' : 'Years' },
+            { n: '1', label: lang === 'es' ? 'Método' : 'Method', separatorBefore: true },
+          ]}
+        />
       </header>
 
       {/* Steps */}

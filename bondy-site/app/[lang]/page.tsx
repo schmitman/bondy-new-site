@@ -1,6 +1,8 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import HeroV2 from '@/components/bondy/HeroV2'
+import { FriendlyCard, SectionBar } from '@/components/bondy/atoms'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 import type { Metadata } from 'next'
@@ -90,59 +92,27 @@ export default function Home({ params }: { params: { lang: Lang } }) {
     <main style={{ backgroundColor: tw.bg, backgroundImage: notebookBg, minHeight: '100vh' }}>
       <Nav lang={lang} tr={tr.nav} />
 
-      {/* ── HERO ── */}
-      <section style={{ minHeight: '92vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '5rem clamp(1.25rem,5vw,4rem) 4rem' }}>
-        {/* Kicker */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2.5rem' }}>
-          <div style={{ width: '22px', height: '1px', background: tw.green }} />
-          <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.20em', textTransform: 'uppercase', color: tw.green }}>
-            {h.hero.label}
-          </span>
-        </div>
-
-        {/* H1 */}
-        <h1
-          className="tw-ink-heavy"
-          style={{
-            fontFamily: serif,
-            fontSize: 'clamp(3.5rem,9vw,7rem)',
-            lineHeight: 0.96,
-            color: tw.inkMid,
-            marginBottom: '0.5rem',
-            maxWidth: '900px',
-          }}
-        >
-          {h.hero.h1_1}<br />
-          {h.hero.h1_2}<br />
-          {h.hero.h1_3} {h.hero.h1_em1}<br />
-          {h.hero.h1_em2}
-        </h1>
-        <TwUnderline width={320} />
-
-        <p style={{ fontFamily: mono, fontSize: '15px', color: tw.inkFaint, lineHeight: 1.8, marginTop: '2rem', marginBottom: '3rem', maxWidth: '440px' }}>
-          {h.hero.body}
-        </p>
-
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <Link href={lk('/contact')} style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px',
-            fontFamily: mono, fontSize: '11px', letterSpacing: '0.10em', textTransform: 'uppercase',
-            background: tw.green, color: '#fff',
-            padding: '13px 26px', textDecoration: 'none',
-          }}>
-            {h.hero.cta_primary} →
-          </Link>
-          <Link href={lk('/method')} style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px',
-            fontFamily: mono, fontSize: '11px', letterSpacing: '0.10em', textTransform: 'uppercase',
-            background: 'transparent', color: tw.inkSub,
-            padding: '13px 26px', textDecoration: 'none',
-            border: `1px solid ${tw.rule}`,
-          }}>
-            {h.hero.cta_secondary} →
-          </Link>
-        </div>
-      </section>
+      {/* ── HERO V2 (refresh — editorial + metadata aside) ── */}
+      <HeroV2
+        kicker={h.hero.label}
+        title={
+          <>
+            {h.hero.h1_1} <em style={{ fontStyle: 'normal', color: tw.green }}>{h.hero.h1_2}</em><br />
+            {h.hero.h1_3} <em style={{ fontStyle: 'normal', color: tw.green }}>{h.hero.h1_em1}</em> <em style={{ fontStyle: 'normal', color: tw.green }}>{h.hero.h1_em2}</em>
+          </>
+        }
+        underlineWidth={320}
+        body={h.hero.body}
+        primaryCta={{ label: h.hero.cta_primary.replace(/\s*[↗→]\s*$/, ''), href: lk('/contact') }}
+        secondaryCta={{ label: h.hero.cta_secondary.replace(/\s*[↗→]\s*$/, ''), href: lk('/method') }}
+        meta={[
+          { n: '18', label: lang === 'es' ? 'Años' : 'Years' },
+          { n: '94%', label: lang === 'es' ? 'Retención' : 'Retention' },
+          { n: '5–7d', label: lang === 'es' ? 'Shortlist' : 'Shortlist' },
+          { label: 'Buenos Aires', separatorBefore: true },
+          { label: lang === 'es' ? 'Remoto · LATAM' : 'Remote · LATAM' },
+        ]}
+      />
 
       {/* ── STATS ── */}
       <section style={{ borderTop: `1px solid ${tw.rule}`, borderBottom: `1px solid ${tw.rule}` }}>
@@ -196,36 +166,37 @@ export default function Home({ params }: { params: { lang: Lang } }) {
         </div>
       </section>
 
-      {/* ── SERVICES ── */}
+      {/* ── SERVICES (refresh — Friendly cards w/ tools DNA) ── */}
+      <div style={{ padding: '0 clamp(1.5rem, 5vw, 56px)' }}>
+        <SectionBar
+          label={lang === 'es' ? '— Tres maneras de trabajar' : '— Three ways we work'}
+          right={lang === 'es' ? '03 MODOS' : '03 SHOWING'}
+        />
+      </div>
       <section style={{ borderBottom: `1px solid ${tw.rule}` }}>
-        <div style={{ padding: '2rem clamp(1.25rem,5vw,4rem)', borderBottom: `1px solid ${tw.rule}` }}>
-          <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.green }}>
-            {h.services.label}
-          </span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px,1fr))' }}>
-          {h.services.items.map((svc, i) => (
-            <div key={i} style={{
-              padding: '3rem clamp(1.25rem,3vw,3rem)',
-              borderRight: i < h.services.items.length - 1 ? `1px solid ${tw.rule}` : 'none',
-              background: i % 2 === 0 ? tw.white : tw.bg,
-              display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-            }}>
-              <div>
-                <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '2rem' }}>{svc.n}</div>
-                <h3 style={{ fontFamily: serif, fontSize: '1.6rem', color: tw.inkMid, lineHeight: 1.2, marginBottom: '1rem' }} className="tw-ink">
-                  {svc.title.split('\n').map((line: string, j: number) => <span key={j}>{line}{j < svc.title.split('\n').length - 1 && <br />}</span>)}
-                </h3>
-                <p style={{ fontFamily: mono, fontSize: '14px', color: tw.inkSub, lineHeight: 1.75 }}>{svc.body}</p>
-              </div>
-              <Link href={lk(`/services#${['hunting','pipeline','rpo'][i]}`)} style={{
-                marginTop: '2rem', fontFamily: mono, fontSize: '10px', letterSpacing: '0.12em',
-                textTransform: 'uppercase', color: tw.green, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px',
-              }}>
-                {svc.cta} →
-              </Link>
-            </div>
-          ))}
+        <div className="bondy-friendly-grid" style={{ padding: '28px clamp(1.5rem, 5vw, 56px) 40px' }}>
+          {h.services.items.map((svc, i) => {
+            const slugs = ['hunting', 'pipeline', 'rpo'] as const
+            const kickers = lang === 'es'
+              ? ['Core · Dedicado', 'Lightweight · 3–5d', 'Embedded · 3+ meses']
+              : ['Core · Dedicated', 'Lightweight · 3–5d', 'Embedded · 3+ months']
+            const statuses = ['ACTIVE · CORE', 'ACTIVE · LIGHT', 'ACTIVE · RPO']
+            const cleanTitle = svc.title.replace(/\n/g, ' ').trim()
+            return (
+              <FriendlyCard
+                key={svc.n}
+                n={svc.n}
+                kicker={kickers[i]}
+                title={cleanTitle}
+                accent="."
+                status={statuses[i]}
+                body={svc.body}
+                cta={(lang === 'es' ? 'Ver ' : 'Learn ') + cleanTitle.toLowerCase()}
+                href={lk(`/services#${slugs[i]}`)}
+                counter={`0${i + 1} / 03`}
+              />
+            )
+          })}
         </div>
       </section>
 
