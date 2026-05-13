@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
         )
         if (!upRes.ok) {
           const errText = await upRes.text()
-          console.error('[general-application] CV upload failed', {
+          const dbg = {
             status: upRes.status,
             statusText: upRes.statusText,
             errText: errText.slice(0, 500),
@@ -95,7 +95,13 @@ export async function POST(req: NextRequest) {
             keyPrefix: SERVICE_ROLE.slice(0, 20),
             keySuffix: SERVICE_ROLE.slice(-10),
             bufferSize: buf.length,
-          })
+          }
+          console.error('[general-application] CV upload failed', dbg)
+          // Temporary: surface raw error to client when called with the debug header
+          // so we can diagnose env-var drift in prod without spelunking truncated logs.
+          if (req.headers.get('x-mateo-debug') === 'cv-upload') {
+            return NextResponse.json({ error: 'CV upload failed', debug: dbg }, { status: 500 })
+          }
           return NextResponse.json({ error: 'CV upload failed' }, { status: 500 })
         }
         cv_storage_path = path
