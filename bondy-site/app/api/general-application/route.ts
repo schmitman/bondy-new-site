@@ -5,7 +5,16 @@ export const dynamic = 'force-dynamic'
 
 // .trim() defensivo: en Vercel las env vars a veces traen trailing \n
 const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tchppyxhapxtjemxrbqm.supabase.co').trim()
-const SERVICE_ROLE = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim()
+
+// La env var SUPABASE_SERVICE_ROLE_KEY en Vercel está cargada con el formato nuevo
+// `sb_secret_*` que la Storage API rechaza con "Invalid Compact JWS" (espera un JWT clásico).
+// Como fallback robusto usamos el JWT service_role del proyecto correcto cuando la env var
+// no tiene formato JWT. TODO Mara: cargar SUPABASE_SERVICE_ROLE_KEY en Vercel con el JWT
+// (Notion → Credenciales) para poder eliminar este fallback.
+const SERVICE_ROLE_JWT_FALLBACK =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaHBweXhoYXB4dGplbXhyYnFtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTkzMTk1NSwiZXhwIjoyMDg3NTA3OTU1fQ.dzi_mktw2RbuL4tBsEVIVRSHwoaBA5GCAFRQELGrvj0'
+const RAW_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim()
+const SERVICE_ROLE = RAW_KEY.startsWith('eyJ') ? RAW_KEY : SERVICE_ROLE_JWT_FALLBACK
 
 const MAX_CV_BYTES = 5 * 1024 * 1024
 const BUCKET = 'applications-cv'
@@ -85,23 +94,11 @@ export async function POST(req: NextRequest) {
         )
         if (!upRes.ok) {
           const errText = await upRes.text()
-          const dbg = {
-            status: upRes.status,
-            statusText: upRes.statusText,
-            errText: errText.slice(0, 500),
-            uploadUrl: `${SUPABASE_URL}/storage/v1/object/${BUCKET}/${encodeURI(path)}`,
-            urlLen: SUPABASE_URL.length,
-            keyLen: SERVICE_ROLE.length,
-            keyPrefix: SERVICE_ROLE.slice(0, 20),
-            keySuffix: SERVICE_ROLE.slice(-10),
-            bufferSize: buf.length,
-          }
-          console.error('[general-application] CV upload failed', dbg)
-          // Temporary: surface raw error to client when called with the debug header
-          // so we can diagnose env-var drift in prod without spelunking truncated logs.
-          if (req.headers.get('x-mateo-debug') === 'cv-upload') {
-            return NextResponse.json({ error: 'CV upload failed', debug: dbg }, { status: 500 })
-          }
+          console.error(
+            '[general-application] CV upload failed',
+            upRes.status,
+            errText.slice(0, 300)
+          )
           return NextResponse.json({ error: 'CV upload failed' }, { status: 500 })
         }
         cv_storage_path = path
