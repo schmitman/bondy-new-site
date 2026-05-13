@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from 'next/server'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tchppyxhapxtjemxrbqm.supabase.co'
-const SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+// .trim() defensivo: en Vercel las env vars a veces traen trailing \n
+const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tchppyxhapxtjemxrbqm.supabase.co').trim()
+const SERVICE_ROLE = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim()
 
 const MAX_CV_BYTES = 5 * 1024 * 1024
 const BUCKET = 'applications-cv'
@@ -84,7 +85,17 @@ export async function POST(req: NextRequest) {
         )
         if (!upRes.ok) {
           const errText = await upRes.text()
-          console.error('[general-application] CV upload failed', upRes.status, errText)
+          console.error('[general-application] CV upload failed', {
+            status: upRes.status,
+            statusText: upRes.statusText,
+            errText: errText.slice(0, 500),
+            uploadUrl: `${SUPABASE_URL}/storage/v1/object/${BUCKET}/${encodeURI(path)}`,
+            urlLen: SUPABASE_URL.length,
+            keyLen: SERVICE_ROLE.length,
+            keyPrefix: SERVICE_ROLE.slice(0, 20),
+            keySuffix: SERVICE_ROLE.slice(-10),
+            bufferSize: buf.length,
+          })
           return NextResponse.json({ error: 'CV upload failed' }, { status: 500 })
         }
         cv_storage_path = path
