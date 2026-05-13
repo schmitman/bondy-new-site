@@ -2,6 +2,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import HeroV2 from '@/components/bondy/HeroV2'
+import { Tag, BondyUnderline, SectionBar } from '@/components/bondy/atoms'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 import type { Metadata } from 'next'
@@ -68,45 +69,82 @@ export default function MethodPage({ params }: { params: { lang: Lang } }) {
         />
       </header>
 
-      {/* Steps */}
-      <section>
-        {m.steps.map((step, i) => (
-          <div
-            key={step.n}
-            style={{
-              background: i % 2 === 0 ? tw.bg : tw.white,
-              borderBottom: `1px solid ${tw.rule}`,
-              padding: '3.5rem clamp(1.25rem,5vw,4rem)',
-            }}
-          >
-            <div className="method-step-grid">
-              <div style={{ fontFamily: mono, fontSize: '11px', letterSpacing: '0.15em', color: tw.green, paddingTop: '4px' }}>
-                {step.n}
-              </div>
-              <div>
-                <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.5rem,3vw,2.4rem)', lineHeight: 1.15, color: tw.inkMid, marginBottom: '0.6rem' }} className="tw-ink">
+      {/* Steps — grid de cards (refresh) */}
+      <div style={{ padding: '0 clamp(1.25rem,5vw,4rem)' }}>
+        <SectionBar
+          label={lang === 'es' ? '— Los cinco pasos' : '— The five steps'}
+          right={m.steps.length.toString().padStart(2, '0') + (lang === 'es' ? ' EN TOTAL' : ' STEPS')}
+        />
+      </div>
+      <section style={{ padding: '32px clamp(1.25rem,5vw,4rem) 56px' }}>
+        <div className="method-cards-grid">
+          {m.steps.map((step, i) => {
+            const phaseLabels = lang === 'es'
+              ? ['DIAGNÓSTICO', 'ESTRATEGIA', 'BÚSQUEDA', 'SHORTLIST', 'CIERRE']
+              : ['DIAGNOSE', 'STRATEGY', 'SEARCH', 'SHORTLIST', 'CLOSE']
+            const phaseTag = phaseLabels[i] || `STEP ${step.n}`
+            return (
+              <div
+                key={step.n}
+                style={{
+                  position: 'relative',
+                  background: tw.white,
+                  border: `1px solid ${tw.rule}`,
+                  padding: '36px 36px 28px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* corner accent */}
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  style={{ position: 'absolute', top: 0, right: 0 }}
+                  aria-hidden="true"
+                >
+                  <path d="M 14 0 L 40 0 L 40 26 Z" fill={tw.green} opacity="0.85" />
+                </svg>
+                {/* Top row: number + phase tag */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '22px' }}>
+                  <span style={{ fontFamily: mono, fontSize: '11px', letterSpacing: '0.18em', color: tw.inkFaint, fontWeight: 500 }}>
+                    {step.n}
+                  </span>
+                  <Tag tone="green">{phaseTag}</Tag>
+                </div>
+                {/* Title */}
+                <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.6rem,2.6vw,2.2rem)', lineHeight: 1.05, color: tw.inkMid, marginBottom: '8px', opacity: 0.92, fontWeight: 400, letterSpacing: '-0.005em' }} className="tw-ink">
                   {step.title}
                 </h2>
-                <div style={{ fontFamily: mono, fontSize: '14px', fontWeight: 700, color: tw.inkSub, marginBottom: '1.25rem' }}>
+                <BondyUnderline width={88} strokeWidth={2} style={{ marginBottom: '16px' }} />
+                {/* Sub bold */}
+                <div style={{ fontFamily: mono, fontSize: '14px', fontWeight: 700, color: tw.inkSub, marginBottom: '14px' }}>
                   {step.subtitle}
                 </div>
-                <p style={{ fontFamily: mono, fontSize: '15px', lineHeight: 1.82, maxWidth: '580px', color: tw.inkSub }}>
+                {/* Body */}
+                <p style={{ fontFamily: mono, fontSize: '14.5px', lineHeight: 1.78, color: tw.inkSub, flexGrow: 1, marginBottom: '24px' }}>
                   {step.body}
                 </p>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
-                <div style={{ border: `1px solid ${tw.rule}`, padding: '10px 18px', background: i % 2 === 0 ? tw.white : tw.bg }}>
-                  <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '5px' }}>
+                {/* Footer: timeline */}
+                <div style={{
+                  borderTop: `1px solid ${tw.rule}`,
+                  paddingTop: '14px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                  <span style={{ fontFamily: mono, fontSize: '9.5px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.inkFaint, fontWeight: 500 }}>
                     {m.timelineLabel}
-                  </div>
-                  <div style={{ fontFamily: mono, fontSize: '11px', color: tw.inkSub }}>
+                  </span>
+                  <span style={{ fontFamily: mono, fontSize: '11px', color: tw.inkSub, letterSpacing: '0.04em' }}>
                     {step.time}
-                  </div>
+                  </span>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            )
+          })}
+        </div>
       </section>
 
       {/* 1 in 4 Principle */}
@@ -155,16 +193,14 @@ export default function MethodPage({ params }: { params: { lang: Lang } }) {
       <Footer lang={lang} tr={tr.footer} />
 
       <style>{`
-        .method-step-grid {
+        .method-cards-grid {
           display: grid;
-          grid-template-columns: 80px 1fr 220px;
-          gap: 2rem 3rem;
-          align-items: start;
+          grid-template-columns: 1fr 1fr;
+          gap: 18px;
         }
         .cta-grid { grid-template-columns: 1fr 1fr; }
         @media (max-width: 768px) {
-          .method-step-grid { grid-template-columns: 40px 1fr; }
-          .method-step-grid > div:last-child { grid-column: 2; }
+          .method-cards-grid { grid-template-columns: 1fr; }
           .cta-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

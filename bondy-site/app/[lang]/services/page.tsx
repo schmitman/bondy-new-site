@@ -2,6 +2,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import HeroV2 from '@/components/bondy/HeroV2'
+import { Tag, BondyUnderline } from '@/components/bondy/atoms'
 import type { Lang } from '@/lib/i18n/translations'
 import { t } from '@/lib/i18n/translations'
 import type { Metadata } from 'next'
@@ -71,26 +72,32 @@ export default function ServicesPage({ params }: { params: { lang: Lang } }) {
       </header>
 
       {/* Services */}
-      {s.items.map((item, idx) => (
+      {s.items.map((item, idx) => {
+        const tagLabel = ['ACTIVE · CORE', 'ACTIVE · LIGHT', 'ACTIVE · RPO'][idx] || 'ACTIVE'
+        return (
         <section key={item.id} id={item.id} style={{ borderBottom: `1px solid ${tw.rule}` }}>
           <div className="services-split-grid">
-            {/* Left */}
+            {/* Left — header + body */}
             <div style={{ background: sectionBgs[idx], borderRight: `1px solid ${tw.rule}`, padding: '4rem clamp(1.25rem,4vw,3.5rem)' }}>
-              <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.inkFaint, marginBottom: '2.5rem' }}>
-                {item.n}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+                <div style={{ fontFamily: mono, fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.inkFaint, fontWeight: 500 }}>
+                  {item.n}
+                </div>
+                <Tag tone="green">{tagLabel}</Tag>
               </div>
-              <h2 style={{ fontFamily: serif, fontSize: 'clamp(2rem,4vw,3rem)', lineHeight: 1.1, color: tw.inkMid, marginBottom: '1.75rem' }} className="tw-ink">
+              <h2 style={{ fontFamily: serif, fontSize: 'clamp(2rem,4vw,3rem)', lineHeight: 1.05, color: tw.inkMid, marginBottom: '14px', opacity: 0.92, fontWeight: 400, letterSpacing: '-0.005em' }} className="tw-ink">
                 {item.title.split('\n').map((line, i) => <span key={i}>{line}{i < item.title.split('\n').length - 1 && <br />}</span>)}
               </h2>
+              <BondyUnderline width={120} strokeWidth={2} style={{ marginBottom: '1.75rem' }} />
               <p style={{ fontFamily: mono, fontSize: '15px', lineHeight: 1.8, color: tw.inkSub, marginBottom: '1.25rem' }}>{item.lead}</p>
               <p style={{ fontFamily: mono, fontSize: '14px', lineHeight: 1.8, color: tw.inkFaint }}>{item.body}</p>
             </div>
-            {/* Right */}
+            {/* Right — specs block bordered */}
             <div style={{ background: detailBgs[idx], padding: '4rem clamp(1.25rem,4vw,3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <div style={{ border: `1px solid ${tw.rule}`, padding: '28px 30px', display: 'flex', flexDirection: 'column', gap: '1.5rem', background: tw.white }}>
                 {item.details.map((d) => (
                   <div key={d.label} style={{ borderLeft: `2px solid rgba(74,140,64,0.35)`, paddingLeft: '20px' }}>
-                    <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: tw.green, marginBottom: '8px' }}>
+                    <div style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: tw.green, marginBottom: '8px', fontWeight: 500 }}>
                       {d.label}
                     </div>
                     <p style={{ fontFamily: mono, fontSize: '14px', lineHeight: 1.75, color: tw.inkSub }}>{d.text}</p>
@@ -100,7 +107,7 @@ export default function ServicesPage({ params }: { params: { lang: Lang } }) {
               <Link
                 href={lk('/contact')}
                 style={{
-                  marginTop: '3rem', display: 'inline-flex', alignItems: 'center', gap: '10px',
+                  marginTop: '2rem', display: 'inline-flex', alignItems: 'center', gap: '10px',
                   fontFamily: mono, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase',
                   padding: '13px 26px', textDecoration: 'none', alignSelf: 'flex-start',
                   ...(item.ctaStyle === 'primary'
@@ -113,7 +120,8 @@ export default function ServicesPage({ params }: { params: { lang: Lang } }) {
             </div>
           </div>
         </section>
-      ))}
+        )
+      })}
 
       {/* CTA final */}
       <section style={{ background: tw.white, padding: '5rem clamp(1.25rem,5vw,4rem)', textAlign: 'center', borderTop: `1px solid ${tw.rule}` }}>
